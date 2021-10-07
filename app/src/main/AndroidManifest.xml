@@ -84,7 +84,9 @@
         </activity>
 
 
-        <activity android:name=".LauncherActivity">
+        <activity android:name=".LauncherActivity"
+            android:label="windowSoftInputMode属性示例"
+            >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -104,9 +106,52 @@
             android:windowSoftInputMode="stateHidden"
             />
 
-        <activity android:name=".LoginActivity">
+        <activity android:name=".soft.LoginUnScrollAlwaysHiddenActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            />
+
+        <activity android:name=".soft.LoginUnScrollStateVisibleActivity"
+            android:windowSoftInputMode="stateVisible"
+            />
+
+        <activity android:name=".soft.LoginUnScrollStateAlwaysVisibleActivity"
+            android:windowSoftInputMode="stateAlwaysVisible"
+            />
+
+        <activity android:name=".soft.LoginUnScrollAdjustResizeActivity"
+            android:windowSoftInputMode="adjustResize"
+            />
+
+        <activity android:name=".soft.LoginScrollAdjustResizeActivity"
+            android:windowSoftInputMode="adjustResize"
+            />
+
+        <activity android:name=".soft.LoginScrollDefaultActivity">
 
         </activity>
+
+        <activity android:name=".soft.LoginScrollFullScreenAdjustResizeActivity"
+            android:windowSoftInputMode="adjustResize"
+            />
+
+        <activity android:name=".soft.LoginScrollFullScreenAdjustResizeSelfActivity"
+            android:windowSoftInputMode="adjustResize"
+            />
+
+        <activity android:name=".soft.LoginScrollAdjustPanActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
+
+        <activity android:name=".soft.LoginUnScrollAdjustPanActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
+
+        <activity android:name=".soft.LoginScrollAdjustNothingActivity"
+            android:windowSoftInputMode="adjustNothing"/>
+
+        <activity android:name=".soft.LoginUnScrollAdjustNothingActivity"
+            android:windowSoftInputMode="adjustNothing"/>
+
 
         <activity android:name=".base.FilePreviewActivity"/>
         <activity android:name=".MainActivity3" />

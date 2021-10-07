@@ -1,36 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:hint="点击可以获取焦点唤起软键盘"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:onClick="unScrollUnSpecified"
-        android:text="非滚动布局-默认模式"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <EditText
+            android:hint="点击可以获取焦点唤起软键盘"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:onClick="scrollUnSpecified"
-        android:text="滚动布局-默认模式"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:onClick="finish"
+            android:text="销毁页面"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:onClick="softInputUnChanged"
-        android:text="布局-键盘无改变模式"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:onClick="unScrollUnSpecified"
+            android:text="非滚动布局-默认模式"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:onClick="softInputHidden"
-        android:text="布局-键盘隐藏模式"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:onClick="scrollUnSpecified"
+            android:text="滚动布局-默认模式"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-</LinearLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:onClick="softInputUnChanged"
+            android:text="通用布局-键盘无改变模式"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:onClick="softInputHidden"
+            android:text="通用布局-键盘隐藏模式"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:onClick="softInputAlwaysHidden"
+            android:text="通用布局-键盘总是隐藏模式"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:onClick="softInputStateVisible"
+            android:text="通用布局-状态可见"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:onClick="softInputStateAlwaysVisible"
+            android:text="通用布局-状态经常可见"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:onClick="softInputNoScroolAdjustResize"
+            android:text="非滚动布局-大小调整"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:onClick="softInputScroolAdjustResize"
+            android:text="滚动布局-大小调整"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:onClick="softInputScroolFullScreenAdjustResize"
+            android:text="滚动布局-全屏大小调整"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:onClick="softInputScroolFullScreenAdjustResizeSelf"
+            android:text="滚动布局-全屏大小自身调整"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:onClick="softInputNoScroolAdjustPan"
+            android:text="非滚动布局-布局上顶"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:onClick="softInputScroolAdjustPan"
+            android:text="滚动布局-布局上顶"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:onClick="softInputNoScroolAdjustNothing"
+            android:text="非滚动布局-布局不调整"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:onClick="softInputScroolAdjustNothing"
+            android:text="滚动布局-布局不调整"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+    </LinearLayout>
+
+</ScrollView>

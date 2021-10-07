@@ -1,4 +1,4 @@
-package mo.gov.safp.portal;
+package mo.gov.safp.portal.soft;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -7,13 +7,14 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import mo.gov.safp.portal.R;
 import mo.gov.safp.portal.utils.AndroidBug5497Workaround;
 
 /**
  * @author CH
  * @date 2021/10/6
  */
-public class LoginActivity extends Activity {
+public class LoginScrollDefaultActivity extends Activity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

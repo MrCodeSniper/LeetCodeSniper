@@ -49,7 +49,7 @@
     <string name="account_login_fingerprint_hint">啟用後可收使用指紋ID快速完成登入。設置僅對當前設備生效。</string>
     <string name="account_login_other_way">其他登入方式</string>
     <string name="account_login_register">立即開戶</string>
-    <string name="account_login_in">登入</string>
+    <string name="account_login_in">跳转到次级页面</string>
     <string name="account_login_entity">實體登入</string>
     <string name="account_login_personal">個人登入</string>
     <string name="account_login_close">關閉</string>
