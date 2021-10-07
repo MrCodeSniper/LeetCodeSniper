@@ -1,0 +1,81 @@
+<resources>
+    <string name="app_name">MacaoApp</string>
+    <string name="push_title">推送</string>
+    <string name="push_init">初始化推送</string>
+    <string name="init_tips">Tips: 使用上面接口，可以实现移动推送的初始化</string>
+    <string name="push_bind">将用户id和token标识绑定</string>
+    <string name="bind_tips">Tips: push支持用户维度的推送。用户可以结合自身的用户系统将用户id和内建渠道的token绑定，进而实现基于用户id的推送</string>
+    <string name="push_unbind">解除用户id和token标识的绑定</string>
+    <string name="unbind_tips">Tips: 使用上面接口，可以实现用户id和token标识的解除绑定操作</string>
+    <string name="push_uploadThirdToken">上报第三方push的token</string>
+    <string name="uploadThirdToken_tips">Tips: 使用上面接口，可以实现第三方push的token的上传，但push不支持对内建渠道的token值的指定</string>
+    <string name="operation_result">操作结果将输入在这里</string>
+    <string name="use_default_msg">使用内置通知栏消息</string>
+
+    <string name="account_language_title">语言</string>
+    <string name="account_language_zh_hans">简体中文</string>
+    <string name="account_language_zh_hant">繁體中文</string>
+    <string name="account_language_zh_hant_simple">繁體</string>
+    <string name="account_language_pt">Português</string>
+    <string name="account_language_en">English</string>
+
+    <string name="pref_default_value_empty_string" />
+    <string name="pref_default_value_long_string">0</string>
+
+    <string name="pref_key_app_upgrade">key_app_upgrade</string>
+    <string name="pref_key_active_account_name">key_active_account_name</string>
+    <string name="pref_key_active_account_type" translatable="false">key_active_account_type</string>
+    <string name="pref_key_mobile_profile">key_mobile_profile</string>
+    <string name="pref_key_web_whitelist">key_web_whitelist</string>
+    <string name="pref_key_account_euidlist">key_account_euidlist</string>
+
+    <string name="pref_key_app_theme">key_app_theme</string>
+    <string name="pref_key_app_setting">key_app_setting</string>
+
+    <!-- permission -->
+    <string name="pref_key_permission_read_storage">key_permission_read_storage</string>
+    <string name="pref_key_permission_write_storage">key_permission_write_storage</string>
+    <string name="pref_key_permission_camera">key_permission_camera</string>
+    <string name="pref_key_permission_read_calendar">key_permission_read_calendar</string>
+    <string name="pref_key_permission_write_calendar">key_permission_write_calendar</string>
+
+
+    <string name="account_login_please_input_accountName">請輸入您的帳戶名稱</string>
+    <string name="account_login_please_input_password">請輸入密码</string>
+    <string name="account_login_please_input_entity_number">請輸入實體編號</string>
+    <string name="account_login_fingerprint">指纹ID登入</string>
+    <string name="account_login_fingerprint_way">指纹登入</string>
+    <string name="account_login_fingerprint_setting">指纹ID登入设置</string>
+    <string name="account_login_fingerprint_hint">啟用後可收使用指紋ID快速完成登入。設置僅對當前設備生效。</string>
+    <string name="account_login_other_way">其他登入方式</string>
+    <string name="account_login_register">立即開戶</string>
+    <string name="account_login_in">登入</string>
+    <string name="account_login_entity">實體登入</string>
+    <string name="account_login_personal">個人登入</string>
+    <string name="account_login_close">關閉</string>
+    <string name="account_login_manage_default">默認</string>
+    <string name="account_login_manage_password">一戶通登入密碼</string>
+    <string name="account_login_click_fingerprint_login">點擊進行指紋登入</string>
+    <string name="account_login_more">更多</string>
+    <string name="account_login_fingerprint_pic">指紋認證</string>
+    <string name="account_login_bg">登陸頁面背景</string>
+    <string name="account_login_logo">登陸一戶通圖標</string>
+    <string name="account_login_fingerprint_enabled">指纹ID登入已啟用</string>
+    <string name="account_login_stop_fingerprint_confirm">確認停用指紋ID登入嗎？</string>
+    <string name="account_login_fingerprint_disabled">指紋ID登入已停用</string>
+    <string name="account_login_password">密碼登入</string>
+    <string name="account_login_safe_account_desc">一戶通帳戶：%s</string>
+    <string name="account_login_success">登入成功</string>
+    <string name="account_login_fail">登入失敗</string>
+    <string name="account_login_fail_not_your_child">此帳戶並不是當前登入用戶之子女，無法完成添加</string>
+    <string name="account_login_fail_not_at_age">當前用戶之子女已超過18歲，無法完成添加</string>
+    <string name="account_login_please_input_valid_accountName">請輸入正確的的帳戶名稱</string>
+    <string name="account_login_please_input_valid_password">請輸入正確的的密碼</string>
+    <string name="account_login_biometric_changed">閣下設備的指紋發生了變化，指紋ID登入已停用，需要重新啟用</string>
+    <string name="account_download_success">下载成功!</string>
+    <string name="account_login_click">点击登入</string>
+    <!-- 无障碍 -->
+    <string name="account_clear_input_content">點擊清除輸入框內容</string>
+    <string name="account_change_now_language">點擊修改應用語言,當前語言是%s</string>
+
+</resources>

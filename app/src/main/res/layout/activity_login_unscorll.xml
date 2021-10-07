@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gov_background_view_color">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:contentDescription="@string/account_login_bg"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:importantForAccessibility="no"
+        android:scaleType="fitStart"
+        android:src="@drawable/icon_account_login_bg" />
+
+    <LinearLayout
+        android:id="@+id/rl_content_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/shape_r_50dp_bg_ffffff"
+        android:orientation="vertical"
+        android:paddingStart="40dp"
+        android:paddingEnd="26dp">
+
+        <ImageView
+            android:id="@+id/tv_close_login_page"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="22dp"
+            android:contentDescription="@string/account_login_close"
+            android:padding="4dp"
+            android:src="@drawable/icon_account_login_close" />
+
+        <LinearLayout
+            android:id="@+id/ll_login_selected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_personal_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@string/account_login_personal"
+                android:textColor="@color/tab_common_selected_color"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                tools:text="Login individual" />
+
+            <TextView
+                android:id="@+id/tv_entity_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:singleLine="true"
+                android:text="@string/account_login_entity"
+                android:textColor="@color/tab_common_selected_color"
+                android:textSize="16sp"
+                tools:text="Logina Da entidade" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_input_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="58dp"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/ll_input_username"
+                layout="@layout/include_input_layout" />
+
+            <include
+                android:id="@+id/ll_input_password"
+                layout="@layout/include_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp" />
+
+            <include
+                android:id="@+id/ll_input_entity"
+                layout="@layout/include_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp" />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_start_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/common_btn_selector"
+            android:paddingVertical="14dp"
+            android:text="@string/account_login_in"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="55dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_start_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/account_login_register"
+                android:textColor="@color/gov_main_color"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_space"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=""
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@+id/tv_other_login_way"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@string/account_login_other_way"
+                android:textColor="@color/gov_main_color"
+                android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_language_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/shape_r_14dp_bg_d4ece6"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="5dp">
+
+            <TextView
+                android:id="@+id/tv_change_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="7dp"
+                android:contentDescription="@string/account_change_now_language"
+                android:textColor="@color/gov_main_color"
+                android:textSize="14sp"
+                tools:text="@string/account_language_pt" />
+
+            <ImageView
+                android:layout_width="9dp"
+                android:layout_height="12dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/icon_account_switch_language" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

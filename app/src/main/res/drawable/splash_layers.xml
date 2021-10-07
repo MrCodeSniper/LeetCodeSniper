@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- background with solid color -->
+    <item android:gravity="fill">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="-90"
+                android:endColor="@color/app_launcher_splash_bg_end_color"
+                android:startColor="@color/app_launcher_splash_bg_start_color" />
+        </shape>
+    </item>
+    <!-- logo -->
+    <item
+        android:top="232dp"
+        android:width="96dp"
+        android:height="96dp"
+        android:drawable="@drawable/ic_frame"
+        android:gravity="center_horizontal|top" />
+
+    <item
+        android:bottom="40dp"
+        android:width="142dp"
+        android:height="62dp"
+        android:drawable="@drawable/ic___"
+        android:gravity="center_horizontal|bottom" />
+
+</layer-list>

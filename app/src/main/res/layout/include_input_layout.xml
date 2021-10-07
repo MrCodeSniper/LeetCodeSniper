@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_input_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:importantForAccessibility="no"
+        android:id="@+id/iv_input_icon"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="3dp"
+        android:src="@drawable/account_icon_account_name" />
+
+    <EditText
+        android:id="@+id/et_input_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_toEndOf="@+id/iv_input_icon"
+        android:background="@null"
+        android:hint="@string/account_login_please_input_accountName"
+        android:singleLine="true"
+        android:textColor="@color/gov_input_display_text_color"
+        android:textColorHint="@color/gov_input_hint_text_color"
+        android:textSize="16sp" />
+
+
+    <View
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:importantForAccessibility="no"
+        android:id="@+id/view_input_divider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/iv_input_icon"
+        android:layout_marginTop="10dp"
+        android:background="@color/gov_input_divider_color" />
+
+
+    <TextView
+        tools:visibility="visible"
+        android:visibility="invisible"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorErrorHintColor"
+        android:layout_below="@+id/view_input_divider"
+        tools:text="密碼錯誤提示信息"
+        android:textSize="14sp"
+        android:id="@+id/tv_error_hint_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <FrameLayout
+        tools:visibility="visible"
+        android:visibility="gone"
+        android:id="@+id/fl_clear_input"
+        android:padding="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_clear_input"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/account_icon_clear" />
+
+    </FrameLayout>
+</RelativeLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--  背景  -->
+    <!--全局背景色-->
+    <color name="gov_background_app_color">@color/gov_athens_gray</color>
+
+    <color name="gov_shadow_color">#efFFFFFF</color>
+    <!--view背景色-->
+    <color name="gov_background_view_color">@color/gov_white</color>
+    <!--dialog背景色-->
+    <color name="gov_background_dialog_color">#FFFFFF</color>
+    <!--常规分割线-->
+    <color name="gov_divide_line">@color/gov_gallery</color>
+    <!--其它-->
+    <color name="gov_background_other_color">#54FFFFFF</color>
+
+    <!--  文字  -->
+    <!--暗色文字-->
+    <color name="gov_text_dark_color">@color/gov_dark</color>
+    <color name="gov_text_second_color">@color/gov_gray</color>
+    <color name="gov_text_three_color">#C1C1C1</color>
+    <!-- 注释文本  -->
+    <color name="gov_text_hint_color">#66FFFFFF</color>
+    <!-- 链接文本  -->
+    <color name="gov_text_link_color">#46C7A5</color>
+
+    <!--亮色文字-->
+    <color name="gov_text_light_color">#F4FFFFFF</color>
+
+    <!--功能颜色-->
+    <color name="gov_success_color">@color/gov_jade_green</color>
+    <color name="gov_warning_color">@color/gov_coral_orange</color>
+    <color name="gov_error_color">@color/gov_meat_pink</color>
+    <color name="gov_fail_color">#F47555</color>
+
+    <color name="gov_tag_color">#ACACAC</color>
+    <color name="gov_people_btn_next_bg">#19f48766</color>
+    <color name="gov_people_btn_next_text">#F48766</color>
+    <color name="gov_important_btn_next_bg">#fef8e6</color>
+    <color name="gov_important_btn_next_text">@color/gov_msg_important_color</color>
+    
+    
+    <color name="gov_msg_important_color">#F3B704</color>
+    <color name="gov_msg_pretend_color">#F48766</color>
+
+    <color name="gov_hint_color">#ACACAC</color>
+    <!--输入框颜色-->
+    <color name="gov_input_display_text_color">#232323</color>
+    <color name="gov_input_hint_text_color">#ACACAC</color>
+    <color name="gov_input_divider_color">#D1D1D6</color>
+
+    <color name="gov_button_bg_color">#f5f5f8</color>
+    <color name="gov_main_color">@color/gov_important_color</color>
+    <color name="gov_button_switch_bg_color">#D4ECE6</color>
+
+    <color name="gov_standard_color">#000</color>
+    <color name="common_dialog_center_title_color">#7C7C7C</color>
+
+    <color name="gov_upgrade_content_color">#595959</color>
+    <color name="gov_upgrade_title_color">#8C8C8C</color>
+</resources>

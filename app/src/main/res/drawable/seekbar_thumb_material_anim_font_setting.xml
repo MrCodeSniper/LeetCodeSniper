@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" android:constantSize="true">
+    <!--    <item android:state_enabled="false" android:state_pressed="true">
+            <bitmap android:gravity="center"
+                    android:src="@drawable/abc_scrubber_control_off_mtrl_alpha"/>
+        </item>
+        <item android:state_enabled="false">
+            <bitmap android:gravity="center"
+                    android:src="@drawable/abc_scrubber_control_off_mtrl_alpha"/>
+        </item>
+        <item android:state_pressed="true">
+            <bitmap android:gravity="center"
+                    android:src="@drawable/abc_scrubber_control_to_pressed_mtrl_005"/>
+        </item>-->
+
+
+    <item android:width="30dp" android:height="30dp">
+        <shape android:shape="oval">
+            <solid android:color="#3602106b" />
+        </shape>
+    </item>
+
+
+    <item android:width="28dp" android:height="28dp" android:top="1dp" android:left="1dp">
+        <shape android:shape="oval">
+            <solid android:color="@android:color/white" />
+        </shape>
+    </item>
+
+
+</layer-list>

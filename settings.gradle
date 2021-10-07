@@ -1,0 +1,3 @@
+include ':app'
+include ':citypickerview'
+rootProject.name = "MacaoApp"
