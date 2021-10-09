@@ -1,12 +1,14 @@
 package mo.gov.safp.portal.soft;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import mo.gov.safp.portal.LauncherActivity;
 import mo.gov.safp.portal.R;
 import mo.gov.safp.portal.utils.AndroidBug5497Workaround;
 
@@ -26,6 +28,7 @@ public class LoginScrollDefaultActivity extends Activity {
 //        //设置状态栏颜色为透明
 //        getWindow().setStatusBarColor(Color.TRANSPARENT);
         setContentView(R.layout.activity_login);
+        findViewById(R.id.btn_start_login).setOnClickListener(v -> startActivity(new Intent(LoginScrollDefaultActivity.this, LauncherActivity.class)));
         findViewById(R.id.tv_close_login_page).setOnClickListener(v -> finish());
 //        AndroidBug5497Workaround.assistActivity(findViewById(android.R.id.content));
     }
