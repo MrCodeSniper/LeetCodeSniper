@@ -63,8 +63,8 @@ public class MacaoOrmLiteSqliteOpenHelper extends OrmLiteSqliteOpenHelper {
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
         if (oldVersion < 2) {
             Log.d("chenhongDB","onUpgrade");
-            TableUtils.dropTable(connectionSource, LoginResultData.class, true);
-            TableUtils.createTableIfNotExists(connectionSource, LoginResultData.class);
+//            TableUtils.dropTable(connectionSource, LoginResultData.class, true);
+//            TableUtils.createTableIfNotExists(connectionSource, LoginResultData.class);
 //            ThreadPoolManager.getInstance().execute(() -> {
 //                UserCenterClient serviceClient = MPRpc.getRpcProxy(UserCenterClient.class);
 //                MPRpc.getRpcInvokeContext(serviceClient).addRequestHeader(ConstantsKt.TOKEN, UserCenterManager.getInstance().getToken());
