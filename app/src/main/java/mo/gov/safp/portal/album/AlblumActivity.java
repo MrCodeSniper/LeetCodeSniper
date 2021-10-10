@@ -25,6 +25,7 @@ import org.w3c.dom.Text;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import mo.gov.safp.portal.R;
 import mo.gov.safp.portal.sqlite.LoginResultData;
@@ -87,6 +88,12 @@ public class AlblumActivity extends AppCompatActivity {
         loginResultData.euid = "123";
         loginResultData.token = "abcd";
         loginResultData.username = "username";
+        ArrayList<LoginResultData.EntitiesBean> entitiesBeans = new ArrayList<>();
+        LoginResultData.EntitiesBean bean = new LoginResultData.EntitiesBean();
+        bean.address = "1231231";
+        bean.entityType = new LoginResultData.EntitiesBean.EntityTypeBean();
+        entitiesBeans.add(bean);
+        loginResultData.entities = entitiesBeans;
         UserCenterManager.getInstance().saveLoginUserData(loginResultData);
         refreshLogin();
     }
