@@ -28,40 +28,23 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!--for Samsung-->
-    <uses-permission android:name="com.sec.android.provider.badge.permission.READ"/>
-    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE"/>
-
-    <!--for htc-->
-    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS"/>
-    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT"/>
-
-    <!--for sony-->
-    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE"/>
-    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE"/>
-
-    <!--for apex-->
-    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT"/>
-
-    <!--for solid-->
-    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE"/>
-
-    <!--for huawei-->
-    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE"/>
-    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS"/>
-    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS"/>
-
-    <!--for ZUK-->
-    <uses-permission android:name="android.permission.READ_APP_BADGE"/>
-
-    <!--for OPPO-->
-    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS"/>
-    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS"/>
-
-    <!--for EvMe-->
-    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ"/>
-    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- for Samsung -->
+    <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
+    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" /> <!-- for htc -->
+    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" /> <!-- for sony -->
+    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
+    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" /> <!-- for apex -->
+    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" /> <!-- for solid -->
+    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" /> <!-- for huawei -->
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" /> <!-- for ZUK -->
+    <uses-permission android:name="android.permission.READ_APP_BADGE" /> <!-- for OPPO -->
+    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS" /> <!-- for EvMe -->
+    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ" />
+    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
 
     <application
         android:name=".base.CustomApplication"
@@ -71,100 +54,88 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity2"
-            android:theme="@style/MoAppTheme.Launcher"
-            >
-
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-
-        </activity>
-
-
-        <activity android:name=".LauncherActivity"
-            android:label="windowSoftInputMode属性示例"
-            >
-
+        <activity android:name=".album.AlblumActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".MainActivity2"
+            android:theme="@style/MoAppTheme.Launcher">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
 
         </activity>
+        <activity
+            android:name=".LauncherActivity"
+            android:label="windowSoftInputMode属性示例">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <activity android:name=".soft.LoginUnScrollActivity"/>
-
-        <activity android:name=".soft.LoginUnScrollUnChangedActivity"
-            android:windowSoftInputMode="stateUnchanged"
-            />
-
-        <activity android:name=".soft.LoginUnScrollHiddenActivity"
-            android:windowSoftInputMode="stateHidden"
-            />
-
-        <activity android:name=".soft.LoginUnScrollAlwaysHiddenActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
-
-        <activity android:name=".soft.LoginUnScrollStateVisibleActivity"
-            android:windowSoftInputMode="stateVisible"
-            />
-
-        <activity android:name=".soft.LoginUnScrollStateAlwaysVisibleActivity"
-            android:windowSoftInputMode="stateAlwaysVisible"
-            />
-
-        <activity android:name=".soft.LoginUnScrollAdjustResizeActivity"
-            android:windowSoftInputMode="adjustResize"
-            />
-
-        <activity android:name=".soft.LoginScrollAdjustResizeActivity"
-            android:windowSoftInputMode="adjustResize"
-            />
-
-        <activity android:name=".soft.LoginScrollDefaultActivity">
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-
-        <activity android:name=".soft.LoginScrollFullScreenAdjustResizeActivity"
-            android:windowSoftInputMode="adjustResize"
-            />
-
-        <activity android:name=".soft.LoginScrollFullScreenAdjustResizeSelfActivity"
-            android:windowSoftInputMode="adjustResize"
-            />
-
-        <activity android:name=".soft.LoginScrollAdjustPanActivity"
-            android:windowSoftInputMode="adjustPan"
-            />
-
-        <activity android:name=".soft.LoginUnScrollAdjustPanActivity"
-            android:windowSoftInputMode="adjustPan"
-            />
-
-        <activity android:name=".soft.LoginScrollAdjustNothingActivity"
-            android:windowSoftInputMode="adjustNothing"/>
-
-        <activity android:name=".soft.LoginUnScrollAdjustNothingActivity"
-            android:windowSoftInputMode="adjustNothing"/>
-
-
-        <activity android:name=".base.FilePreviewActivity"/>
+        <activity android:name=".soft.LoginUnScrollActivity" />
+        <activity
+            android:name=".soft.LoginUnScrollUnChangedActivity"
+            android:windowSoftInputMode="stateUnchanged" />
+        <activity
+            android:name=".soft.LoginUnScrollHiddenActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".soft.LoginUnScrollAlwaysHiddenActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".soft.LoginUnScrollStateVisibleActivity"
+            android:windowSoftInputMode="stateVisible" />
+        <activity
+            android:name=".soft.LoginUnScrollStateAlwaysVisibleActivity"
+            android:windowSoftInputMode="stateAlwaysVisible" />
+        <activity
+            android:name=".soft.LoginUnScrollAdjustResizeActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".soft.LoginScrollAdjustResizeActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".soft.LoginScrollDefaultActivity"></activity>
+        <activity
+            android:name=".soft.LoginScrollFullScreenAdjustResizeActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".soft.LoginScrollFullScreenAdjustResizeSelfActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".soft.LoginScrollAdjustPanActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".soft.LoginUnScrollAdjustPanActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".soft.LoginScrollAdjustNothingActivity"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".soft.LoginUnScrollAdjustNothingActivity"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity android:name=".base.FilePreviewActivity" />
         <activity android:name=".MainActivity3" />
 
         <service
             android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
             android:label="dexopt"
-            android:process=":dexopt" >
-        </service>
-        <activity
-            android:name=".CitypickerWheelActivity">
+            android:process=":dexopt"></service>
 
-        </activity>
+        <activity android:name=".CitypickerWheelActivity"></activity>
         <activity android:name=".GpsActivity" />
         <activity
             android:name=".MainActivity"
@@ -344,7 +315,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".badge.BadgeIntentService"/>
+        <service android:name=".badge.BadgeIntentService" />
     </application>
 
 </manifest>
