@@ -10,6 +10,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -21,7 +22,7 @@ public class MacaoOrmLiteSqliteOpenHelper extends OrmLiteSqliteOpenHelper {
     /**
      * 当前数据库版本
      */
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
     /**
      * 数据库加密密钥，mPaaS 支持数据库加密，使数据在设备上更安全，若为 null 则不加密。
      * 注意：密码只能设置一次，不提供修改密码的 API；不支持对未加密的库设置密码进行加密（会导致闪退）。
@@ -43,7 +44,6 @@ public class MacaoOrmLiteSqliteOpenHelper extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource) {
         try {
             // 创建User表
-//            TableUtils.createTableIfNotExists(connectionSource, User.class);
             TableUtils.createTableIfNotExists(connectionSource, LoginResultData.class);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -63,8 +63,10 @@ public class MacaoOrmLiteSqliteOpenHelper extends OrmLiteSqliteOpenHelper {
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
         if (oldVersion < 2) {
             Log.d("chenhongDB","onUpgrade");
-//            TableUtils.dropTable(connectionSource, LoginResultData.class, true);
-//            TableUtils.createTableIfNotExists(connectionSource, LoginResultData.class);
+            LoginResultData aNew = getNew();
+            TableUtils.dropTable(connectionSource, LoginResultData.class, true);
+            TableUtils.createTableIfNotExists(connectionSource, LoginResultData.class);
+            UserCenterManager.getInstance().saveLoginUserData(aNew);
 //            ThreadPoolManager.getInstance().execute(() -> {
 //                UserCenterClient serviceClient = MPRpc.getRpcProxy(UserCenterClient.class);
 //                MPRpc.getRpcInvokeContext(serviceClient).addRequestHeader(ConstantsKt.TOKEN, UserCenterManager.getInstance().getToken());
@@ -77,6 +79,23 @@ public class MacaoOrmLiteSqliteOpenHelper extends OrmLiteSqliteOpenHelper {
 //            });
 //            MacaoDatabaseUtil.upgradeTable(database, connectionSource, LoginResultData.class, MacaoDatabaseUtil.OPERATION_TYPE.DELETE);
         }
+    }
+
+    private LoginResultData getNew(){
+        LoginResultData loginResultData = new LoginResultData();
+        loginResultData.euid = "123";
+        loginResultData.token = "abcd";
+        loginResultData.username = "username";
+        ArrayList<LoginResultData.EntitiesBean> entitiesBeans = new ArrayList<>();
+        LoginResultData.EntitiesBean bean = new LoginResultData.EntitiesBean();
+        bean.address = "1231231";
+        LoginResultData.EntitiesBean.EntityTypeBean entityTypeBean = new LoginResultData.EntitiesBean.EntityTypeBean();
+        entityTypeBean.setNamePt("21123");
+        entityTypeBean.setNameZhHant("3333");
+        bean.entityType = entityTypeBean;
+        entitiesBeans.add(bean);
+        loginResultData.entities = entitiesBeans;
+        return loginResultData;
     }
 //
 //        try {

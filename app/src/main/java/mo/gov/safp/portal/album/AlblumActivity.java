@@ -44,6 +44,9 @@ public class AlblumActivity extends AppCompatActivity {
 
     public void mutipleAlblumPic(View view) {
 //        openAlbum();
+        LoginResultData.EntitiesBean.EntityTypeBean entityType = UserCenterManager.getInstance().getLoginResult().entities.get(0).entityType;
+        Log.d("chenhong","1111");
+
     }
 
     //启动相册的方法

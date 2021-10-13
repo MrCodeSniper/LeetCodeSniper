@@ -194,6 +194,9 @@ public class LoginResultData implements Serializable {
         }
 
         public static class EntityTypeBean implements Serializable {
+
+            private static final long serialVersionUID = 4359709211352400087L;
+
             /**
              * code :
              * namePt :
@@ -204,6 +207,30 @@ public class LoginResultData implements Serializable {
             private String namePt;
             private String nameZhHant;
 
+
+            public String getCode() {
+                return code;
+            }
+
+            public void setCode(String code) {
+                this.code = code;
+            }
+
+            public String getNamePt() {
+                return namePt;
+            }
+
+            public void setNamePt(String namePt) {
+                this.namePt = namePt;
+            }
+
+            public String getNameZhHant() {
+                return nameZhHant;
+            }
+
+            public void setNameZhHant(String nameZhHant) {
+                this.nameZhHant = nameZhHant;
+            }
         }
 
         public static class GovServicesBean implements Serializable {
