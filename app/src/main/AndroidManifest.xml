@@ -55,11 +55,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".album.AlblumActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
@@ -69,22 +65,26 @@
             android:name=".MainActivity2"
             android:theme="@style/MoAppTheme.Launcher">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
 
 
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
 
         </activity>
+
+        <activity android:name=".pdf.MyPdfActivity"/>
+
+
         <activity
             android:name=".LauncherActivity"
             android:label="windowSoftInputMode属性示例">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name=".soft.LoginUnScrollActivity" />
         <activity
@@ -129,6 +129,8 @@
             android:windowSoftInputMode="adjustNothing" />
         <activity android:name=".base.FilePreviewActivity" />
         <activity android:name=".MainActivity3" />
+
+        <activity android:name=".web.MpaasWebAcitvity"/>
 
         <service
             android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"

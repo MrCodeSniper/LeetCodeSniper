@@ -17,21 +17,21 @@ public class MyApplication extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MPPush.setup(this);
-//        QuinoxlessFramework.setup(this, new IInitCallback() {
-//            @Override
-//            public void onPostInit() {
-//                // 预置离线包，包括普通离线包和公共资源包
-//                new Thread(new PresetAmrPipeline()).start();
-//                // 公共资源包返回 appid
-//                H5Utils.setProvider(H5AppCenterPresetProvider.class.getName(), new H5AppCenterPresetProviderImpl());
-//                H5Utils.setProvider(H5PublicRsaProvider.class.getName(), new H5RsaProviderImpl());
-//            }
-//        });
+        QuinoxlessFramework.setup(this, new IInitCallback() {
+            @Override
+            public void onPostInit() {
+                // 预置离线包，包括普通离线包和公共资源包
+                new Thread(new PresetAmrPipeline()).start();
+                // 公共资源包返回 appid
+                H5Utils.setProvider(H5AppCenterPresetProvider.class.getName(), new H5AppCenterPresetProviderImpl());
+                H5Utils.setProvider(H5PublicRsaProvider.class.getName(), new H5RsaProviderImpl());
+            }
+        });
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-//        QuinoxlessFramework.init();
+        QuinoxlessFramework.init();
     }
 }

@@ -31,6 +31,7 @@ import mo.gov.safp.portal.R;
 import mo.gov.safp.portal.sqlite.LoginResultData;
 import mo.gov.safp.portal.sqlite.MacaoOrmLiteSqliteOpenHelper;
 import mo.gov.safp.portal.sqlite.UserCenterManager;
+import mo.gov.safp.portal.web.MpaasWebAcitvity;
 
 public class AlblumActivity extends AppCompatActivity {
 
@@ -46,7 +47,7 @@ public class AlblumActivity extends AppCompatActivity {
 //        openAlbum();
         LoginResultData.EntitiesBean.EntityTypeBean entityType = UserCenterManager.getInstance().getLoginResult().entities.get(0).entityType;
         Log.d("chenhong","1111");
-
+        MpaasWebAcitvity.Companion.start(this);
     }
 
     //启动相册的方法
