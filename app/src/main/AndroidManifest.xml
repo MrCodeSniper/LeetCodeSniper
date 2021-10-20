@@ -78,7 +78,7 @@
 
 
         <activity
-            android:name=".LauncherActivity"
+            android:name=".WindowSoftInputActivity"
             android:label="windowSoftInputMode属性示例">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
@@ -128,7 +128,6 @@
             android:name=".soft.LoginUnScrollAdjustNothingActivity"
             android:windowSoftInputMode="adjustNothing" />
         <activity android:name=".base.FilePreviewActivity" />
-        <activity android:name=".MainActivity3" />
 
         <activity android:name=".web.MpaasWebAcitvity"/>
 

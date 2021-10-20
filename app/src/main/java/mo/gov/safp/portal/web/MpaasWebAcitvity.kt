@@ -4,7 +4,7 @@ package mo.gov.safp.portal.web
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import com.alibaba.yihutong.common.h5plugin.govappbridge.GovAppBridge
 import com.alipay.mobile.framework.LauncherApplicationAgent
 import com.alipay.mobile.framework.app.ui.BaseActivity
 import com.alipay.mobile.h5container.api.H5Bundle
@@ -23,38 +23,23 @@ import mo.gov.safp.portal.R
  */
 open class MpaasWebAcitvity : BaseActivity(), H5PageReadyListener {
 
-
-
-    companion object{
-        fun start(context: Context){
-            val intent = Intent(context,MpaasWebAcitvity::class.java)
+    companion object {
+        fun start(context: Context) {
+            val intent = Intent(context, MpaasWebAcitvity::class.java)
             context.startActivity(intent)
         }
     }
 
-    protected var mWebView: APWebView? = null
-
-    private var mResultCode: String? = null
-    private var mAppId: String? = null
-    private var mPageBundle: Bundle? = null
-    protected var mHeaderMap: Map<String?, String?>? = null
+    private var mWebView: APWebView? = null
     private var mUseSystemUA: Boolean? = null
-
-    private var mTitleContent: View? = null
-
-//    private var mCustomWebChromeClient: CustomWebChromeClient? = null
     private var mH5Page: H5Page? = null
 
-    /** 是否展示标题栏阴影 默认为false */
-    private var mHideShadow = false
+    var url: String? =
+        "https://www.taobao.com"
 
-    var url: String? = "https://app-res-uat.mo.gov.mo/#/weather-warning?backAction=native"
-
-    private var mStartTimeMills: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mStartTimeMills = System.currentTimeMillis()
         setContentView(R.layout.activity_web_container)
         getAsyncPage()
     }
@@ -68,7 +53,9 @@ open class MpaasWebAcitvity : BaseActivity(), H5PageReadyListener {
             LauncherApplicationAgent.getInstance().microApplicationContext.findServiceByInterface<H5Service>(
                 H5Service::class.java.name
             )
-        h5Service?.createPageAsync(this, H5Bundle(mPageBundle), this)
+        val bundle = Bundle()
+        bundle.putString("url", url)
+        h5Service?.createPageAsync(this, H5Bundle(bundle), this)
     }
 
     /**
@@ -79,16 +66,19 @@ open class MpaasWebAcitvity : BaseActivity(), H5PageReadyListener {
         mWebView = mH5Page?.webView
         mWebView.initWebSettings(this, mUseSystemUA)
 //        mH5Page?.setWebViewClient(this, mAppId, mHeaderMap, null, null)
-        mH5Page?.contentView?.setBackgroundColor(resources.getColor(R.color.gov_background_view_color))
+        val client = CustomWebChromeClient(this,mH5Page )
+        mWebView?.setWebChromeClient(client)
         mH5Page?.setH5ErrorHandler { message, code ->
             false
         }
-        if (mHeaderMap != null) {
-            mH5Page?.setExtra("mogov_header", mHeaderMap)
-        }
+        mWebView?.addJavascriptInterface(GovAppBridge(null), GovAppBridge::class.java.simpleName)
         flRoot?.removeAllViews()
         flRoot?.addView(mH5Page?.contentView)
-        mWebView?.loadUrl(url, null)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mWebView?.recycle(flRoot)
     }
 
 }

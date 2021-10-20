@@ -1,12 +1,6 @@
 package mo.gov.safp.portal.base;
 
-import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.preference.PreferenceManager;
-import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.lifecycle.Lifecycle;
@@ -14,10 +8,10 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ProcessLifecycleOwner;
 
-import com.alipay.mobile.framework.quinoxless.IInitCallback;
 import com.alipay.mobile.framework.quinoxless.QuinoxlessFramework;
 import com.alipay.mobile.nebula.provider.H5AppCenterPresetProvider;
 import com.alipay.mobile.nebula.provider.H5PublicRsaProvider;
+import com.alipay.mobile.nebula.provider.H5ResProvider;
 import com.alipay.mobile.nebula.util.H5Utils;
 import com.mpaas.mps.adapter.api.MPPush;
 import com.tencent.smtt.export.external.TbsCoreSettings;
@@ -25,28 +19,30 @@ import com.tencent.smtt.sdk.QbSdk;
 
 import java.util.HashMap;
 
-import mo.gov.safp.portal.H5AppCenterPresetProviderImpl;
-import mo.gov.safp.portal.H5RsaProviderImpl;
-import mo.gov.safp.portal.PresetAmrPipeline;
+import mo.gov.safp.portal.web.offline.H5AppCenterPresetProviderImpl;
+import mo.gov.safp.portal.web.H5RsaProviderImpl;
+import mo.gov.safp.portal.web.PresetAmrPipeline;
+import mo.gov.safp.portal.web.MpaasResourceProvider;
 
 public class CustomApplication extends BaseApplication implements LifecycleObserver {
 
     private static CustomApplication instance;
-    private static boolean isAppVisible; //是否在前台运行
+    //是否在前台运行
+    private static boolean isAppVisible;
 
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MPPush.setup(this);
-        QuinoxlessFramework.setup(this, new IInitCallback() {
-            @Override
-            public void onPostInit() {
-                // 预置离线包，包括普通离线包和公共资源包
-                new Thread(new PresetAmrPipeline()).start();
-                // 公共资源包返回 appid
-                H5Utils.setProvider(H5AppCenterPresetProvider.class.getName(), new H5AppCenterPresetProviderImpl());
-                H5Utils.setProvider(H5PublicRsaProvider.class.getName(), new H5RsaProviderImpl());
-            }
+        QuinoxlessFramework.setup(this, () -> {
+            // 预置离线包，包括普通离线包和公共资源包
+            new Thread(new PresetAmrPipeline()).start();
+            //全局资源包提供方式
+            H5Utils.setProvider(H5AppCenterPresetProvider.class.getName(), new H5AppCenterPresetProviderImpl());
+            //设置离线包验签公钥
+            H5Utils.setProvider(H5PublicRsaProvider.class.getName(), new H5RsaProviderImpl());
+            //注册资源拦截器
+            H5Utils.setProvider(H5ResProvider.class.getName(), new MpaasResourceProvider());
         });
     }
 
@@ -55,6 +51,12 @@ public class CustomApplication extends BaseApplication implements LifecycleObser
         super.onCreate();
         instance = this;
         ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
+        initTbs();
+        QuinoxlessFramework.init();
+    }
+
+
+    private void initTbs(){
         // 在调用TBS初始化、创建WebView之前进行如下配置
         QbSdk.setDownloadWithoutWifi(true);
         HashMap map = new HashMap();
@@ -73,9 +75,7 @@ public class CustomApplication extends BaseApplication implements LifecycleObser
                 Log.e("snow", "x5初始化结果====" + b);
             }
         });
-        QuinoxlessFramework.init();
     }
-
 
     public static boolean isApplicationVisible() {
         return isAppVisible;

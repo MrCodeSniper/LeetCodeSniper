@@ -1,4 +1,4 @@
-package mo.gov.safp.portal;
+package mo.gov.safp.portal.web;
 
 import com.mpaas.nebula.adapter.api.MPNebula;
 import com.mpaas.nebula.adapter.api.MPNebulaOfflineInfo;

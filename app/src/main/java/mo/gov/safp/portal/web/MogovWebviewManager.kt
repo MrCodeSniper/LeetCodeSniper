@@ -64,9 +64,6 @@ fun APWebView?.initWebUA(useSystemUA: Boolean?) {
         if (nowAgent?.contains(tag) == true) {
             settings.userAgentString = nowAgent.substring(0, nowAgent.indexOf(tag))
         }
-    } else {
-//        val service = ARouter.getInstance().build(RouteConstant.CLZ_SERVICE_PATH).navigation() as ClzService?
-//        settings?.userAgentString = settings?.userAgentString + ";env=" + service?.appEnv
     }
 }
 

@@ -17,6 +17,7 @@ import mo.gov.safp.portal.base.RouteConstant;
 import mo.gov.safp.portal.pdf.MyPdfActivity;
 import mo.gov.safp.portal.shortcutbadger.ShortcutBadger;
 import mo.gov.safp.portal.softtoken.SoftTokenManager;
+import mo.gov.safp.portal.web.MpaasWebAcitvity;
 
 public class MainActivity2 extends AppCompatActivity {
 
@@ -33,10 +34,12 @@ public class MainActivity2 extends AppCompatActivity {
 
 //        SoftTokenManager.getInstances().addAccount("abcdefg","hijklmn");
 
-        Intent intent = new Intent(this, MyPdfActivity.class);
+//        Intent intent = new Intent(this, MyPdfActivity.class);
 //        String filePath = getExternalFilesDir("").getAbsolutePath()+"/a.pdf";
 //        intent.putExtra(RouteConstant.IntentParam.LOCAL_FILE_PATH,filePath);
-        startActivity(intent);
+//        startActivity(intent);
+
+        MpaasWebAcitvity.Companion.start(this);
     }
 
 

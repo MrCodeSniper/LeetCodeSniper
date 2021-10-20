@@ -1,4 +1,4 @@
-package mo.gov.safp.portal;
+package mo.gov.safp.portal.web.offline;
 
 import com.alipay.mobile.nebula.appcenter.H5PresetPkg;
 import com.alipay.mobile.nebula.provider.H5AppCenterPresetProvider;

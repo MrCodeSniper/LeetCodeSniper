@@ -1,4 +1,4 @@
-package mo.gov.safp.portal;
+package mo.gov.safp.portal.utils;
 
 import android.util.Base64;
 

@@ -25,6 +25,8 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import mo.gov.safp.portal.utils.RSAUtil;
+
 
 public class MainActivity extends AppCompatActivity {
 

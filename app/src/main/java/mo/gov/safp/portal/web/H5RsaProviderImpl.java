@@ -1,4 +1,4 @@
-package mo.gov.safp.portal;
+package mo.gov.safp.portal.web;
 
 import com.alipay.mobile.nebula.provider.H5PublicRsaProvider;
 

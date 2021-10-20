@@ -1,4 +1,4 @@
-package mo.gov.safp.portal;
+package mo.gov.safp.portal.web;
 
 import android.os.Bundle;
 import android.util.Log;

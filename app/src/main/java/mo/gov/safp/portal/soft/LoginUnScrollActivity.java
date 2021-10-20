@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import mo.gov.safp.portal.LauncherActivity;
+import mo.gov.safp.portal.WindowSoftInputActivity;
 import mo.gov.safp.portal.R;
 
 /**
@@ -20,6 +20,6 @@ public class LoginUnScrollActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_unscorll);
         findViewById(R.id.tv_close_login_page).setOnClickListener(v -> finish());
-        findViewById(R.id.btn_start_login).setOnClickListener(v -> startActivity(new Intent(LoginUnScrollActivity.this, LauncherActivity.class)));
+        findViewById(R.id.btn_start_login).setOnClickListener(v -> startActivity(new Intent(LoginUnScrollActivity.this, WindowSoftInputActivity.class)));
     }
 }

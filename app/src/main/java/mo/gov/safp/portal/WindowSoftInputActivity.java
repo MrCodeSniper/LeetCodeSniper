@@ -28,7 +28,7 @@ import mo.gov.safp.portal.soft.LoginUnScrollUnChangedActivity;
  * @date 2021/10/7
  * @desc 模式分为 SOFT_INPUT_STATE键盘显示模式 和 SOFT_INPUT_ADJUST 布局显示模式
  */
-public class LauncherActivity extends Activity {
+public class WindowSoftInputActivity extends Activity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -1,4 +1,4 @@
-package mo.gov.safp.portal;
+package mo.gov.safp.portal.utils;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -25,6 +25,9 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+
+import mo.gov.safp.portal.MainActivity;
+import mo.gov.safp.portal.R;
 
 /**
  * 应用角标工具类
