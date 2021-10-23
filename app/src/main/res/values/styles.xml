@@ -11,6 +11,19 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
 
+    <style name="Theme.SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--<item name="android:windowBackground">@drawable/splash</item>-->
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:clipToPadding">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <!--去掉底部的导航-->
+        <!--<item name="android:windowTranslucentNavigation">true</item>-->
+        <!--设置底部导航栏为透明色-->
+        <!--<item name="android:navigationBarColor">@android:color/transparent</item>-->
+    </style>
+
 
     <style name="MoAppTheme.NoActionBar" parent="@style/MoTheme">
         <item name="android:windowNoTitle">true</item>

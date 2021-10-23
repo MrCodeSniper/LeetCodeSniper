@@ -53,10 +53,27 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:largeHeap="true"
+        android:hardwareAccelerated="true"
         android:theme="@style/AppTheme">
         <activity android:name=".album.AlblumActivity">
 
         </activity>
+
+        <activity android:name=".lottie.LottieActivity"
+            android:label="引导Lottie图"
+            android:hardwareAccelerated="true"
+            android:theme="@style/Theme.SplashTheme"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
