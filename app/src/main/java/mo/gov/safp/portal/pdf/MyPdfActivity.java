@@ -1,15 +1,19 @@
 package mo.gov.safp.portal.pdf;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.demon.js_pdf.view.DWebView;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 
@@ -30,6 +34,12 @@ public class MyPdfActivity extends AppCompatActivity {
 
     private static final String TAG = "MyPdfActivity";
     private PDFView mPdfView;
+    private WebView mWebView;
+
+    public static void start(Context context){
+        context.startActivity(new Intent(context,MyPdfActivity.class));
+    }
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,8 +47,32 @@ public class MyPdfActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_pdf);
         mPdfView = (PDFView) findViewById(R.id.pdfView);
         String path = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS).getAbsolutePath();
-        String filePath = path +"/safp-proj-095-3019.pdf";
-        loadPdf(filePath);
+        String filePath = path +"/a.pdf";
+        String filePath2 = path +"/safp-proj-095-3019.pdf";
+        String file = "file:///android_asset/demo.pdf";
+//        loadPdf(filePath);
+        mWebView = findViewById(R.id.jsWebView);
+        WebSettings webSettings =mWebView.getSettings();
+        //支持缩放
+        webSettings.setSupportZoom(true);
+        webSettings.setBuiltInZoomControls(true);
+        webSettings.setDisplayZoomControls(false);
+
+        //自适应屏幕
+        webSettings.setUseWideViewPort(true);
+        webSettings.setLoadWithOverviewMode(true);
+
+        //允许js 并读取文件
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setAllowFileAccess(true);
+        webSettings.setAllowFileAccessFromFileURLs(true);
+        webSettings.setAllowUniversalAccessFromFileURLs(true);
+        display(filePath2);
+    }
+
+
+    void display(String url) {
+        mWebView.loadUrl("file:///android_asset/viewer.html?file=" + url);
     }
 
 

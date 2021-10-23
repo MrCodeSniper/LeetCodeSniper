@@ -39,7 +39,9 @@ public class MainActivity2 extends AppCompatActivity {
 //        intent.putExtra(RouteConstant.IntentParam.LOCAL_FILE_PATH,filePath);
 //        startActivity(intent);
 
-        MpaasWebAcitvity.Companion.start(this);
+//        MpaasWebAcitvity.Companion.start(this);
+
+        MyPdfActivity.start(this);
     }
 
 

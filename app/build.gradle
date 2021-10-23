@@ -95,4 +95,5 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     /** PDF预览库 包含SO */
     api 'com.github.barteksc:android-pdf-viewer:2.8.2'
+    implementation 'com.github.DeMonLiu623:DeMon-JS-PDF:v1.2'
 }
