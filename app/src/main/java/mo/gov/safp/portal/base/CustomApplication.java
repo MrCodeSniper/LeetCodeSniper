@@ -19,6 +19,7 @@ import com.tencent.smtt.sdk.QbSdk;
 
 import java.util.HashMap;
 
+import mo.gov.safp.portal.nav.NavigationHelper;
 import mo.gov.safp.portal.web.offline.H5AppCenterPresetProviderImpl;
 import mo.gov.safp.portal.web.H5RsaProviderImpl;
 import mo.gov.safp.portal.web.PresetAmrPipeline;
@@ -53,6 +54,7 @@ public class CustomApplication extends BaseApplication implements LifecycleObser
         ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
         initTbs();
         QuinoxlessFramework.init();
+        NavigationHelper.onCreate(this);
     }
 
 

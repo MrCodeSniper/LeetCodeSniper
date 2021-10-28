@@ -16,11 +16,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.demon.js_pdf.view.DWebView;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
+import com.gyf.immersionbar.ImmersionBar;
 
 
 import java.io.File;
 
 import mo.gov.safp.portal.R;
+import mo.gov.safp.portal.nav.NavigationHelper;
 
 import static android.os.Environment.DIRECTORY_DOWNLOADS;
 
@@ -40,9 +42,18 @@ public class MyPdfActivity extends AppCompatActivity {
         context.startActivity(new Intent(context,MyPdfActivity.class));
     }
 
+    public void initStatusBar(){
+        ImmersionBar.with(this).statusBarColor(android.R.color.transparent)
+                .fitsSystemWindows(false)
+                .statusBarDarkFont(false)
+                .init();
+    }
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        NavigationHelper.onCreate(this);
+        initStatusBar();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_pdf);
         mPdfView = (PDFView) findViewById(R.id.pdfView);

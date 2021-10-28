@@ -92,9 +92,18 @@ dependencies {
     /** 图片库 */
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'jp.wasabeef:glide-transformations:4.1.0'
+    testImplementation 'junit:junit:4.12'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     /** PDF预览库 包含SO */
     api 'com.github.barteksc:android-pdf-viewer:2.8.2'
     implementation 'com.github.DeMonLiu623:DeMon-JS-PDF:v1.2'
     implementation 'com.airbnb.android:lottie:4.2.0'
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.32"
+    // 协程核心库
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3"
+    // 协程Android支持库
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
+    /** 状态栏库 */
+    api 'com.gyf.immersionbar:immersionbar:3.0.0'
 }

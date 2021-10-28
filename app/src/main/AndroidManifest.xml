@@ -60,17 +60,17 @@
 
         </activity>
 
+        <activity android:name=".coroutine.CoroutineActivity"
+            android:label="Kotlin协程"
+            >
+
+        </activity>
+
         <activity android:name=".lottie.LottieActivity"
             android:label="引导Lottie图"
             android:hardwareAccelerated="true"
             android:theme="@style/Theme.SplashTheme"
             >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
 
