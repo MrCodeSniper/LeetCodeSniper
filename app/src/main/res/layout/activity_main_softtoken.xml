@@ -7,6 +7,16 @@
     tools:context=".MainActivity2">
 
    <Button
+       android:id="@+id/button3"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:onClick="nebulaStart"
+       android:text="打开错误页面容器" />
+
+
+
+   <Button
+       android:visibility="gone"
        android:id="@+id/button2"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
@@ -14,6 +24,7 @@
        android:text="保存softToken" />
 
    <Button
+       android:visibility="gone"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:onClick="getSoftToken"

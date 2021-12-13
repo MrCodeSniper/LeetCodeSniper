@@ -1,0 +1,87 @@
+<resources>
+    <!--遵循以4为最小的单位的原则，元素之间的间距，元素的高度数值保证为4的倍数-->
+    <dimen name="gov_title_bar_height">44dp</dimen>
+    <!--主按钮同一高度-->
+    <dimen name="gov_btn_primary_height">45dp</dimen>
+    <dimen name="gov_common_setting_height">56dp</dimen>
+    <!--常规icon 大中小号-->
+    <dimen name="gov_normal_icon_s">22dp</dimen>
+    <dimen name="gov_normal_icon_m">36dp</dimen>
+    <dimen name="gov_normal_icon_l">44dp</dimen>
+    <!--常规间距-->
+    <dimen name="gov_normal_space_w1">4dp</dimen>
+    <dimen name="gov_normal_space_w2">8dp</dimen>
+    <dimen name="gov_normal_space_w3">12dp</dimen>
+    <dimen name="gov_normal_space_w4">16dp</dimen>
+    <dimen name="gov_normal_space_w5">20dp</dimen>
+    <dimen name="gov_normal_space_w6">24dp</dimen>
+    <dimen name="gov_normal_space_w7">28dp</dimen>
+
+    <!--margin-->
+    <dimen name="gov_normal_margin_w1">9.5dp</dimen>
+
+    <!--divider-->
+    <dimen name="gov_normal_divider_height">0.5dp</dimen>
+
+    <!--基础字号-->
+    <dimen name="sp10">10sp</dimen>
+    <dimen name="sp11">11sp</dimen>
+    <dimen name="sp12">12sp</dimen>
+    <dimen name="sp13">13sp</dimen>
+    <dimen name="sp14">14sp</dimen>
+    <dimen name="sp15">15sp</dimen>
+    <dimen name="sp16">16sp</dimen>
+    <dimen name="sp17">17sp</dimen>
+    <dimen name="sp18">18sp</dimen>
+    <dimen name="sp20">20sp</dimen>
+    <dimen name="sp21">21sp</dimen>
+    <dimen name="sp22">22sp</dimen>
+    <dimen name="sp24">24sp</dimen>
+    <dimen name="sp26">26sp</dimen>
+    <dimen name="sp28">28sp</dimen>
+    <dimen name="sp30">30sp</dimen>
+
+    <!--字体应用-->
+    <dimen name="gov_text_size_h1">26sp</dimen>
+    <dimen name="gov_text_size_h2">18sp</dimen>
+    <dimen name="gov_text_size_h3">16sp</dimen>
+    <dimen name="gov_text_size_body1">14sp</dimen>
+    <dimen name="gov_text_size_body3">12sp</dimen>
+
+    <!--字体新标准-->
+    <dimen name="gov_text_size_small">14sp</dimen>
+    <dimen name="gov_text_size_normal">16sp</dimen>
+    <dimen name="gov_text_size_bigger">19sp</dimen>
+    <dimen name="gov_text_size_larger">22sp</dimen>
+
+    <!--自定义扫码相关-->
+    <dimen name="scan_back_size">48dp</dimen>
+    <dimen name="scan_ray_view_margin_start">25dp</dimen>
+    <dimen name="scan_ray_view_margin_end">25dp</dimen>
+    <dimen name="scan_ray_view_margin_top">50dp</dimen>
+    <dimen name="scan_torch_margin_bottom">32dp</dimen>
+    <dimen name="scan_torch_size">61dp</dimen>
+    <dimen name="scan_torch_padding">14.5dp</dimen>
+    <dimen name="scan_scan_tip_margin_bottom">16dp</dimen>
+    <dimen name="scan_scan_tip_text_size">14sp</dimen>
+    <dimen name="scan_gallery_height">82dp</dimen>
+    <dimen name="scan_gallery_margin_start">32dp</dimen>
+    <dimen name="scan_gallery_margin_end">32dp</dimen>
+    <dimen name="scan_gallery_margin_bottom">50dp</dimen>
+    <dimen name="scan_gallery_corners">8dp</dimen>
+    <dimen name="scan_gallery_iv_size">32dp</dimen>
+    <dimen name="scan_gallery_iv_margin_top">16dp</dimen>
+    <dimen name="scan_gallery_tip_margin_top">8dp</dimen>
+
+    <!--启动图相关配置-->
+    <dimen name="app_launcher_logo_top_margin">232dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+
+    <dimen name="switch_min_width">44dp</dimen>
+
+    <dimen name="dp_4">4dp</dimen>
+    <dimen name="dp_10">10dp</dimen>
+    <dimen name="dp_40">40dp</dimen>
+
+    <dimen name="sp_14">14sp</dimen>
+</resources>

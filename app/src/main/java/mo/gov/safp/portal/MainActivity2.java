@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.mpaas.nebula.adapter.api.MPNebula;
+
 import mo.gov.safp.portal.badge.MogovBadgeUtils;
 import mo.gov.safp.portal.base.FilePreviewActivity;
 import mo.gov.safp.portal.base.FilePreviewFragment;
@@ -25,6 +27,10 @@ public class MainActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_softtoken);
+    }
+
+    public void nebulaStart(View view){
+        MPNebula.startUrl("https://ss-ehr-web01.ssm.gov.mo/infrs/home");
     }
 
     public void saveSoftToken(View view) {

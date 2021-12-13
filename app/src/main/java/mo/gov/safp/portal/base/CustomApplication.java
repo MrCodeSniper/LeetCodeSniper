@@ -12,6 +12,7 @@ import com.alipay.mobile.framework.quinoxless.QuinoxlessFramework;
 import com.alipay.mobile.nebula.provider.H5AppCenterPresetProvider;
 import com.alipay.mobile.nebula.provider.H5PublicRsaProvider;
 import com.alipay.mobile.nebula.provider.H5ResProvider;
+import com.alipay.mobile.nebula.provider.MPH5ErrorPageView;
 import com.alipay.mobile.nebula.util.H5Utils;
 import com.mpaas.mps.adapter.api.MPPush;
 import com.tencent.smtt.export.external.TbsCoreSettings;
@@ -19,7 +20,9 @@ import com.tencent.smtt.sdk.QbSdk;
 
 import java.util.HashMap;
 
+import mo.gov.safp.portal.LanguageJsPlugin;
 import mo.gov.safp.portal.nav.NavigationHelper;
+import mo.gov.safp.portal.web.H5ErrorPageViewImpl;
 import mo.gov.safp.portal.web.offline.H5AppCenterPresetProviderImpl;
 import mo.gov.safp.portal.web.H5RsaProviderImpl;
 import mo.gov.safp.portal.web.PresetAmrPipeline;
@@ -44,6 +47,8 @@ public class CustomApplication extends BaseApplication implements LifecycleObser
             H5Utils.setProvider(H5PublicRsaProvider.class.getName(), new H5RsaProviderImpl());
             //注册资源拦截器
             H5Utils.setProvider(H5ResProvider.class.getName(), new MpaasResourceProvider());
+            LanguageJsPlugin.registerLanguagePlugin();
+            H5Utils.setProvider(MPH5ErrorPageView.class.getName(),new H5ErrorPageViewImpl());
         });
     }
 

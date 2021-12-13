@@ -78,4 +78,8 @@
     <string name="account_clear_input_content">點擊清除輸入框內容</string>
     <string name="account_change_now_language">點擊修改應用語言,當前語言是%s</string>
 
+    <string name="account_language_switch_hint_text">All information on this App is based on the official language of the Macao Special Administrative Region. The English version is the translation from the Chinese originals and is provided for reference only. If you find that some of the contents do not have an English version, please refer to the Traditional Chinese or Portuguese versions.</string>
+    <string name="aaa">All information on this App is based on the official language of the Macao Special Administrative Region. The English version is the translation from the Chinese originals and is provided for reference only. If you find that some of the contents do not have an English version, please refer to the Traditional Chinese or Portuguese versions.
+</string>
+
 </resources>

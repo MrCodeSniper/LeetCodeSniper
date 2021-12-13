@@ -106,4 +106,5 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
     /** 状态栏库 */
     api 'com.gyf.immersionbar:immersionbar:3.0.0'
+    api 'com.github.bluejamesbond:textjustify-android:2.1.6'
 }

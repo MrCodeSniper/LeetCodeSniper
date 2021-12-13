@@ -6,13 +6,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="03.json"
-        app:lottie_loop="false"/>
-
+   <androidx.viewpager.widget.ViewPager
+       android:id="@+id/vp"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
 
 </RelativeLayout>
