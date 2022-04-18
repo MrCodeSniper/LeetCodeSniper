@@ -21,12 +21,11 @@ import com.tencent.smtt.sdk.QbSdk;
 import java.util.HashMap;
 
 import mo.gov.safp.portal.LanguageJsPlugin;
-import mo.gov.safp.portal.nav.NavigationHelper;
 import mo.gov.safp.portal.web.H5ErrorPageViewImpl;
-import mo.gov.safp.portal.web.offline.H5AppCenterPresetProviderImpl;
 import mo.gov.safp.portal.web.H5RsaProviderImpl;
-import mo.gov.safp.portal.web.PresetAmrPipeline;
 import mo.gov.safp.portal.web.MpaasResourceProvider;
+import mo.gov.safp.portal.web.PresetAmrPipeline;
+import mo.gov.safp.portal.web.offline.H5AppCenterPresetProviderImpl;
 
 public class CustomApplication extends BaseApplication implements LifecycleObserver {
 
@@ -48,7 +47,7 @@ public class CustomApplication extends BaseApplication implements LifecycleObser
             //注册资源拦截器
             H5Utils.setProvider(H5ResProvider.class.getName(), new MpaasResourceProvider());
             LanguageJsPlugin.registerLanguagePlugin();
-            H5Utils.setProvider(MPH5ErrorPageView.class.getName(),new H5ErrorPageViewImpl());
+            H5Utils.setProvider(MPH5ErrorPageView.class.getName(), new H5ErrorPageViewImpl());
         });
     }
 
@@ -59,11 +58,10 @@ public class CustomApplication extends BaseApplication implements LifecycleObser
         ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
         initTbs();
         QuinoxlessFramework.init();
-        NavigationHelper.onCreate(this);
     }
 
 
-    private void initTbs(){
+    private void initTbs() {
         // 在调用TBS初始化、创建WebView之前进行如下配置
         QbSdk.setDownloadWithoutWifi(true);
         HashMap map = new HashMap();
@@ -108,10 +106,6 @@ public class CustomApplication extends BaseApplication implements LifecycleObser
     public static CustomApplication getInstance() {
         return instance;
     }
-
-
-
-
 
 
 }

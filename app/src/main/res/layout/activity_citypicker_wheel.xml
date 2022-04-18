@@ -50,14 +50,12 @@
 
                 <EditText
                     android:id="@+id/pro_et"
-                    style="@style/linearlayout_edit_style"
                     android:layout_weight="1"
                     android:text="江苏省"
                     />
 
                 <EditText
                     android:id="@+id/city_et"
-                    style="@style/linearlayout_edit_style"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:text="常州市"
@@ -65,7 +63,6 @@
 
                 <EditText
                     android:id="@+id/area_et"
-                    style="@style/linearlayout_edit_style"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:text="天宁区"
@@ -86,7 +83,6 @@
 
                 <EditText
                     android:id="@+id/pro_visible_count_et"
-                    style="@style/linearlayout_edit_style"
                     android:text="5"
                     />
 

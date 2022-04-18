@@ -111,15 +111,6 @@
         <activity android:name=".pdf.MyPdfActivity"/>
 
 
-        <activity
-            android:name=".WindowSoftInputActivity"
-            android:label="windowSoftInputMode属性示例">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
         <activity android:name=".soft.LoginUnScrollActivity" />
         <activity
             android:name=".soft.LoginUnScrollUnChangedActivity"
@@ -161,7 +152,6 @@
         <activity
             android:name=".soft.LoginUnScrollAdjustNothingActivity"
             android:windowSoftInputMode="adjustNothing" />
-        <activity android:name=".base.FilePreviewActivity" />
 
         <activity android:name=".web.MpaasWebAcitvity"/>
 
@@ -170,35 +160,7 @@
             android:label="dexopt"
             android:process=":dexopt"></service>
 
-        <activity android:name=".CitypickerWheelActivity"></activity>
-        <activity android:name=".GpsActivity" />
-        <activity
-            android:name=".MainActivity"
-            android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".PushActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:scheme="mpaas" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:scheme="http" />
-            </intent-filter>
-        </activity> <!-- 推送相关 start -->
+        <!-- 推送相关 start -->
         <service
             android:name="com.alipay.pushsdk.push.NotificationService"
             android:enabled="true"
@@ -213,16 +175,6 @@
             android:name="com.alipay.pushsdk.push.AppInfoRecvIntentService"
             android:exported="false"
             android:process=":push" />
-        <service
-            android:name=".PushMsgService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="${applicationId}.push.action.MESSAGE_RECEIVED" />
-                <action android:name="${applicationId}.push.action.REGISTRATION_ID" />
-
-                <category android:name="${applicationId}" />
-            </intent-filter>
-        </service>
 
         <receiver
             android:name="com.alipay.pushsdk.BroadcastActionReceiver"

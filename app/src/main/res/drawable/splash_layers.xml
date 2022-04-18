@@ -3,10 +3,7 @@
     <!-- background with solid color -->
     <item android:gravity="fill">
         <shape android:shape="rectangle">
-            <gradient
-                android:angle="-90"
-                android:endColor="@color/app_launcher_splash_bg_end_color"
-                android:startColor="@color/app_launcher_splash_bg_start_color" />
+
         </shape>
     </item>
     <!-- logo -->

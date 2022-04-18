@@ -69,7 +69,7 @@ dependencies {
     implementation 'com.mpaas.android:nebula'
     implementation 'com.permissionx.guolindev:permissionx:1.4.0'
     //接入华为推送 - HMS5.x 版本
-    implementation project(':citypickerview')
+//    implementation project(':citypickerview')
     implementation 'com.huawei.hms:push:5.0.2.300'
     api 'com.mpaas.android:push'
     api 'com.mpaas.android:push-hms5'

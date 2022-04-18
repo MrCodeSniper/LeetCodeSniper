@@ -1,25 +1,11 @@
 package mo.gov.safp.portal;
 
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
-
 import com.mpaas.nebula.adapter.api.MPNebula;
-
-import mo.gov.safp.portal.badge.MogovBadgeUtils;
-import mo.gov.safp.portal.base.FilePreviewActivity;
-import mo.gov.safp.portal.base.FilePreviewFragment;
-import mo.gov.safp.portal.base.RouteConstant;
-import mo.gov.safp.portal.pdf.MyPdfActivity;
-import mo.gov.safp.portal.shortcutbadger.ShortcutBadger;
-import mo.gov.safp.portal.softtoken.SoftTokenManager;
-import mo.gov.safp.portal.web.MpaasWebAcitvity;
 
 public class MainActivity2 extends AppCompatActivity {
 
@@ -29,69 +15,8 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main_softtoken);
     }
 
-    public void nebulaStart(View view){
+    public void nebulaStart(View view) {
         MPNebula.startUrl("https://ss-ehr-web01.ssm.gov.mo/infrs/home");
     }
 
-    public void saveSoftToken(View view) {
-//        MogovBadgeUtils.set(this,10);
-//        BadgeUtils.setCount(10,this);
-//        BadgeUtils.setCount(10,this);
-
-//        SoftTokenManager.getInstances().addAccount("abcdefg","hijklmn");
-
-//        Intent intent = new Intent(this, MyPdfActivity.class);
-//        String filePath = getExternalFilesDir("").getAbsolutePath()+"/a.pdf";
-//        intent.putExtra(RouteConstant.IntentParam.LOCAL_FILE_PATH,filePath);
-//        startActivity(intent);
-
-//        MpaasWebAcitvity.Companion.start(this);
-
-        MyPdfActivity.start(this);
-    }
-
-
-    public void getSoftToken(View view) {
-        String secret = SoftTokenManager.getInstances().getSoftToken("safpuser20");
-        Log.d("chenhong","token:"+secret);
-    }
-
-    /**
-     * 在三星手机上显示桌面徽标
-     *
-     * @param context 上下文
-     * @param num 显示的消息数量，整数
-     */
-    private static void samsungShortCut(Context context, int num) {
-        String launcherClassName = getLauncherComponentName(context).getClassName();
-        if (launcherClassName == null) {
-            return;
-        }
-        Intent intent = new Intent("android.intent.action.BADGE_COUNT_UPDATE");
-        intent.putExtra("badge_count", num);
-        intent.putExtra("badge_count_package_name", context.getPackageName());
-        intent.putExtra("badge_count_class_name", launcherClassName);
-
-        context.sendBroadcast(intent);
-        Toast.makeText(context, "三星手机," + "广播已经发送", Toast.LENGTH_LONG).show();
-    }
-
-    private static String getLauncherClassName(Context context) {
-        ComponentName launchComponent = getLauncherComponentName(context);
-        if (launchComponent == null) {
-            return "";
-        } else {
-            return launchComponent.getClassName();
-        }
-    }
-
-    private static ComponentName getLauncherComponentName(Context context) {
-        Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(context
-                .getPackageName());
-        if (launchIntent != null) {
-            return launchIntent.getComponent();
-        } else {
-            return null;
-        }
-    }
 }

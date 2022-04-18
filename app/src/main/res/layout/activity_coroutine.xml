@@ -31,7 +31,6 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:text="@string/aaa"
-        android:textColor="@color/gov_text_color_s1"
         app:layout_constraintTop_toBottomOf="@+id/btnStartCoroutineMode"
         />
 

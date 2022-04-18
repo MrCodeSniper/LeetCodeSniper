@@ -47,10 +47,6 @@
         <item name="android:windowAnimationStyle">@style/activityAnimation</item>
     </style>
 
-    <style name="AnimBottom" parent="@android:style/Animation">
-        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
-        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
-    </style>
 
     <!-- animation 样式 -->
     <style name="activityAnimation" parent="@android:style/Animation">
@@ -80,17 +76,7 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-
-    <style name="linearlayout_edit_style">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">2</item>
-        <item name="android:background">@drawable/edit_bg_selector</item>
-        <item name="android:textColor">@color/text_color_02</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:paddingLeft">10dp</item>
-        <item name="android:singleLine">true</item>
-    </style>
+    
 
 
 </resources>

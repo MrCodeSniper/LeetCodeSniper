@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gov_background_view_color">
-
+>
 
     <ImageView
         android:layout_width="match_parent"
@@ -51,7 +50,6 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:text="@string/account_login_personal"
-                android:textColor="@color/tab_common_selected_color"
                 android:textSize="26sp"
                 android:textStyle="bold"
                 tools:text="Login individual" />
@@ -63,7 +61,6 @@
                 android:layout_marginStart="32dp"
                 android:singleLine="true"
                 android:text="@string/account_login_entity"
-                android:textColor="@color/tab_common_selected_color"
                 android:textSize="16sp"
                 tools:text="Logina Da entidade" />
 
@@ -123,7 +120,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/account_login_register"
-                android:textColor="@color/gov_main_color"
                 android:textSize="14sp" />
 
             <TextView
@@ -141,7 +137,6 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:text="@string/account_login_other_way"
-                android:textColor="@color/gov_main_color"
                 android:textSize="14sp" />
 
 
@@ -165,7 +160,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="7dp"
                 android:contentDescription="@string/account_change_now_language"
-                android:textColor="@color/gov_main_color"
                 android:textSize="14sp"
                 tools:text="@string/account_language_pt" />
 
