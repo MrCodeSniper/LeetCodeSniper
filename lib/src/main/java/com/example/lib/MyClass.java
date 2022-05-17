@@ -21,7 +21,27 @@ public class MyClass {
 //        moveZeroes(nums3);
 //        System.out.println(Arrays.toString(nums3));
 
-        bitOpDemo();
+        dynamicProgramDemo();
+    }
+
+    public static void dynamicProgramDemo(){
+        DynamicProgram dynamicProgram = new DynamicProgram();
+//        System.out.println("结果为:"+dynamicProgram.climbStairs(45));
+        List<List<Integer>> group = new ArrayList<>();
+        List<Integer> one = new ArrayList<>();
+        one.add(2);
+        group.add(one);
+        List<Integer> two = new ArrayList<>();
+        two.add(3);
+        two.add(4);
+        group.add(two);
+
+        List<Integer> three = new ArrayList<>();
+        three.add(10);
+        three.add(11);
+        three.add(1);
+        group.add(three);
+        System.out.println("结果为:"+dynamicProgram.minimumTotal(group));
     }
 
     public static void bitOpDemo(){
@@ -30,6 +50,8 @@ public class MyClass {
         BitOp bitOp = new BitOp();
         int value = bitOp.singleNumber(nums2);
         System.out.println("value:"+value);
+
+        bitOp.reverseBits(43261596);
     }
 
     public static void reverseListDemo(){
