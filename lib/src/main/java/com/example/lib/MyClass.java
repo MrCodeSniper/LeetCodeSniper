@@ -41,7 +41,12 @@ public class MyClass {
         three.add(11);
         three.add(1);
         group.add(three);
-        System.out.println("结果为:"+dynamicProgram.minimumTotal(group));
+//        System.out.println("结果为:"+dynamicProgram.minimumTotal(group));
+
+        System.out.println("结果为:"+dynamicProgram.rob(new int[]{6,3,10,8,2,10,3,5,10,5,3}));
+        System.out.println("结果为:"+dynamicProgram.rob(new int[]{1,2,3,1}));
+        System.out.println("结果为:"+dynamicProgram.rob(new int[]{2,7,9,3,1}));
+        System.out.println("结果为:"+dynamicProgram.rob(new int[]{1,1,1,1}));
     }
 
     public static void bitOpDemo(){

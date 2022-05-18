@@ -3,6 +3,7 @@ package com.example.lib;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 动态规划
@@ -127,5 +128,132 @@ public class DynamicProgram {
     }
 
 
+    /**
+     * 你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。
+     *
+     * 给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。
+     *
+     * 输入：[1,2,3,1]
+     * 输出：4
+     * 解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。
+     *      偷窃到的最高金额 = 1 + 3 = 4 。
+     *
+     * 输入：[2,7,9,3,1]
+     * 输出：12
+     * 解释：偷窃 1 号房屋 (金额 = 2), 偷窃 3 号房屋 (金额 = 9)，接着偷窃 5 号房屋 (金额 = 1)。
+     *      偷窃到的最高金额 = 2 + 9 + 1 = 12 。
+     *
+     * 思考
+     * [1]
+     * [1,2]
+     * [1,2,3]
+     * [1,2,3,4,5]
+     * [1,2,3,4,5,6]
+     * [1,2,3,4,5,6,7] 如果我选择了1有2种方案  1,3,5,7  1,4,6 选偶数 选奇数 如果我选了2   4，6  5，7 也有两种方案
+     *
+     * 但是也可以奇偶混合 所以不一定只有两种方案
+     *
+     * 6,3,10,8,2,10,3,5,10,5,3 为39
+     *
+     * 6 [10,8,2,10,3,5,10,5,3]
+     *
+     * 10 [2,10,3,5,10,5,3]
+     *
+     * 10 [5,10,5,3]
+     *
+     * 10 [3]
+     *
+     * 3
+     *
+     * 1，3 ,6,9,11
+     *
+     * 动态规划的的四个解题步骤是：
+     *
+     * 定义子问题
+     * 写出子问题的递推关系
+     * 确定 DP 数组的计算顺序
+     * 空间优化（可选）
+     *
+     * f(k)=max{f(k−1) ,Hk−1 + f(k−2)}
+     *
+     * dp[i]=max(dp[i−2]+nums[i],dp[i−1])
+     *
+     * 只有一间房屋，则偷窃该房屋
+     * 只有两间房屋，选择其中金额较高的房屋进行偷窃
+     *
+     *
+     *
+     *
+     * @param nums
+     * @return
+     */
+    public int rob(int[] nums,int start,int end) { //1,1,1,1
+        Integer cacheResult = maxTotalCache.get(new Node(start,end));
+        if(cacheResult!=null){
+            return cacheResult;
+        }
+        if(start == end){
+            return nums[end];
+        }
+       int total1;
+       int total2;
+       if(start+1<=end){ //1,2,3,1
+           if(start+2<=end){
+               int robResult = rob(nums,start+2,end); //如果选中某个数 只能取相邻+1的地方作为区间求和 这个区间求的值不一定是最大的
+               maxTotalCache.put(new Node(start+2,end),robResult);
+               total1 = nums[start] + robResult;
+           }else{
+               total1 = nums[start];
+           }
+           if(start+3<=end){
+               int robResult = rob(nums,start+3,end); //如果选中某个数 只能取相邻+2的地方作为区间求和 这个区间求的值不一定是最大的
+               maxTotalCache.put(new Node(start+3,end),robResult);
+               total2 = nums[start+1] + robResult;
+           }else{
+               total2 = nums[start+1];
+           }
+       }else {
+           return nums[end];
+       }
+       int result = Math.max(total1,total2); //将两个区间得到值比较返回
+       maxTotalCache.put(new Node(start,end),result);
+       return result;
+    }
 
+    class Node{
+        int start;
+        int end;
+
+        public Node(int start, int end) {
+            this.start = start;
+            this.end = end;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Node node = (Node) o;
+            return start == node.start && end == node.end;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(start, end);
+        }
+    }
+
+    public static HashMap<Node,Integer> maxTotalCache = new HashMap<>(); //缓存数组下标对应的结果
+
+    public int rob(int[] nums){
+        if(nums.length>0){
+            maxTotalCache.put(new Node(0,0),nums[0]);
+        }
+        if(nums.length>1){
+            maxTotalCache.put(new Node(0,1),Math.max(nums[0],nums[1]));
+        }
+       int result = rob(nums,0,nums.length-1);
+       maxTotalCache.clear();
+       return result;
+    }
 }
