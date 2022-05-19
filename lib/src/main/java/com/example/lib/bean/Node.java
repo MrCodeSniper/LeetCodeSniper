@@ -1,6 +1,6 @@
-package com.example.lib;
+package com.example.lib.bean;
 
-class Node {
+public class Node {
     public int val;
     public Node left;
     public Node right;

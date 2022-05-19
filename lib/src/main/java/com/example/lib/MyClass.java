@@ -1,5 +1,9 @@
 package com.example.lib;
 
+import com.example.lib.bean.ListNode;
+import com.example.lib.bean.Node;
+import com.example.lib.bean.TreeNode;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
