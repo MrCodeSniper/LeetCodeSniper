@@ -23,7 +23,37 @@ import java.util.List;
 public class _Demo {
 
     public static void main(String[] args) {
-        dynamicProgramDemo();
+        stackQueueDemo();
+    }
+
+    public static void demo(){
+        ListNode first = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5, new ListNode(6, null))))));
+        ListNode second = new ListNode(1);
+
+        ListNode a = new ListNode(2,new ListNode(4,new ListNode(3)));
+        ListNode b = new ListNode(5,new ListNode(6,new ListNode(4)));
+
+        ListNode c = new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9)))))));
+        ListNode d = new ListNode(9,new ListNode(9,new ListNode(9,new ListNode(9))));
+
+        ListNode e = new ListNode(0);
+        ListNode f = new ListNode(0);
+
+        LinkAl.addTwoNumbers(e,f).printNode();
+//        LinkAl.addTwoNumbers(first,second).printNode();
+//        LinkAl.addTwoNumbers(c,d).printNode();
+
+//        LinkAl.addTwoNumbers(new ListNode(0),new ListNode(0)).printNode();
+    }
+
+    public static void stackQueueDemo(){
+        StackAl.CQueue obj = new StackAl.CQueue();
+        obj.appendTail(1);
+        obj.appendTail(2);
+        obj.appendTail(3);
+        int param_2 = obj.deleteHead();
+        int param_3 = obj.deleteHead();
+        System.out.println("删除节点为:"+param_2+","+param_3);
     }
 
     public static void dynamicProgramDemo() {

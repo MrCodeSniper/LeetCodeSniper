@@ -2,6 +2,7 @@ package com.example.lib;
 
 import com.example.lib.bean.ListNode;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
@@ -267,5 +268,86 @@ public class LinkAl {
         head.next.next = head;
         head.next = null;
         return last; //
+    }
+
+
+    /**
+     * 给你两个非空 的链表，表示两个非负的整数。它们每位数字都是按照逆序的方式存储的，并且每个节点只能存储一位数字。
+     *
+     * 请你将两个数相加，并以相同形式返回一个表示和的链表。
+     *
+     * 你可以假设除了数字 0 之外，这两个数都不会以 0开头。
+     *
+     * 输入：l1 = [2,4,3], l2 = [5,6,4]
+     * 输出：[7,0,8]
+     * 解释：342 + 465 = 807.
+     *
+     * 输入：l1 = [0], l2 = [0]
+     * 输出：[0]
+     *
+     * 输入：l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]
+     * 输出：[8,9,9,9,0,0,0,1]
+     *
+     * 如何处理进位
+     *
+     * 如果不考虑进位 循环链表
+     *
+     *
+     * 利用栈的特性
+     *
+     * @param l1
+     * @param l2
+     * @return
+     */
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) { //1,2,3,4,5    3,4,5
+        return changeNode(getLinkNum(l1).add(getLinkNum(l2)).toString());
+    }
+
+    public static ListNode changeNode(String sum){ //807
+        char[] chars = sum.toCharArray();
+        ListNode result = null;
+        ListNode start = null;
+        for(int i = chars.length-1;i>=0;i--){
+            int num = Integer.parseInt(String.valueOf(chars[i]));
+            if(result == null){
+                result = new ListNode(num);
+                start = result;
+            }else{
+                result.next = new ListNode(num);
+                result = result.next;
+            }
+        }
+        return start;
+    }
+
+    public static BigDecimal getLinkNum(ListNode l1){
+        BigDecimal num1 = new BigDecimal(0);
+        int multifyFactory = 1;
+        ListNode node1 = l1;
+        while (node1!=null){
+            num1 = num1.add(new BigDecimal(node1.val).multiply(new BigDecimal(multifyFactory)));
+            node1 = node1.next;
+            multifyFactory*=10;
+        }
+        return num1;
+    }
+
+    public static Stack<ListNode> getStack(ListNode head){
+        Stack<ListNode> stack = new Stack<>();
+        ListNode now = head;
+        while (now!=null){
+            stack.push(new ListNode(now.val));
+            now = now.next;
+        }
+        return stack;
+    }
+
+    public static int getListNodeSize(ListNode node){
+        int i = 0;
+        while (node!=null){
+            i++;
+            node = node.next;
+        }
+        return i;
     }
 }
