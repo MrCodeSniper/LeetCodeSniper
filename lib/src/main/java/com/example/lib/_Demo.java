@@ -7,6 +7,7 @@ import static com.example.lib.LinkAl.mergeTwoLists2;
 import static com.example.lib.LinkAl.middleNode;
 import static com.example.lib.LinkAl.removeNthFromEnd;
 import static com.example.lib.LinkAl.reverse;
+import static com.example.lib.LinkAl.reversePrint;
 import static com.example.lib.StringAl.checkInclusion;
 import static com.example.lib.StringAl.lengthOfLongestSubstring2;
 import static com.example.lib.TreeAl.connect;
@@ -23,7 +24,13 @@ import java.util.List;
 public class _Demo {
 
     public static void main(String[] args) {
-        stackQueueDemo();
+//        stackQueueDemo();
+
+        ListNode first = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5, new ListNode(6, null))))));
+        int[] result = reversePrint(first);
+        for(int i=0;i<result.length;i++){
+            System.out.println(result[i]);
+        }
     }
 
     public static void demo(){

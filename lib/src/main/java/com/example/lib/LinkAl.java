@@ -3,7 +3,10 @@ package com.example.lib;
 import com.example.lib.bean.ListNode;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
@@ -349,5 +352,36 @@ public class LinkAl {
             node = node.next;
         }
         return i;
+    }
+
+
+    /**
+     * 输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。
+     * 示例 1：
+     *
+     * 输入：head = [1,3,2]
+     * 输出：[2,3,1]
+     *
+     * 思路: 1.利用栈的反转特性 时间复杂度O(n) 空间复杂度O(n)
+     * 2.反转链表再打印 修改指针 递归改变每个节点
+     * 3.技巧 遍历一个 放到数组末尾 循环
+     *
+     * @param head
+     * @return
+     */
+    public static int[] reversePrint(ListNode head) {
+        Stack<ListNode> stack = new Stack<>();
+        ListNode now = head;
+        while (now!=null){
+            stack.push(new ListNode(now.val));
+            now = now.next;
+        }
+        int[] result = new int[stack.size()];
+        int index = 0;
+        while (!stack.isEmpty()){
+            result[index] = stack.pop().val;
+            index++;
+        }
+        return result;
     }
 }
