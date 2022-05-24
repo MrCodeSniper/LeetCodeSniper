@@ -10,6 +10,8 @@ import static com.example.lib.LinkAl.reverse;
 import static com.example.lib.LinkAl.reversePrint;
 import static com.example.lib.StringAl.checkInclusion;
 import static com.example.lib.StringAl.lengthOfLongestSubstring2;
+import static com.example.lib.StringAl.replaceSpace;
+import static com.example.lib.StringAl.reverseLeftWords;
 import static com.example.lib.TreeAl.connect;
 import static com.example.lib.utils.TreeUtils.printTree;
 
@@ -26,11 +28,18 @@ public class _Demo {
     public static void main(String[] args) {
 //        stackQueueDemo();
 
-        ListNode first = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5, new ListNode(6, null))))));
-        int[] result = reversePrint(first);
-        for(int i=0;i<result.length;i++){
-            System.out.println(result[i]);
-        }
+//        ListNode first = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5, new ListNode(6, null))))));
+//        int[] result = reversePrint(first);
+//        for(int i=0;i<result.length;i++){
+//            System.out.println(result[i]);
+//        }
+        stringDemo();
+    }
+
+    public static void stringDemo(){
+        System.out.println(replaceSpace("We are happy."));
+        System.out.println(reverseLeftWords("abcdefg",2));
+        System.out.println(reverseLeftWords("lrloseumgh",6));
     }
 
     public static void demo(){

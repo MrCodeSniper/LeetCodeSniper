@@ -194,4 +194,81 @@ public class StringAl {
         return false;
     }
 
+
+    /**
+     * 请实现一个函数，把字符串 s 中的每个空格替换成"%20"。
+     *
+     * 思路: 字符串转为字符数组 因为一个字符改为三个字符 把数组扩容到3倍 保证不会越界
+     * 遍历字符数组 如果不是空格 加到新数组 如果是空格加 %20 三个字符到新数组
+     *
+     *
+     * 输入：s = "We are happy."
+     * 输出："We%20are%20happy."
+     * @param s
+     * @return
+     */
+    public static String replaceSpace(String s) {
+        char[] chars = s.toCharArray();
+        char[] results = new char[chars.length*3];
+        int index = 0; //用来取旧值
+        int resultIndex = 0; //用来赋新值
+        while (index<chars.length){
+            char text = chars[index];
+            if(text == ' '){
+                results[resultIndex] = '%';
+                results[resultIndex+1] = '2';
+                results[resultIndex+2] = '0';
+                resultIndex = resultIndex+3;
+                index++;
+            }else {
+                results[resultIndex] = text;
+                index++;
+                resultIndex++;
+            }
+        }
+        return new String(results).trim(); //去除空格
+//        return s.replace(" ","%20");
+    }
+
+    /**
+     * 字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。请定义一个函数实现字符串左旋转操作的功能。
+     * 比如，输入字符串"abcdefg"和数字2，该函数将返回左旋转两位得到的结果"cdefgab"。
+     *
+     * 输入: s = "abcdefg", k = 2
+     * 输出: "cdefgab"
+     *
+     * 输入: s = "lrloseumgh", k = 6
+     * 输出: "umghlrlose"
+     *
+     * 思路
+     * 1.循环字符数组 把前k个取出为新数组 再把后续的数 放入结果数组中 再加上新数组 时间复杂度和空间复杂度都是O(N)
+     * 2.subString 拼接...
+     * 3.多次翻转  abcdefg
+     * reverse(s,0,num);    gfedcba  基于中间翻转 前k个数到了最后
+     * reverse(s,0,num-n);  cdefgba  把后面翻转到前部分的顺序恢复
+     * reverse(s,num-n+1,num); cdefgab 再把后续的顺序恢复
+     *
+     *
+     * @param s
+     * @param n
+     * @return
+     */
+    public static String reverseLeftWords(String s, int n) {
+        int length = s.length();
+        char[] result = new char[length];
+        char[] chars = s.toCharArray();
+        char[] newArray = new char[n];
+        for(int i=0;i<chars.length;i++){
+            if(i<n){  //把前k个取出为新数组
+                newArray[i] = chars[i];
+            }else{ //再把后续的数 放入结果数组中
+                result[i-n] = chars[i];
+            }
+        }
+        for(int i=0;i<newArray.length;i++){
+            result[length-n+i] = newArray[i];
+        }
+        return new String(result).trim();
+//        return s.substring(n,length)+s.substring(0,n);
+    }
 }
