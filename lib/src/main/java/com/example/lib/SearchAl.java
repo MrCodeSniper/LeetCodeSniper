@@ -3,9 +3,14 @@ package com.example.lib;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
 
 /**
  * 查找算法
+ * 冒泡
+ * 二分
+ * 快排
  * @author  ch
  */
 public class SearchAl {
@@ -118,5 +123,65 @@ public class SearchAl {
             }
         }
         return indexs;
+    }
+
+
+    /**
+     * 找出数组中重复的数字。
+     *
+     *
+     * 在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
+     *
+     * 输入：
+     * [2, 3, 1, 0, 2, 5, 3]
+     * 输出：2 或 3
+     *
+     * 思路
+     * 1.利用Map特性 Key为值 出现次数+1 时间复杂度 O(n) 空间复杂度 O(n)
+     * 2.利用双循环两两比较 判断重复 时间复杂度 O(n^2) 空间复杂度 O(1)
+     * 3.通过HashSet数据结构 添加进去得到返回值
+     * 4.sort排序过后 相邻比较
+     *
+     * 5。遍历每个位置： 值跟下标结合
+     * 1. 如果发现当前元素num已经躺在正确的位置上，continue;
+     * 2. 否则，即num不在正确位置上：
+     *   1）如果发现其正确的位置上已经躺着num了，即发现重复元素，return num;
+     *   2）否则，开启循环移位流程，将num发往正确位置上，其怼出来的元素，继续发往它应该去的地方，如此循环。。。
+     *
+     *   时间复杂度 O(n) 空间复杂度 O(1)
+     * @param nums
+     * @return
+     */
+    public int findRepeatNumber(int[] nums) {
+//        HashMap<Integer,Integer> map = new HashMap<>();
+//        for(int i = 0;i<nums.length;i++){
+//            int num = nums[i];
+//            if(map.get(num)!=null){
+//                map.put(num,map.get(num)+1);
+//            }else {
+//                map.put(num,1);
+//            }
+//        }
+//        final int[] result = {-1};
+//        map.entrySet().forEach((Consumer<Map.Entry<Integer, Integer>>) integerIntegerEntry -> {
+//            if(integerIntegerEntry.getValue()>1){
+//                result[0] =  integerIntegerEntry.getKey();
+//            }
+//        });
+//        return result[0];
+
+        for(int i = 0;i<nums.length;i++){ //因为内部循环会放到正确位置 两种循环加起来为o(n)时间 空间复杂度为O(1)
+            int num = nums[i];
+            if(num == i) continue; //当前元素num已经躺在正确的位置上，continue
+            if(nums[num] == num) return num; //如果发现其正确的位置上已经躺着num了，即发现重复元素，return num;
+            int target = num;
+            while (nums[target]!=target){ //如果该下标下的值 与下标不同进行移位 并循环
+                int exist = nums[target]; //该下标原值
+                nums[target] = num; //将该下标的值改为
+                num = exist;
+                target = num;
+            }
+        }
+        return 0;
     }
 }
