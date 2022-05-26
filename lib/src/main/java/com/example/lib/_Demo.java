@@ -1,6 +1,7 @@
 package com.example.lib;
 
 import static com.example.lib.BFS_DFS.floodFill;
+import static com.example.lib.BFS_DFS.levelOrder;
 import static com.example.lib.BFS_DFS.maxAreaOfIsland;
 import static com.example.lib.BFS_DFS.mergeTrees;
 import static com.example.lib.LinkAl.mergeTwoLists2;
@@ -33,7 +34,15 @@ public class _Demo {
 //        for(int i=0;i<result.length;i++){
 //            System.out.println(result[i]);
 //        }
-        stringDemo();
+        BFS_DFSDemo();
+    }
+
+    public static void BFS_DFSDemo(){
+        TreeNode node = new TreeNode(3,new TreeNode(9),new TreeNode(20,new TreeNode(15),new TreeNode(7)));
+        int[] result = levelOrder(node);
+        for(int i=0;i<result.length;i++){
+            System.out.println(result[i]+"");
+        }
     }
 
     public static void stringDemo(){

@@ -2,6 +2,11 @@ package com.example.lib;
 
 import com.example.lib.bean.TreeNode;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -232,6 +237,59 @@ public class BFS_DFS {
         return area;
     }
 
+    /**
+     * 从上到下打印出二叉树的每个节点，同一层的节点按照从左到右的顺序打印。
+     *
+     * 给定二叉树: [3,9,20,null,null,15,7], 返回[3,9,20,15,7]
+     *
+     * 思路:
+     * 1.层序遍历 通过对列实现 时间复杂度O(n) 空间复杂度O(n)
+     * 2.
+     *
+     *
+     *
+     *
+     * add 增加一个元索 如果队列已满，则抛出一个IIIegaISlabEepeplian异常
+     *
+     * remove 移除并返回队列头部的元素 如果队列为空，则抛出一个NoSuchElementException异常
+     *
+     * element 返回队列头部的元素 如果队列为空，则抛出一个NoSuchElementException异常
+     *
+     * offer 添加一个元素并返回true 如果队列已满，则返回false
+     *
+     * poll 移除并返问队列头部的元素 如果队列为空，则返回null
+     *
+     * peek 返回队列头部的元素 如果队列为空，则返回null
+     *
+     * put 添加一个元素 如果队列满，则阻塞
+     *
+     * take 移除并返回队列头部的元素 如果队列为空，则阻塞
+     *
+     * @param root
+     * @return
+     */
+    public static int[] levelOrder(TreeNode root) {
+        List<Integer> results = new ArrayList<>();
+        Queue<TreeNode> nodes = new LinkedList<>();
+        nodes.add(root);
+        while (!nodes.isEmpty()){
+            TreeNode node = nodes.poll();
+            if(node!=null){
+                results.add(node.val);
+                if(node.left!=null){
+                    nodes.add(node.left);
+                }
+                if(node.right!=null){
+                    nodes.add(node.right);
+                }
+            }
+        }
+        int[] d = new int[results.size()];
+        for(int i = 0;i<results.size();i++){
+            d[i] = results.get(i);
+        }
+        return d;
+    }
 
     public static class Nodes {
         public int sr;
