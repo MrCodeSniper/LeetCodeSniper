@@ -4,6 +4,7 @@ import static com.example.lib.BFS_DFS.floodFill;
 import static com.example.lib.BFS_DFS.levelOrder;
 import static com.example.lib.BFS_DFS.maxAreaOfIsland;
 import static com.example.lib.BFS_DFS.mergeTrees;
+import static com.example.lib.LinkAl.copyRandomList;
 import static com.example.lib.LinkAl.mergeTwoLists2;
 import static com.example.lib.LinkAl.middleNode;
 import static com.example.lib.LinkAl.removeNthFromEnd;
@@ -34,7 +35,31 @@ public class _Demo {
 //        for(int i=0;i<result.length;i++){
 //            System.out.println(result[i]);
 //        }
-        BFS_DFSDemo();
+        linkListDemo();
+
+    }
+
+    /**
+     * 链表Demo
+     */
+    public static void linkListDemo(){
+//        LinkAl.Node ThirdNode =  new LinkAl.Node(3,null,null);
+//        LinkAl.Node SecondNode =  new LinkAl.Node(3,ThirdNode);
+//        LinkAl.Node FirstNode =  new LinkAl.Node(3,SecondNode,null);
+//        SecondNode.random = FirstNode;
+//        LinkAl.Node result =  copyRandomList(FirstNode);
+//        FirstNode.printNode(true,false);
+//        System.out.println("----------------------");
+//        result.printNode(true,false);
+
+        LinkAl.Node a =  new LinkAl.Node(1,null,null);
+        LinkAl.Node b =  new LinkAl.Node(2,null,null);
+        a.next = b;
+        a.random = b;
+        b.random = b;
+
+        LinkAl.Node result =  copyRandomList(a);
+        result.printNode();
     }
 
     public static void BFS_DFSDemo(){

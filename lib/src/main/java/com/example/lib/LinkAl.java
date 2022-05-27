@@ -384,4 +384,121 @@ public class LinkAl {
         }
         return result;
     }
+
+    static class Node {
+        int val;
+        Node next;
+        Node random;
+
+        public Node(int val) {
+            this.val = val;
+            this.next = null;
+            this.random = null;
+        }
+
+        public Node(int val, Node next) {
+            this.val = val;
+            this.next = next;
+            this.random = null;
+        }
+
+        public Node(int val, Node next, Node random) {
+            this.val = val;
+            this.next = next;
+            this.random = random;
+        }
+
+        public void printNode(){
+            System.out.println("当前节点:"+val);
+            if(next!=null){
+                next.printNode();
+            }else {
+                System.out.println("null");
+            }
+        }
+    }
+
+
+    /**
+     * 请实现 copyRandomList 函数，复制一个复杂链表。在复杂链表中，每个节点除了有一个 next 指针指向下一个节点，
+     * 还有一个 random 指针指向链表中的任意节点或者 null。
+     *
+     * 输入：head = [[7,null],[13,0],[11,4],[10,2],[1,0]]
+     * 输出：[[7,null],[13,0],[11,4],[10,2],[1,0]]
+     *
+     * 输入：head = [[1,1],[2,1]]
+     * 输出：[[1,1],[2,1]]
+     *
+     * 输入：head = [[3,null],[3,0],[3,null]]
+     * 输出：[[3,null],[3,0],[3,null]]
+     *
+     * 思路: 如果是一般的链表 循环复制节点就可以 但这里不行 因为有random指针 循环到当前节点时 random节点可能还没有创建
+     * 复制的节点也与原来的不同 无法实现拷贝
+     *
+     * 1.第一遍循环 建立链表关联
+     * 第二遍循环 建立Random关联
+     * 时间复杂度O(n) 空间复杂度O(n)
+     *
+     * 2.一次循环 遇到random没有创建的情况 创建random 递归下去 如果都匹配了 继续循环 如果循环到已存在的则从缓存中获取
+     * 缓存KV  原Node 和复制完的Node
+     * 需要注意自循环和缓存的使用
+     * 时间复杂度O(n) 空间复杂度O(n)
+     *
+     * @param head
+     * @return
+     */
+
+    public static  HashMap<Node,Node> cache = new HashMap<>();
+
+    public static Node copyRandomList(Node head) {
+         Node start = null;
+         Node preNode = null;
+         Node now = head; //1
+         while (now!=null){
+             Node newNode = cache.get(now);
+             if(newNode == null){
+                 newNode = new Node(now.val);
+             }
+             if(now.random!=null){ //如果原节点存在随机节点
+                 if(now.random == now){ //自引用
+                     newNode.random = newNode;
+                 }else {
+                     Node cached =  cache.get(now.random);//从缓存取出节点
+                     if(cached!=null){ //如果缓存存在直接返回
+                         newNode.random = cached;
+                     }else { //缓存不存在 创建新节点
+                         newNode.random = createNode(now.random);
+                     }
+                 }
+             }
+             cache.put(now,newNode);
+             if(start == null){
+                 start = newNode;
+             }
+             //循环到下一个节点
+             now = now.next;
+             //建立next关系
+             if (preNode != null) {
+                 preNode.next = newNode;
+             }
+             preNode = newNode;
+         }
+        return start;
+    }
+
+    public static Node createNode(Node head){ //2
+        //如何处理自引用的情况
+        if(head == null){
+            return null;
+        }
+        //如果random指向的节点还没有被创建
+        Node random = cache.get(head);
+        if(random==null){
+            Node result = new Node(head.val);
+            cache.put(head,result); //缓存原节点和新建节点的关系
+            result.random = createNode(head.random); //通过递归创建random的random
+            return result;
+        }
+        return random;
+    }
 }
