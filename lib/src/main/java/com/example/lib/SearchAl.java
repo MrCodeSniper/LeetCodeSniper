@@ -184,4 +184,26 @@ public class SearchAl {
         }
         return 0;
     }
+
+    /**
+     * 求 1+2+...+n ，要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）。
+     *
+     * 思路
+     * 1.公式 (n+1)n/2
+     * 2.递归 3+2+1+0 return
+     *
+     * 输入: n = 3
+     * 输出: 6 = 1+2+3
+     *
+     * 输入: n = 9
+     * 输出: 45
+     *
+     * @param n
+     * @return
+     */
+    public static int sumNums(int n) {
+        //n递归-1会出现负数 需要停到0 但是不能用三元表达式 if else 我们利用位运算特性 && 如果n<=0 就执行return 不走后面的+=
+        boolean flag = n>0 && (n+=sumNums(n-1))>0;
+        return  n;
+    }
 }

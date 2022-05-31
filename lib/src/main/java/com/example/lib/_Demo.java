@@ -10,6 +10,7 @@ import static com.example.lib.LinkAl.middleNode;
 import static com.example.lib.LinkAl.removeNthFromEnd;
 import static com.example.lib.LinkAl.reverse;
 import static com.example.lib.LinkAl.reversePrint;
+import static com.example.lib.SearchAl.sumNums;
 import static com.example.lib.SortAl.minNumber;
 import static com.example.lib.StringAl.checkInclusion;
 import static com.example.lib.StringAl.lengthOfLongestSubstring2;
@@ -39,10 +40,12 @@ public class _Demo {
 //        linkListDemo();
         //30 3 34
                                                                // 12  1 3459
-        System.out.println(minNumber(new int[]{3,30,34,5,9})); //31 3   3459  不应该比较那个小放前面 而是组合之后哪个小
-        System.out.println(minNumber(new int[]{3,4,4,6}));
-        System.out.println(minNumber(new int[]{10,2}));
-        System.out.println(minNumber(new int[]{3,30,34,5,9}));
+//        System.out.println(minNumber(new int[]{3,30,34,5,9})); //31 3   3459  不应该比较那个小放前面 而是组合之后哪个小
+//        System.out.println(minNumber(new int[]{3,4,4,6}));
+//        System.out.println(minNumber(new int[]{10,2}));
+//        System.out.println(minNumber(new int[]{3,30,34,5,9}));
+
+        System.out.println(sumNums(3));
     }
 
     /**
