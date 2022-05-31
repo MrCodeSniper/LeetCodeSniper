@@ -2,6 +2,7 @@ package com.example.lib;
 
 import static com.example.lib.BFS_DFS.floodFill;
 import static com.example.lib.BFS_DFS.levelOrder;
+import static com.example.lib.BFS_DFS.levelOrder2;
 import static com.example.lib.BFS_DFS.maxAreaOfIsland;
 import static com.example.lib.BFS_DFS.mergeTrees;
 import static com.example.lib.LinkAl.copyRandomList;
@@ -45,7 +46,8 @@ public class _Demo {
 //        System.out.println(minNumber(new int[]{10,2}));
 //        System.out.println(minNumber(new int[]{3,30,34,5,9}));
 
-        System.out.println(sumNums(3));
+//        System.out.println(sumNums(3));
+        BFS_DFSDemo();
     }
 
     /**
@@ -74,9 +76,8 @@ public class _Demo {
     public static void BFS_DFSDemo(){
         TreeNode node = new TreeNode(3,new TreeNode(9),new TreeNode(20,new TreeNode(15),new TreeNode(7)));
         int[] result = levelOrder(node);
-        for(int i=0;i<result.length;i++){
-            System.out.println(result[i]+"");
-        }
+        List<List<Integer>> result2= levelOrder2(node);
+        System.out.println(result2);
     }
 
     public static void stringDemo(){

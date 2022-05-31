@@ -291,6 +291,74 @@ public class BFS_DFS {
         return d;
     }
 
+
+    /**
+     * 从上到下按层打印二叉树，同一层的节点按从左到右的顺序打印，每一层打印到一行。
+     * 给定二叉树: [3,9,20,null,null,15,7],返回其层次遍历结果：
+     *
+     * 相同层级的放入List 所有层级放入根List
+     * [
+     *   [3],
+     *   [9,20],
+     *   [15,7]
+     * ]
+     *
+     * 思路 根据返回的结果 需要我们明确的区分 哪些节点处于同一层级
+     *
+     * 准备一个列表 存入根节点 随即循环 新列表存入根节点的左右 再次循环 里面的节点将每个节点左右存放到新列表 以此类推
+     *
+     * 时间复杂度O(n) O(n)
+     *
+     *
+     * 解答:
+     * 特例处理： 当根节点为空，则返回空列表 [] ；
+     * 初始化： 打印结果列表 res = [] ，包含根节点的队列 queue = [root] ；
+     * BFS 循环： 当队列 queue 为空时跳出；
+     * 新建一个临时列表 tmp ，用于存储当前层打印结果；
+     * 当前层打印循环： 循环次数为当前层节点数（即队列 queue 长度）；
+     * 出队： 队首元素出队，记为 node；
+     * 打印： 将 node.val 添加至 tmp 尾部；
+     * 添加子节点： 若 node 的左（右）子节点不为空，则将左（右）子节点加入队列 queue ；
+     * 将当前层结果 tmp 添加入 res 。
+     *
+     * @param root
+     * @return
+     */
+    public static List<List<Integer>> levelOrder2(TreeNode root) {
+        if(root == null){
+            return new ArrayList<>();
+        }
+        List<List<Integer>> results = new ArrayList<>();
+        List<Integer> rootResult = new ArrayList<>();
+        rootResult.add(root.val);
+        results.add(rootResult);
+        List<TreeNode> nowCell = new ArrayList<>();
+        nowCell.add(root);
+
+        while (!nowCell.isEmpty()){
+            List<TreeNode> newCell = new ArrayList<>();
+            List<Integer> group  = new ArrayList<>();
+            for(int i =0;i<nowCell.size();i++){
+                TreeNode node = nowCell.get(i);
+                if(node!=null){
+                    if(node.left!=null){
+                        newCell.add(node.left);
+                        group.add(node.left.val);
+                    }
+                    if(node.right!=null){
+                        newCell.add(node.right);
+                        group.add(node.right.val);
+                    }
+                }
+            }
+            if(!group.isEmpty()){
+                results.add(group);
+            }
+            nowCell = newCell;
+        }
+        return results;
+    }
+
     public static class Nodes {
         public int sr;
         public int sc;
