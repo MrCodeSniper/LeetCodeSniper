@@ -4,6 +4,7 @@ import static com.example.lib.BFS_DFS.floodFill;
 import static com.example.lib.BFS_DFS.levelOrder;
 import static com.example.lib.BFS_DFS.levelOrder2;
 import static com.example.lib.BFS_DFS.maxAreaOfIsland;
+import static com.example.lib.BFS_DFS.maxDepth;
 import static com.example.lib.BFS_DFS.mergeTrees;
 import static com.example.lib.LinkAl.copyRandomList;
 import static com.example.lib.LinkAl.mergeTwoLists2;
@@ -76,8 +77,13 @@ public class _Demo {
     public static void BFS_DFSDemo(){
         TreeNode node = new TreeNode(3,new TreeNode(9),new TreeNode(20,new TreeNode(15),new TreeNode(7)));
         int[] result = levelOrder(node);
+        System.out.println("该树的层序遍历打印为:"+Arrays.asList(result,Integer.class));
+
         List<List<Integer>> result2= levelOrder2(node);
-        System.out.println(result2);
+        System.out.println("该树的层次结构为:"+result2);
+
+        int depth = maxDepth(node);
+        System.out.println("该树的最大深度为:"+depth);
     }
 
     public static void stringDemo(){

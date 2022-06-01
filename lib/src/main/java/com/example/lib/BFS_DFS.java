@@ -359,6 +359,27 @@ public class BFS_DFS {
         return results;
     }
 
+    /***
+     * 输入一棵二叉树的根节点，求该树的深度。从根节点到叶节点依次经过的节点（含根、叶节点）形成树的一条路径，最长路径的长度为树的深度。
+     *
+     * 思路
+     * 1.深度优先遍历DFS
+     * 2.层级遍历 将每层的节点存到数组 最终层级就是这个数组的长度
+     * 3.递归计算 递归计算左右子树的深度
+     * 4.广度优先遍历 队列里放入 每一次全部出队 层级+1 直到没有元素即可
+     * @param root
+     * @return
+     */
+    public static int maxDepth(TreeNode root) {
+        if(root == null) return 0;
+        //递归计算左右子树的深度
+        int leftMaxDepth = maxDepth(root.left);
+        int rightMaxDepth = maxDepth(root.right);
+        return Math.max(leftMaxDepth,rightMaxDepth)+1; //如果左右子树都为空 那么层级为他自身1
+    }
+
+
+
     public static class Nodes {
         public int sr;
         public int sc;
