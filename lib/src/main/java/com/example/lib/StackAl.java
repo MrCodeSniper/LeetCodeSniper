@@ -1,6 +1,8 @@
 package com.example.lib;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
@@ -116,6 +118,48 @@ public class StackAl {
                 stack1.push(item);
             }
             return deleteItem;
+        }
+    }
+
+
+    /**
+     * 定义栈的数据结构，请在该类型中实现一个能够得到栈的最小元素的 min 函数在该栈中，调用 min、push 及 pop 的时间复杂度都是 O(1)。
+     *
+     * 思路 取的效率要为O(1)得通过 数组下标或者哈希表来做底层存储
+     *
+     * 用另外的栈存储最小值
+     *
+     */
+    public static class MinStack {
+
+        private Deque<Integer> mStack;
+
+        private Deque<Integer> mMinStack;
+
+        /** initialize your data structure here. */
+        public MinStack() {
+            mStack = new LinkedList<Integer>();
+            mMinStack =  new LinkedList<Integer>();
+            mMinStack.push(Integer.MAX_VALUE);
+        }
+
+        public void push(int x) {
+            mStack.push(x);
+            int min = Math.min(x,mMinStack.peek()); //每次push进去 计算新的最小值插入栈顶
+            mMinStack.push(min);
+        }
+
+        public void pop() {
+            mStack.pop();
+            mMinStack.pop();
+        }
+
+        public int top() {
+            return mStack.peek();
+        }
+
+        public int min() {
+            return mMinStack.peek();
         }
     }
 }

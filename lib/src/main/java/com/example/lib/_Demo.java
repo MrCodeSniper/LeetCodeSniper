@@ -48,7 +48,24 @@ public class _Demo {
 //        System.out.println(minNumber(new int[]{3,30,34,5,9}));
 
 //        System.out.println(sumNums(3));
+        System.out.println("||||||||||||||||||||||||||BFS_DFS Demo||||||||||||||||||||||||||");
         BFS_DFSDemo();
+        System.out.println("||||||||||||||||||||||||||栈Demo||||||||||||||||||||||||||");
+        stackDemo();
+    }
+
+    /**
+     * 栈Demo
+     */
+    public static void stackDemo(){
+        StackAl.MinStack minStack = new StackAl.MinStack();
+        minStack.push(-2);
+        minStack.push(0);
+        minStack.push(-1);
+        System.out.println("返回"+minStack.min());  // --> 返回 -3.
+        minStack.pop();
+        System.out.println("返回"+minStack.top());    //  --> 返回 0.
+        System.out.println("返回"+minStack.min());   // --> 返回 -2.
     }
 
     /**
