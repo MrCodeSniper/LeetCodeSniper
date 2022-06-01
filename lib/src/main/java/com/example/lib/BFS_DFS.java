@@ -4,6 +4,7 @@ import com.example.lib.bean.TreeNode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -14,6 +15,22 @@ import java.util.Stack;
  * @author ch
  */
 public class BFS_DFS {
+
+    /**
+     * 辅助栈
+     */
+    public static Deque<Integer> path = new LinkedList<Integer>();
+
+    public static void dfs(TreeNode root){
+        if(root == null){
+            return;
+        }
+        path.offerLast(root.val);
+        System.out.println("val:"+ root.val);
+        dfs(root.left);
+        dfs(root.right);
+        path.pollLast();
+    }
 
 
     /**
@@ -378,6 +395,92 @@ public class BFS_DFS {
         return Math.max(leftMaxDepth,rightMaxDepth)+1; //如果左右子树都为空 那么层级为他自身1
     }
 
+    /**
+     * 给你二叉树的根节点 root 和一个整数目标和 targetSum ，找出所有 从根节点到叶子节点 路径总和等于给定目标和的路径。
+     *
+     * 叶子节点 是指没有子节点的节点。
+     *
+     * 迪杰斯特拉算法 计算最短路径
+     *
+     * 思路 1.导出所有 跟节点到叶子节点的组合 取出和target相同的
+     * 2.递归思想 左右子树寻找target-root的点 当target-root =0  表示刚好找到节点
+     * 3.DFS 每次深度遍历可以生成路径 需要注意把不符合条件的poll了 符合条件的路径保存  递归回硕思想
+     *
+     *
+     *
+     *<img width="640" height="320" src="https://assets.leetcode.com/uploads/2021/01/18/pathsumii1.jpg" alt="">
+     *
+     * targetSum = 22
+     *
+     *
+     * @param root
+     * @param target
+     * @return
+     */
+    public List<List<Integer>> pathSum(TreeNode root, int target) {
+        dfs(root,target);
+        List<List<Integer>> newlist = new ArrayList<>();
+        newlist.addAll(ret);
+        ret.clear();
+        return newlist;
+    }
+
+    /**
+     * 临时变量存储匹配的路径列表
+     */
+    public static List<List<Integer>> ret = new LinkedList<>();
+
+    public static void dfs(TreeNode root,int target){
+        if(root == null){
+            return;
+        }
+        path.offerLast(root.val); //用额外的队列来存储遍历路径
+        target -= root.val;
+        if (root.left == null && root.right == null && target == 0) { //如果左右子树为空 target又为0则就是这个节点
+            ret.add(new LinkedList<>(path)); //确定最佳路径 新的集合后续path的poll不会影响
+        }
+        dfs(root.left,target);
+        dfs(root.right,target);
+        path.pollLast(); //利用递归特性 路径排除最后一个不符合条件的
+    }
+
+
+
+    /**
+     * 1. node 3  find 27
+     * 2. node 9  18
+     * 3. return null
+     * 4.node  20  find 7
+     * 5.node 15 find 2
+     * 6.null 2
+     * 7.node 7  0
+     * @param root
+     * @param target
+     * @return
+     */
+    public static TreeNode findLastNode(TreeNode root,int target){
+        if(root == null){
+            System.out.println("递归到空节点,target:"+target);
+            return null;
+        }
+        if(target == 0){
+            System.out.println("递归到正确叶子节点,node:"+root.val+",target:"+target);
+            return root;
+        }
+        if(root.left!=null){
+            TreeNode left = findLastNode(root.left,target-root.left.val);
+            if(left!=null){
+                return left;
+            }
+        }
+        if(root.right!=null){
+            TreeNode right = findLastNode(root.right,target-root.right.val);
+            if(right!=null){
+                return right;
+            }
+        }
+        return null;
+    }
 
 
     public static class Nodes {

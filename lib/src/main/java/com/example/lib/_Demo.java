@@ -1,5 +1,7 @@
 package com.example.lib;
 
+import static com.example.lib.BFS_DFS.dfs;
+import static com.example.lib.BFS_DFS.findLastNode;
 import static com.example.lib.BFS_DFS.floodFill;
 import static com.example.lib.BFS_DFS.levelOrder;
 import static com.example.lib.BFS_DFS.levelOrder2;
@@ -101,6 +103,16 @@ public class _Demo {
 
         int depth = maxDepth(node);
         System.out.println("该树的最大深度为:"+depth);
+
+        int target = 12;
+        TreeNode node2 = findLastNode(node,target-node.val);
+        if(node2!=null){
+            System.out.println("找到叶子节点Node:"+node2.val);
+        }else {
+            System.out.println("未找到叶子节点Node");
+        }
+
+        dfs(node);
     }
 
     public static void stringDemo(){
