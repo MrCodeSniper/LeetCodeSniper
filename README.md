@@ -1,5 +1,5 @@
-# LeetCodeDemo
-算法刷题Demo
+# LeetCodeSniper
+每日LeetCode算法刷题归纳和总结
 
 
 ### 数组
