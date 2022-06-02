@@ -5,6 +5,7 @@ import static com.example.lib.BFS_DFS.findLastNode;
 import static com.example.lib.BFS_DFS.floodFill;
 import static com.example.lib.BFS_DFS.levelOrder;
 import static com.example.lib.BFS_DFS.levelOrder2;
+import static com.example.lib.BFS_DFS.levelOrder3;
 import static com.example.lib.BFS_DFS.maxAreaOfIsland;
 import static com.example.lib.BFS_DFS.maxDepth;
 import static com.example.lib.BFS_DFS.mergeTrees;
@@ -112,7 +113,7 @@ public class _Demo {
             System.out.println("未找到叶子节点Node");
         }
 
-        dfs(node);
+        levelOrder3(node);
     }
 
     public static void stringDemo(){

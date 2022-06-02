@@ -482,6 +482,111 @@ public class BFS_DFS {
         return null;
     }
 
+    /**
+     * 请实现一个函数按照之字形顺序打印二叉树，即第一行按照从左到右的顺序打印，
+     * 第二层按照从右到左的顺序打印，第三行再按照从左到右的顺序打印，其他行以此类推。
+     *
+     * 核心为反转 反转想到什么 栈
+     *
+     * 给定二叉树: [3,9,20,null,null,15,7],
+     *
+     *     3
+     *    / \
+     *   9  20
+     *     /  \
+     *    15   7
+     *
+     * 结果为
+     * [
+     *   [3],
+     *   [20,9],
+     *   [15,7]
+     * ]
+     * 思路1. 先中后三序遍历实现
+     * 思路2. 层序遍历 对数组进行reverse
+     * 思路3. 递归思想
+     * 思路4。核心为反转 反转想到什么 栈 反之使用队列
+     *
+     * @param root
+     * @return
+     */
+    public static List<List<Integer>> levelOrder3(TreeNode root) {
+        reverseLevelOrder(root);
+        List<List<Integer>> results = new ArrayList<>(rets);
+        rets.clear();
+        return results;
+    }
+
+    /**
+     *
+     * @param root 当前递归节点 递归是深度操作
+     * @param isReverse 下一层是否反转遍历
+     */
+    public static void reverseLevelOrder2(TreeNode root,Boolean isReverse){
+        if(root == null) return;
+        System.out.println("node:"+root.val);
+        if(isReverse){
+            reverseLevelOrder2(root.right,false);
+            reverseLevelOrder2(root.left,false);
+        }else {
+            reverseLevelOrder2(root.left,true);
+            reverseLevelOrder2(root.right,true);
+        }
+    }
+
+    public static List<List<Integer>> rets = new ArrayList<>();
+
+    /**
+     *            3
+     *      *    / \
+     *      *   9  20
+     *      *  /\   / \
+     *      * 1  2  15 7
+     *
+     *      第一次 3
+     *      2.   20 9
+     *      3.   1 2  15 7
+     *         输出
+     *     0    3          3
+     *     1    20 9      9 20
+     *     2    1 2 15 7
+     *
+     * @param root
+     */
+    public static void reverseLevelOrder(TreeNode root){
+        if(root == null) return;
+        System.out.println("node:"+root.val);
+        Deque<TreeNode> stack = new LinkedList<>();
+        List<TreeNode> nodes = new ArrayList<>();
+        stack.push(root);
+        int index = 0;
+        //如果奇数层判断栈是否为空 不为空进行栈操作  如果偶数层判断队列是否为空 不为空进行队列操作
+        while (!stack.isEmpty()){
+            List<Integer> stackValue = new ArrayList<>();
+            while (!stack.isEmpty()){ //把栈内的所有元素按照规则导出成列表
+                TreeNode node = stack.pop();
+                if(node!=null){
+//                    System.out.println("出栈:"+node.val);
+                    stackValue.add(node.val);
+                    if(index%2==0){ //用一个栈存储 调整入栈顺序
+                        nodes.add(node.left);
+                        nodes.add(node.right);
+                    }else {
+                        nodes.add(node.right);
+                        nodes.add(node.left);
+                    }
+                }
+            }
+            if(!stackValue.isEmpty()){
+                rets.add(stackValue);
+            }
+            for(int i=0;i<nodes.size();i++){
+                stack.push(nodes.get(i));
+            }
+            nodes.clear();
+            index++;
+        }
+    }
 
     public static class Nodes {
         public int sr;
