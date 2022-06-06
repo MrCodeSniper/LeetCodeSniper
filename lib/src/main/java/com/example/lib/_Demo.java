@@ -1,27 +1,24 @@
 package com.example.lib;
 
-import static com.example.lib.BFS_DFS.dfs;
 import static com.example.lib.BFS_DFS.findLastNode;
 import static com.example.lib.BFS_DFS.floodFill;
 import static com.example.lib.BFS_DFS.levelOrder;
 import static com.example.lib.BFS_DFS.levelOrder2;
 import static com.example.lib.BFS_DFS.levelOrder3;
+import static com.example.lib.BFS_DFS.lowestCommonAncestor;
 import static com.example.lib.BFS_DFS.maxAreaOfIsland;
 import static com.example.lib.BFS_DFS.maxDepth;
-import static com.example.lib.BFS_DFS.mergeTrees;
 import static com.example.lib.LinkAl.copyRandomList;
 import static com.example.lib.LinkAl.mergeTwoLists2;
 import static com.example.lib.LinkAl.middleNode;
 import static com.example.lib.LinkAl.removeNthFromEnd;
 import static com.example.lib.LinkAl.reverse;
-import static com.example.lib.LinkAl.reversePrint;
-import static com.example.lib.SearchAl.sumNums;
-import static com.example.lib.SortAl.minNumber;
 import static com.example.lib.StringAl.checkInclusion;
 import static com.example.lib.StringAl.lengthOfLongestSubstring2;
 import static com.example.lib.StringAl.replaceSpace;
 import static com.example.lib.StringAl.reverseLeftWords;
 import static com.example.lib.TreeAl.connect;
+import static com.example.lib.TreeAl.mergeTrees;
 import static com.example.lib.utils.TreeUtils.printTree;
 
 import com.example.lib.bean.ListNode;
@@ -56,6 +53,7 @@ public class _Demo {
         System.out.println("||||||||||||||||||||||||||栈Demo||||||||||||||||||||||||||");
         stackDemo();
     }
+
 
     /**
      * 栈Demo
@@ -114,6 +112,11 @@ public class _Demo {
         }
 
         levelOrder3(node);
+
+
+        TreeNode root = new TreeNode(3,new TreeNode(1,null,new TreeNode(2)),new TreeNode(4));
+        TreeNode result3 = lowestCommonAncestor(root,new TreeNode(2),root);
+        System.out.println("results:"+result3.val);
     }
 
     public static void stringDemo(){

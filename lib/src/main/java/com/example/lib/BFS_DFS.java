@@ -5,8 +5,10 @@ import com.example.lib.bean.TreeNode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -30,54 +32,6 @@ public class BFS_DFS {
         dfs(root.left);
         dfs(root.right);
         path.pollLast();
-    }
-
-
-    /**
-     * 合并二叉树
-     * 给你两棵二叉树： root1 和 root2 。
-     * <p>
-     * 想象一下，当你将其中一棵覆盖到另一棵之上时，两棵树上的一些节点将会重叠（而另一些不会）。
-     * 你需要将这两棵树合并成一棵新二叉树。合并的规则是：如果两个节点重叠，那么将这两个节点的值相加作为合并后节点的新值；否则，不为 null 的节点将直接作为新二叉树的节点。
-     * <p>
-     * 返回合并后的二叉树。
-     * <p>
-     * 注意: 合并过程必须从两个树的根节点开始。
-     * <p>
-     * 输入：root1 = [1,3,2,5], root2 = [2,1,3,null,4,null,7]
-     * [1,3,2,5,null,null,null] [2,1,3,null,4,null,7,null,null,null,null]
-     * 输出：[3,4,5,5,4,null,7]
-     * 示例 2：
-     * <p>
-     * 输入：root1 = [1], root2 = [1,2]
-     * 输出：[2,2]
-     * <p>
-     * 思路 层次遍历 广度优先 相加
-     * <p>
-     * 思路 深度优先遍历 递归方式 将重复的操作抽出
-     * <p>
-     * 每次操作为合并的流程
-     * 1。如果1树节点为空 取2树为新节点
-     * 2。如果2树节点为空 取1树为新节点
-     * 3。如果1，2都存在则加起来 取1为节点
-     * <p>
-     * 重复节点的左和右子树进行合并并返回
-     *
-     * @param root1
-     * @param root2
-     * @return
-     */
-    public static TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
-        if (root1 == null) {
-            return root2;
-        }
-        if (root2 == null) {
-            return root1;
-        }
-        root1.val += root2.val;
-        root1.left = mergeTrees(root1.left, root2.left);
-        root1.right = mergeTrees(root1.right, root2.right);
-        return root1;
     }
 
 
@@ -587,6 +541,108 @@ public class BFS_DFS {
             index++;
         }
     }
+
+    /**
+     * 给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。
+     *
+     * 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”
+     *
+     * 例如，给定如下二叉搜索树: root =[6,2,8,0,4,7,9,null,null,3,5]
+     *
+     * <img width="320" height="320" src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/binarysearchtree_improved.png" alt="">
+     *
+     * 示例 1:
+     *
+     * 输入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8
+     * 输出: 6
+     * 解释: 节点 2 和节点 8 的最近公共祖先是 6。
+     * 示例 2:
+     *
+     * 输入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4
+     * 输出: 2
+     * 解释: 节点 2 和节点 4 的最近公共祖先是 2, 因为根据定义最近公共祖先节点可以为节点本身。
+     *
+     * 所有节点的值都是唯一的。
+     * p、q 为不同节点且均存在于给定的二叉搜索树中。
+     *
+     * 二叉排序树的特性能否利用
+     * 怎么找到父节点
+     * 思路 1.遍历一遍二叉树 利用唯一的特性 存放到Map中 key为节点Val value为key的父节点
+     * 先1边不变 比如q不动 找到p的父节点  如果父节点为q 那么return q 如果不是q 那么继续找父节点 直到根节点结束
+     * 如果一遍后都找不到 那么找到q的父节点 p继续上述流程直到 q到根节点
+     *
+     * 时间复杂度O(log2n*log2n) 空间复杂度O(n)
+     *
+     * 思路 2 递归
+     *
+     *
+     * 思路 3 回朔
+     *
+     *
+     * 在寻找节点的过程中，我们可以顺便记录经过的节点，这样就得到了从根节点到被寻找节点的路径 路径是唯一的
+     * 那么问题就简化为 找到两个路径的唯一重复点 两个链表 双遍历即可
+     * 
+     * 解答
+     * 通过两次遍历得到两个路径 然后再两个路径循环找到结果 时间复杂度O(n) 空间复杂度O(n)
+     * 
+     *
+     * @param root
+     * @param p
+     * @param q
+     * @return
+     */
+    public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        //1.遍历二叉树存储每个节点的父节点信息
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            TreeNode out = stack.pop();
+            if(out.left!=null){
+                parentTreeNodeMap.put(out.left.val,out);
+                stack.push(out.left);
+            }
+            if(out.right!=null){
+                parentTreeNodeMap.put(out.right.val,out);
+                stack.push(out.right);
+            }
+        }
+        //利用二叉排序树的特性 如果p.val < q.val 那么q一定在p的根节点或者根节点的右边或者在其右子树
+        //1.小的不动 大的找父节点 找相同 如果到根节点还不相同 小的找父节点 大的重复 直到为根
+        if(p.val<q.val){
+            TreeNode now = p;
+            while (now!=null){
+                TreeNode bigger = q;
+                while (bigger!=null){
+                    if(bigger == now){
+                        parentTreeNodeMap.clear();
+                        return now;
+                    }
+                    bigger = parentTreeNodeMap.get(bigger.val);
+                }
+                //P的父节点往上
+                now = parentTreeNodeMap.get(now.val);
+            }
+        }else {
+            TreeNode now = q;
+            while (now!=null){
+                TreeNode bigger = p;
+                while (bigger!=null){
+                    if(bigger == now) {
+                        parentTreeNodeMap.clear();
+                        return now;
+                    }
+                    bigger = parentTreeNodeMap.get(bigger.val);
+                }
+                //P的父节点往上
+                now = parentTreeNodeMap.get(now.val);
+            }
+        }
+        parentTreeNodeMap.clear();
+        return null;
+    }
+
+    public static Map<Integer,TreeNode> parentTreeNodeMap = new HashMap<>();
+
 
     public static class Nodes {
         public int sr;
