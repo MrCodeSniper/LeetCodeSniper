@@ -644,6 +644,127 @@ public class BFS_DFS {
     public static Map<Integer,TreeNode> parentTreeNodeMap = new HashMap<>();
 
 
+    /**
+     * 输入两棵二叉树A和B，判断B是不是A的子结构。(约定空树不是任意一个树的子结构)
+     *
+     * B是A的子结构， 即 A中有出现和B相同的结构和节点值。
+     *
+     * 例如:
+     * 给定的树 A:
+     *
+     *   3
+     *  / \
+     *  4 5
+     * / \
+     * 1  2
+     * 给定的树 B：
+     *
+     *   4
+     *  /
+     * 1
+     * 返回 true，因为 B 与 A 的一个子树拥有相同的结构和节点值。
+     *
+     *
+     *   1
+     *  / \
+     *  2 3
+     *
+     *  3
+     * /
+     * 1
+     *
+     * 思路1.枚举所有的子结构 一一对应
+     * 思路2.先从A找到B值相同的节点Q 遍历B 遍历Q 算法相同 如果每次的值相同即可  路径匹配 时间复杂度O(log2(Max深度(A,B))*重复 空间复杂度O(N)*3*重复
+     * 解答3.递归查找 双递归 根节点 左子树 右子树 都跟B比较 比较内部 这三个树的左 和比较的树的左 右都需要匹配符合条件 返回true
+     *
+     * 时间复杂度 O(MN)O(MN) ： 其中 M,NM,N 分别为树 AA 和 树 BB 的节点数量；先序遍历树 AA 占用 O(M)O(M) ，每次调用 recur(A, B) 判断占用 O(N)O(N) 。
+     * 空间复杂度 O(M)O(M) ： 当树 AA 和树 BB 都退化为链表时，递归调用深度最大。当 M \leq NM≤N 时，遍历树 AA 与递归判断的总递归深度为 MM ；当 M>NM>N 时，最差情况为遍历至树 AA 叶子节点，此时总递归深度为 MM。
+     *
+     *
+     * 边界问题 : 出现重复元素怎么办 多次循环处理解决
+     *
+     * @param A
+     * @param B
+     * @return
+     */
+    public static boolean isSubStructure(TreeNode A, TreeNode B) {
+        //根节点 左子树 右子树 都跟B比较
+        return (A!=null && B!=null) && (isRecur(A,B)||isSubStructure(A.left,B)||isSubStructure(A.right,B));
+    }
+
+    /**
+     * 递归每次判断 A B  A.left B  A.right B
+     * @param A
+     * @param B
+     * @return
+     */
+    public static boolean isRecur(TreeNode A, TreeNode B){
+        if(B == null) return true;//如果B遍历完表示匹配上
+        if(A == null || A.val != B.val) return false;//如果A匹配时 匹配不上 值不对
+        return  isRecur(A.left,B.left) && isRecur(A.right,B.right); //两子树都要匹配上
+    }
+
+    public static boolean isSubStructure2(TreeNode A, TreeNode B) {
+        if(A == B) return true;
+        if(B == null) return false;
+        List<TreeNode> Q = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(A);
+        while (!stack.isEmpty()){
+            TreeNode pop = stack.pop();
+            if(pop.val == B.val){
+                Q.add(pop);
+            }
+            if(pop.left!=null){
+                stack.push(pop.left);
+            }
+            if(pop.right!=null){
+                stack.push(pop.right);
+            }
+        }
+        if(Q.isEmpty()) return false;
+        for(int i=0;i<Q.size();i++){
+            if(isChild(B, Q.get(i))){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isChild(TreeNode B,TreeNode Q){
+        Stack<TreeNode> stackB = new Stack<>();
+        stackB.push(B);
+        Stack<TreeNode> stackQ = new Stack<>();
+        stackQ.push(Q);
+        while (!stackB.isEmpty()){
+            TreeNode b = stackB.pop();
+            if(stackQ.isEmpty()){
+                return false;
+            }
+            TreeNode q = stackQ.pop();
+            if(b.val != q.val){
+               return false;
+            }
+            if(b.left!=null){
+                stackB.push(b.left);
+                if(q.left!=null){
+                    stackQ.push(q.left);
+                }
+            }
+            if(b.right!=null){
+                stackB.push(b.right);
+                if(q.right!=null){
+                    stackQ.push(q.right);
+                }
+            }
+        }
+        return true;
+    }
+
+
+
+
+
     public static class Nodes {
         public int sr;
         public int sc;

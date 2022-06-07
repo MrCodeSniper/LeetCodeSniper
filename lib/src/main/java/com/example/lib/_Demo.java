@@ -2,6 +2,7 @@ package com.example.lib;
 
 import static com.example.lib.BFS_DFS.findLastNode;
 import static com.example.lib.BFS_DFS.floodFill;
+import static com.example.lib.BFS_DFS.isSubStructure;
 import static com.example.lib.BFS_DFS.levelOrder;
 import static com.example.lib.BFS_DFS.levelOrder2;
 import static com.example.lib.BFS_DFS.levelOrder3;
@@ -32,28 +33,11 @@ import java.util.List;
 public class _Demo {
 
     public static void main(String[] args) {
-//        stackQueueDemo();
-
-//        ListNode first = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5, new ListNode(6, null))))));
-//        int[] result = reversePrint(first);
-//        for(int i=0;i<result.length;i++){
-//            System.out.println(result[i]);
-//        }
-//        linkListDemo();
-        //30 3 34
-                                                               // 12  1 3459
-//        System.out.println(minNumber(new int[]{3,30,34,5,9})); //31 3   3459  不应该比较那个小放前面 而是组合之后哪个小
-//        System.out.println(minNumber(new int[]{3,4,4,6}));
-//        System.out.println(minNumber(new int[]{10,2}));
-//        System.out.println(minNumber(new int[]{3,30,34,5,9}));
-
-//        System.out.println(sumNums(3));
         System.out.println("||||||||||||||||||||||||||BFS_DFS Demo||||||||||||||||||||||||||");
         BFS_DFSDemo();
         System.out.println("||||||||||||||||||||||||||栈Demo||||||||||||||||||||||||||");
         stackDemo();
     }
-
 
     /**
      * 栈Demo
@@ -117,6 +101,11 @@ public class _Demo {
         TreeNode root = new TreeNode(3,new TreeNode(1,null,new TreeNode(2)),new TreeNode(4));
         TreeNode result3 = lowestCommonAncestor(root,new TreeNode(2),root);
         System.out.println("results:"+result3.val);
+
+        TreeNode a = new TreeNode(1,new TreeNode(2),new TreeNode(3));
+        TreeNode b = new TreeNode(3,new TreeNode(1),null);
+        boolean c = isSubStructure(a,b);
+        System.out.println("子结构:"+c);
     }
 
     public static void stringDemo(){
