@@ -3,8 +3,43 @@ package com.example.lib;
 import com.example.lib.bean.Node;
 import com.example.lib.bean.TreeNode;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+import javax.swing.plaf.TextUI;
+
 public class TreeAl {
 
+    /**
+     * 请实现一个函数，用来判断一棵二叉树是不是对称的。如果一棵二叉树和它的镜像一样，那么它是对称的。
+     *
+     * 例如，二叉树 [1,2,2,3,4,4,3] 是对称的。
+     *
+     * 思路一 得到镜像树 遍历路径相同
+     *
+     * 解答
+     * 1.用一个队列 循环 根据左右加入树 再根据右左 pop的时候pop两次 如果对称值对不上 或者存在空return false 否则return true
+     * 2.递归解法 递归检查
+     * @param root
+     * @return
+     */
+    public static boolean isSymmetric(TreeNode root) {
+          return check(root,root);
+    }
+
+    public static boolean check(TreeNode p,TreeNode q){
+        if(p == null && q == null){
+            return true;
+        }
+        if(p == null || q ==null) {
+            return false;
+        }
+        if(q.val !=p.val){
+            return  false;
+        }
+        return check(p.left,q.right) && check(p.right,q.left);
+    }
 
     /**
      * 请完成一个函数，输入一个二叉树，该函数输出它的镜像。
@@ -14,7 +49,7 @@ public class TreeAl {
      * @param root
      * @return
      */
-    public TreeNode mirrorTree(TreeNode root) {
+    public static TreeNode mirrorTree(TreeNode root) {
         return reverse(root);
     }
 
@@ -24,12 +59,12 @@ public class TreeAl {
      * @param root
      * @return
      */
-    public TreeNode mirrorTree2(TreeNode root) {
+    public static TreeNode mirrorTree2(TreeNode root) {
         if (root == null) {
             return null;
         }
-        TreeNode left = mirrorTree(root.left);  //得到新的左子树
-        TreeNode right = mirrorTree(root.right);
+        TreeNode left = mirrorTree2(root.left);  //得到新的左子树
+        TreeNode right = mirrorTree2(root.right);
         root.left = right;
         root.right = left;
         return root;
@@ -40,7 +75,7 @@ public class TreeAl {
      * @param treeNode
      * @return
      */
-    public TreeNode reverse(TreeNode treeNode){
+    public static TreeNode reverse(TreeNode treeNode){
         if(treeNode == null) return null;
         TreeNode temp =  treeNode.left;
         treeNode.left = treeNode.right;

@@ -19,7 +19,10 @@ import static com.example.lib.StringAl.lengthOfLongestSubstring2;
 import static com.example.lib.StringAl.replaceSpace;
 import static com.example.lib.StringAl.reverseLeftWords;
 import static com.example.lib.TreeAl.connect;
+import static com.example.lib.TreeAl.isSymmetric;
 import static com.example.lib.TreeAl.mergeTrees;
+import static com.example.lib.TreeAl.mirrorTree;
+import static com.example.lib.TreeAl.mirrorTree2;
 import static com.example.lib.utils.TreeUtils.printTree;
 
 import com.example.lib.bean.ListNode;
@@ -106,6 +109,11 @@ public class _Demo {
         TreeNode b = new TreeNode(3,new TreeNode(1),null);
         boolean c = isSubStructure(a,b);
         System.out.println("子结构:"+c);
+
+        TreeNode e = new TreeNode(1,new TreeNode(2,null,new TreeNode(3)),new TreeNode(2,null,new TreeNode(3)));
+        TreeNode f = mirrorTree(e);
+        boolean resultf = isSymmetric(e);
+        System.out.println("对称的二叉树:"+resultf);
     }
 
     public static void stringDemo(){
