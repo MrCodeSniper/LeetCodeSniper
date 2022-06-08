@@ -5,6 +5,51 @@ import com.example.lib.bean.TreeNode;
 
 public class TreeAl {
 
+
+    /**
+     * 请完成一个函数，输入一个二叉树，该函数输出它的镜像。
+     *
+     * 输入：root = [4,2,7,1,3,6,9]
+     * 输出：[4,7,2,9,6,3,1]
+     * @param root
+     * @return
+     */
+    public TreeNode mirrorTree(TreeNode root) {
+        return reverse(root);
+    }
+
+    /**
+     * 官方解法
+     * 先转换 后赋值 从底到上
+     * @param root
+     * @return
+     */
+    public TreeNode mirrorTree2(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        TreeNode left = mirrorTree(root.left);  //得到新的左子树
+        TreeNode right = mirrorTree(root.right);
+        root.left = right;
+        root.right = left;
+        return root;
+    }
+
+    /**
+     * 递归对左右子树进行交换
+     * @param treeNode
+     * @return
+     */
+    public TreeNode reverse(TreeNode treeNode){
+        if(treeNode == null) return null;
+        TreeNode temp =  treeNode.left;
+        treeNode.left = treeNode.right;
+        treeNode.right = temp;
+        reverse(treeNode.left);
+        reverse(treeNode.right);
+        return treeNode;
+    }
+
     /**
      * 合并二叉树
      * 给你两棵二叉树： root1 和 root2 。
