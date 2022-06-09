@@ -20,6 +20,7 @@ import static com.example.lib.StringAl.replaceSpace;
 import static com.example.lib.StringAl.reverseLeftWords;
 import static com.example.lib.TreeAl.connect;
 import static com.example.lib.TreeAl.isSymmetric;
+import static com.example.lib.TreeAl.kthLargest;
 import static com.example.lib.TreeAl.mergeTrees;
 import static com.example.lib.TreeAl.mirrorTree;
 import static com.example.lib.TreeAl.mirrorTree2;
@@ -40,6 +41,14 @@ public class _Demo {
         BFS_DFSDemo();
         System.out.println("||||||||||||||||||||||||||栈Demo||||||||||||||||||||||||||");
         stackDemo();
+        System.out.println("||||||||||||||||||||||||||Tree Demo||||||||||||||||||||||||||");
+        treeDemo();
+    }
+
+    public static void treeDemo(){
+        TreeNode node = new TreeNode(10,new TreeNode(5,new TreeNode(3),new TreeNode(6)),new TreeNode(20,new TreeNode(15),new TreeNode(30)));
+        int num = kthLargest(node,7);
+        System.out.println("最大值:"+num);
     }
 
     /**

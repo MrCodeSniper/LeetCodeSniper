@@ -12,6 +12,69 @@ import javax.swing.plaf.TextUI;
 public class TreeAl {
 
     /**
+     * 给定一棵二叉搜索树，请找出其中第 k 大的节点的值。
+     *
+     * 左<根<右
+     *
+     * 输入: root = [3,1,4,null,2], k = 1
+     * 输出: 4
+     *
+     * 输入: root = [5,3,6,2,4,null,null,1], k = 3
+     * 输出: 4
+     *
+     * 最右边的叶子节点肯定最大
+     *
+     * 边界条件 可以有重复元素
+     *
+     * 思路1. 递归 每次把最大的取出 k-1直到K=0 时间复杂度O(n) 空间复杂度O(1)
+     *
+     * 思路2. 二叉搜索树进行遍历得到有序数组 即可得到第K个最大值 左中右 先序遍历 时间复杂度O(n) 空间复杂度O(n)
+     *
+     * @param root
+     * @param k
+     * @return
+     */
+    public static int kthLargest(TreeNode root, int k) {
+        while (k>0){
+            TreeNode max = findMax(root);
+            System.out.println("打印:"+max.val);
+            if(k==1){
+                return max.val;
+            }
+            max.val = -1;
+            k--;
+        }
+        return -1;
+    }
+
+    /**
+     * 每次递归过程
+     * @param root
+     * @return
+     */
+    public static TreeNode findMax(TreeNode root){
+        if(root == null) return null;
+        if(root.val == -1){
+            //表示已经遍历了
+            if(root.left == null){
+                return null;
+            }else{
+                return findMax(root.left);
+            }
+        }
+        if(root.right == null){
+            return root;
+        }else {
+            TreeNode node = findMax(root.right);
+            if(node == null){
+                return root;
+            }else {
+                return node;
+            }
+        }
+    }
+
+    /**
      * 请实现一个函数，用来判断一棵二叉树是不是对称的。如果一棵二叉树和它的镜像一样，那么它是对称的。
      *
      * 例如，二叉树 [1,2,2,3,4,4,3] 是对称的。
