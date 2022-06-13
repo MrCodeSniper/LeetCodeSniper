@@ -22,8 +22,10 @@ import static com.example.lib.TreeAl.connect;
 import static com.example.lib.TreeAl.isSymmetric;
 import static com.example.lib.TreeAl.kthLargest;
 import static com.example.lib.TreeAl.mergeTrees;
+import static com.example.lib.TreeAl.middleOrder;
 import static com.example.lib.TreeAl.mirrorTree;
 import static com.example.lib.TreeAl.mirrorTree2;
+import static com.example.lib.TreeAl.treeToDoublyList;
 import static com.example.lib.utils.TreeUtils.printTree;
 
 import com.example.lib.bean.ListNode;
@@ -49,6 +51,14 @@ public class _Demo {
         TreeNode node = new TreeNode(10,new TreeNode(5,new TreeNode(3),new TreeNode(6)),new TreeNode(20,new TreeNode(15),new TreeNode(30)));
         int num = kthLargest(node,7);
         System.out.println("最大值:"+num);
+
+        Node root = new Node(4,new Node(2,new Node(1),new Node(3)),new Node(5));
+        Node root2 = new Node(1);
+        Node root3 = new Node(2, new Node(1),null);
+        Node root4 = new Node(2, null,new Node(3));
+        Node root5 = new Node(-1, null,new Node(1,null,new Node(9)));
+        Node result = treeToDoublyList(root5);
+        System.out.println("result:"+result.val);
     }
 
     /**

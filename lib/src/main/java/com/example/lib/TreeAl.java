@@ -12,6 +12,119 @@ import javax.swing.plaf.TextUI;
 public class TreeAl {
 
     /**
+     * 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的循环双向链表。要求不能创建任何新的节点，只能调整树中节点指针的指向。
+     *
+     * <img width="640" height="320" src="https://assets.leetcode.com/uploads/2018/10/12/bstdlloriginalbst.png" alt="">
+     *
+     * 我们希望将这个二叉搜索树转化为双向循环链表。链表中的每个节点都有一个前驱和后继指针。对于双向循环链表，第一个节点的前驱是最后一个节点，最后一个节点的后继是第一个节点。
+     *
+     * 下图展示了上面的二叉搜索树转化成的链表。“head” 表示指向链表中有最小元素的节点。
+     *
+     * <img width="640" height="320" src="https://assets.leetcode.com/uploads/2018/10/12/bstdllreturndll.png" alt="">
+     *
+     * 特别地，我们希望可以就地完成转换操作。当转化完成以后，树中节点的左指针需要指向前驱，树中节点的右指针需要指向后继。还需要返回链表中的第一个节点的指针。
+     *
+     * 思路1 利用二叉搜索树的特性 中序遍历 得到 1->2->3->4->5  后序遍历得到 5->4->3->2->1 将两次遍历得到的最后节点 建立双向关联得到结果链表
+     *
+     * @param root
+     * @return
+     */
+    public static Node treeToDoublyList(Node root) {
+        //第一步 进入递归 root = 4  -> 2 -> 1 -> null
+        if(root == null) return null;
+        if(root.left==null && root.right==null){
+           root.left = root;
+           root.right = root;
+           return root;
+        }
+        head = null;
+        tail = null;
+        preNode(root);
+        afterNode(root);
+        if(root.left!=null){
+            isLeft = true;
+            Node leftMax = middleOrder(root.left);
+            leftMax.right = root;
+            root.left = leftMax;
+        }
+        if(root.right!=null){
+            isLeft = false;
+            Node rightMin = middleOrder(root.right);
+            root.right = rightMin;
+            rightMin.left = root;
+        }
+        if(tail!=null){
+            System.out.println("tail为:"+tail.val);
+            tail.right = head;
+            if(head!=null){
+                System.out.println("head为:"+head.val);
+                head.left = tail;
+            }
+        }
+        return head;
+    }
+
+    /**
+     * 中序遍历
+     * 4 ->
+     *      2 ->  left = 1   1->2  right = 3   2->3    2<-3
+     *          1 ->  return 1;
+     *
+     *
+     * @param root
+     */
+    public static Node middleOrder(Node root){
+        if(root == null)  return null;
+        Node left = middleOrder(root.left);
+        if(left!=null){
+            left.right = root;
+            root.left = left;
+            if(!isLeft){
+                return left;
+            }
+        }
+        Node right = middleOrder(root.right);
+        if(right!=null){
+            root.right = right;
+            right.left = root;
+            if(isLeft){
+                return right;
+            }
+        }
+        return root; //返回子树的最大节点
+    }
+
+    public static Node preNode(Node root){
+        if(root == null)  return null;
+        Node left = preNode(root.left);
+        if(left!=null)  if(head == null) head = left;
+        if(head == null) head = root;
+        Node right = preNode(root.right);
+        if(right!=null)  if(head == null) head = right;
+        return root;
+    }
+
+    public static Node afterNode(Node root){
+        if(root == null)  return null;
+        Node right = afterNode(root.right);
+        if(right!=null)  if(tail == null) tail = right;
+        if(tail == null) tail = root;
+        Node left = afterNode(root.left);
+        if(left!=null)  if(tail == null) tail = left;
+        return root;
+    }
+
+    //头节点指针
+    public static Node head = null;
+
+    //是否为左子树
+    public static boolean isLeft = false;
+
+    //尾节点指针
+    public static Node tail = null;
+
+
+    /**
      * 给定一棵二叉搜索树，请找出其中第 k 大的节点的值。
      *
      * 左<根<右
@@ -37,7 +150,7 @@ public class TreeAl {
     public static int kthLargest(TreeNode root, int k) {
         while (k>0){
             TreeNode max = findMax(root);
-            System.out.println("打印:"+max.val);
+//            System.out.println("打印:"+max.val);
             if(k==1){
                 return max.val;
             }
