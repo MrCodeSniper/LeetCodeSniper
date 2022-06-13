@@ -55,9 +55,11 @@ public class _Demo {
         Node root = new Node(4,new Node(2,new Node(1),new Node(3)),new Node(5));
         Node root2 = new Node(1);
         Node root3 = new Node(2, new Node(1),null);
+        Node root6 = new Node(2, new Node(1), new Node(3));
         Node root4 = new Node(2, null,new Node(3));
         Node root5 = new Node(-1, null,new Node(1,null,new Node(9)));
-        Node result = treeToDoublyList(root5);
+        Node root7 = new Node(30, new Node(13,new Node(-28,new Node(-44,null,new Node(-35)),null),null),null);
+        Node result = treeToDoublyList(root7);
         System.out.println("result:"+result.val);
     }
 

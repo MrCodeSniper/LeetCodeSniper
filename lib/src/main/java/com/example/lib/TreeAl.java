@@ -25,12 +25,17 @@ public class TreeAl {
      * 特别地，我们希望可以就地完成转换操作。当转化完成以后，树中节点的左指针需要指向前驱，树中节点的右指针需要指向后继。还需要返回链表中的第一个节点的指针。
      *
      * 思路1 利用二叉搜索树的特性 中序遍历 得到 1->2->3->4->5  后序遍历得到 5->4->3->2->1 将两次遍历得到的最后节点 建立双向关联得到结果链表
+     * 得到左子树的最大节点和根节点建立联系 内部中序遍历左右子树 建立双向联系 头部和尾部通过临时变量存储 遍历完后建立头尾联系
+     * 时间复杂度O(n) 空间复杂度O(n)
+     *
+     * 思路2 每次递归记录当前节点和之前的节点 cur 和 pre 建立联系 先从左叶子开始 再到右叶子节点 用双指针确定位置关系
+     * 递归执行 最后对头尾进行联系
+     * 时间复杂度O(n) 空间复杂度O(n)
      *
      * @param root
      * @return
      */
     public static Node treeToDoublyList(Node root) {
-        //第一步 进入递归 root = 4  -> 2 -> 1 -> null
         if(root == null) return null;
         if(root.left==null && root.right==null){
            root.left = root;
@@ -39,12 +44,18 @@ public class TreeAl {
         }
         head = null;
         tail = null;
+        leftMax = null;
         preNode(root);
         afterNode(root);
         if(root.left!=null){
             isLeft = true;
-            Node leftMax = middleOrder(root.left);
-            leftMax.right = root;
+            Node left = middleOrder(root.left);
+            if(leftMax == null){
+                leftMax = left;
+            }
+            if(leftMax!=null){
+                leftMax.right = root;
+            }
             root.left = leftMax;
         }
         if(root.right!=null){
@@ -54,22 +65,51 @@ public class TreeAl {
             rightMin.left = root;
         }
         if(tail!=null){
-            System.out.println("tail为:"+tail.val);
             tail.right = head;
             if(head!=null){
-                System.out.println("head为:"+head.val);
                 head.left = tail;
             }
         }
         return head;
     }
 
+
+    Node head1, pre;
+
+    /**
+     * 标准答案
+     * @param root
+     * @return
+     */
+    public Node treeToDoublyList2(Node root) {
+        if(root==null) return null;
+        dfs(root);
+
+        pre.right = head1;
+        head1.left =pre;//进行头节点和尾节点的相互指向，这两句的顺序也是可以颠倒的
+
+        return head1;
+
+    }
+
+    public void dfs(Node cur){
+        if(cur==null) return;
+        dfs(cur.left);
+
+        //pre用于记录双向链表中位于cur左侧的节点，即上一次迭代中的cur,当pre==null时，cur左侧没有节点,即此时cur为双向链表中的头节点
+        if(pre==null) head1 = cur;
+            //反之，pre!=null时，cur左侧存在节点pre，需要进行pre.right=cur的操作。
+        else pre.right = cur;
+
+        cur.left = pre;//pre是否为null对这句没有影响,且这句放在上面两句if else之前也是可以的。
+
+        pre = cur;//pre指向当前的cur
+        dfs(cur.right);//全部迭代完成后，pre指向双向链表中的尾节点
+    }
+
     /**
      * 中序遍历
-     * 4 ->
-     *      2 ->  left = 1   1->2  right = 3   2->3    2<-3
-     *          1 ->  return 1;
-     *
+     * 将整个树看成 根节点 左子右子 根节点需要根左子树的最右叶子节点连接 即可
      *
      * @param root
      */
@@ -79,19 +119,18 @@ public class TreeAl {
         if(left!=null){
             left.right = root;
             root.left = left;
-            if(!isLeft){
-                return left;
-            }
         }
         Node right = middleOrder(root.right);
         if(right!=null){
             root.right = right;
             right.left = root;
             if(isLeft){
-                return right;
+                if(leftMax == null){
+                    leftMax = right;
+                }
             }
         }
-        return root; //返回子树的最大节点
+        return root;
     }
 
     public static Node preNode(Node root){
@@ -119,6 +158,8 @@ public class TreeAl {
 
     //是否为左子树
     public static boolean isLeft = false;
+
+    public static Node leftMax = null;
 
     //尾节点指针
     public static Node tail = null;
