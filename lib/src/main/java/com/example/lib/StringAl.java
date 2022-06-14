@@ -4,11 +4,114 @@ import static com.example.lib.ArrayAl.reverseString;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.swing.plaf.TextUI;
+
 public class StringAl {
+
+    /**
+     * 输入一个字符串，打印出该字符串中字符的所有排列。
+     * 你可以以任意顺序返回这个字符串数组，但里面不能有重复元素
+     *
+     * 输入：s = "abc"
+     * 输出：["abc","acb","bac","bca","cab","cba"]
+     *
+     * 提示 题目类型为搜索和回溯
+     *
+     * abcdefg
+     *
+     * 从简到繁
+     *
+     * a
+     *
+     * ab
+     *
+     * abc
+     *
+     * aabb
+     *
+     * 可能的组合个数为Cn n-1  =  C3 2 = 3*2*1 = 6
+     *
+     * 每一次确定前面1个树  a ab  ac   如果剩下的数为1那么结束
+     *
+     * 思路
+     * 1.对字符进行循环 每次确定一个字符 跟子串 递归确定子串的组合 再合并组合生成列表
+     * 递归退出的条件为 字符输入为1 那么数组就为1 如果为2 则有两种可能
+     * 使用map缓存递归的结果 提高时间效率
+     *
+     * 边界处理 重复的情况  使用HashSet对结果集进行去重
+     *
+     * 效率分析 时间复杂度 O(N^2)其中N为字符串的长度  空间复杂度为O(N)
+     *
+     * @param s
+     * @return
+     */
+    public static String[] permutation(String s) {
+        map.clear();
+        map.put("",new String[]{});
+        return permutation2(s);
+    }
+
+    //用缓存记录 中间计算结果
+    public static HashMap<String,String[]> map =new HashMap<>();
+
+    public static String[] permutation2(String s) {
+        if(map.get(s)!=null){
+            return map.get(s);
+        }
+        if(s.length() == 1){
+            String[] value = new String[]{s};
+            map.put(s,value);
+            return value;
+        }
+        if(s.length() == 2){
+            char a = s.charAt(0);
+            char b = s.charAt(1);
+            String[] value;
+            if(a == b){
+                value = new String[]{a+""+b};
+            }else {
+                value = new String[]{a+""+b,b+""+a};
+            }
+            map.put(s,value);
+            return value;
+        }
+        char[] chars = s.toCharArray();
+        HashSet<String> results = new HashSet<>();
+        for(int i = 0;i<chars.length;i++){
+            char selectedChar = chars[i]; //b
+            System.out.println("selectedChar为:"+selectedChar);
+            //选定一个字符串之后 得到剩余子串的组合
+            String input = s.substring(0,i)+s.substring(i+1);
+            System.out.println("input为:"+input);
+            String[] combine = permutation2(input); //bc,cb
+            map.put(input,combine);
+            StringBuilder builder;
+            for(int j=0;j<combine.length;j++){
+                builder = new StringBuilder();
+                builder.append(selectedChar);
+                builder.append(combine[j]);
+                results.add(builder.toString());
+            }
+            System.out.println("results为:"+results);
+        }
+        String[] combine = new String[results.size()];
+        Iterator<String> iterator = results.iterator();
+        int index = 0;
+        while (iterator.hasNext()) {
+            combine[index] = iterator.next();
+            index++;
+        }
+        //得到最新数组
+        return combine;
+    }
+
+
 
     /**
      * 反转字符串中的单词

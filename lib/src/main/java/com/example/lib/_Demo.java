@@ -16,6 +16,8 @@ import static com.example.lib.LinkAl.removeNthFromEnd;
 import static com.example.lib.LinkAl.reverse;
 import static com.example.lib.StringAl.checkInclusion;
 import static com.example.lib.StringAl.lengthOfLongestSubstring2;
+import static com.example.lib.StringAl.permutation;
+import static com.example.lib.StringAl.permutation2;
 import static com.example.lib.StringAl.replaceSpace;
 import static com.example.lib.StringAl.reverseLeftWords;
 import static com.example.lib.TreeAl.connect;
@@ -45,6 +47,18 @@ public class _Demo {
         stackDemo();
         System.out.println("||||||||||||||||||||||||||Tree Demo||||||||||||||||||||||||||");
         treeDemo();
+        System.out.println("||||||||||||||||||||||||||String Demo||||||||||||||||||||||||||");
+        stringsDemo();
+    }
+
+    public static void stringsDemo(){
+//        String[] result = permutation2("");
+//        String[] result = permutation2("a");
+//        String[] result = permutation2("ab");
+//        String[] result = permutation("abc");
+//        String[] result = permutation("abcd");
+        String[] result = permutation("aabb");
+        System.out.println("结果组合为:"+Arrays.asList(result)+"大小为:"+result.length);
     }
 
     public static void treeDemo(){
