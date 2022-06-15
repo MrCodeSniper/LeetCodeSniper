@@ -15,6 +15,164 @@ import javax.swing.plaf.TextUI;
 public class StringAl {
 
     /**
+     * 写一个函数 StrToInt，实现把字符串转换成整数这个功能。不能使用 atoi 或者其他类似的库函数。
+     *
+     *
+     * 首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。
+     *
+     * 当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，作为该整数的正负号；假如第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。
+     *
+     * 该字符串除了有效的整数部分之后也可能会存在多余的字符，这些字符可以被忽略，它们对于函数不应该造成影响。
+     *
+     * 注意：假如该字符串中的第一个非空格字符不是一个有效整数字符、字符串为空或字符串仅包含空白字符时，则你的函数不需要进行转换。
+     *
+     * 在任何情况下，若函数不能进行有效的转换时，请返回 0。
+     *
+     * 说明：
+     *
+     * 假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为[−2^31, 2^31− 1]。如果数值超过这个范围，请返回 INT_MAX (231− 1) 或INT_MIN (−231) 。
+     *
+     * 问题: 如何转化为整数 进行运算
+     *
+     * 思路1 遍历字符 按照题目的条件 进行判断
+     *
+     * 边界判断 字符过界 0000x的情况 条件处理
+     *
+     * 时间复杂度O(n) 空间复杂度O(1)
+     *
+     *
+     * @param str
+     * @return
+     */
+    public static int strToInt(String str) {
+        str  = str.trim();
+        if(str.isEmpty()) return 0;
+        char first = str.charAt(0);
+        //只允许首位字符为+ - 或者0~9 根据ASCII码判断字符范围
+        if(first == '+' || first == '-' || first>=48 && first<= 57){
+            if(first == '+'){
+                str = str.replace('+',' ').trim();
+            }
+            if(first == '-'){
+                str = str.replace('-',' ').trim();
+            }
+            int flag = 0;
+            if(first == '-'){
+                flag = -1;
+            }
+            long result = 0;
+            //先正序遍历一遍遍历到数字为止进行截取
+            int startIndex = 0;
+            int endIndex = str.length();
+            for(int i=0;i<str.length()-1;i++){
+                char now = str.charAt(i);
+                if(now>=48 && now<= 57){
+                    startIndex = i;
+                    break;
+                }
+            }
+            for(int i=startIndex;i<str.length()-1;i++){
+                char now = str.charAt(i);
+                if(now<48 || now>57){
+                    endIndex = i;
+                    break;
+                }
+            }
+            str = str.substring(startIndex,endIndex);
+            int zeroEndIndex = 0;
+            if(str.startsWith("0")){
+                for(int i=0;i<str.length();i++){
+                    char now = str.charAt(i);
+                    if(now!=48){
+                        zeroEndIndex = i;
+                        break;
+                    }
+                }
+            }
+            str = str.substring(zeroEndIndex);
+            long multiply = (long) Math.pow(10,str.length()-1);
+            for(int i=startIndex;i<str.length();i++){
+                char now = str.charAt(i);
+                if(now>=48 && now<= 57){
+                    int nowInt = getIntByAscii(now);
+                    result+=multiply*nowInt;
+                    multiply/=10;
+                    char lastChar = str.charAt(str.length()-1);
+                    if(verification((int) (result/10),getIntByAscii(lastChar),flag) == 1){
+                        if(flag == -1){
+                            return Integer.MIN_VALUE;
+                        }else {
+                            return Integer.MAX_VALUE;
+                        }
+                    }
+                }
+            }
+
+            if(flag == -1){
+                result = result*-1;
+            }
+            return (int)result;
+        }
+        return 0;
+    }
+
+    /**
+     * -91283472332
+     * int 是否越界检验算法
+     * 通过循环将数字x的每一位拆开，在计算新值时每一步都判断是否溢出
+     * 溢出条件有两个
+     * 一个是大于整数最大值MAX_VALUE，另一个是小于整数最小值MIN_VALUE
+     * 设当前计算结果为ans，下一位为pop
+     * 从ans * 10 + pop > MAX_VALUE这个溢出条件来看
+     * 当出现 ans > MAX_VALUE / 10 且 还有pop需要添加 时，则一定溢出
+     * 当出现 ans == MAX_VALUE / 10 且 pop > 7 时，则一定溢出，7是2^31 - 1的个位数
+     *
+     * 从ans * 10 + pop < MIN_VALUE这个溢出条件来看
+     * 当出现 ans < MIN_VALUE / 10 且 还有pop需要添加 时，则一定溢出
+     * 当出现 ans == MIN_VALUE / 10 且 pop < -8 时，则一定溢出，8是-2^31的个位数
+     *
+     *
+     * @param number        需要校验的数字
+     * @param valueOfCharAt 需要校验的最低位
+     * @param flag          正负标志
+     * @return
+     */
+
+    public static int verification(int number, int valueOfCharAt, int flag) {
+        long shangjie = (long) Math.pow(2, 31) - 1;     // 上限
+        long xiajie = -(long) Math.pow(2, 31);          // 下限
+        int result = 0;
+        if (flag == -1) {                               // 负数校验
+            if (((-number) < xiajie / 10) || (-number == (xiajie / 10) && valueOfCharAt > 8)) {
+                System.out.println("负整数越界");
+                result = 1;
+            }
+        } else {                                        // 正数校验
+            if ((number > shangjie / 10) || ((number == shangjie / 10) && valueOfCharAt > 7)) {
+                System.out.println("正整数越界");
+                result = 1;
+            }
+        }
+        return result;
+    }
+
+    public static int getIntByAscii(char character){
+        switch (character){
+            case '0': return 0;
+            case '1': return 1;
+            case '2': return 2;
+            case '3': return 3;
+            case '4': return 4;
+            case '5': return 5;
+            case '6': return 6;
+            case '7': return 7;
+            case '8': return 8;
+            case '9': return 9;
+        }
+        return -1;
+    }
+
+    /**
      * 输入一个字符串，打印出该字符串中字符的所有排列。
      * 你可以以任意顺序返回这个字符串数组，但里面不能有重复元素
      *

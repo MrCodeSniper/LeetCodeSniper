@@ -20,6 +20,7 @@ import static com.example.lib.StringAl.permutation;
 import static com.example.lib.StringAl.permutation2;
 import static com.example.lib.StringAl.replaceSpace;
 import static com.example.lib.StringAl.reverseLeftWords;
+import static com.example.lib.StringAl.strToInt;
 import static com.example.lib.TreeAl.connect;
 import static com.example.lib.TreeAl.isSymmetric;
 import static com.example.lib.TreeAl.kthLargest;
@@ -57,8 +58,21 @@ public class _Demo {
 //        String[] result = permutation2("ab");
 //        String[] result = permutation("abc");
 //        String[] result = permutation("abcd");
-        String[] result = permutation("aabb");
-        System.out.println("结果组合为:"+Arrays.asList(result)+"大小为:"+result.length);
+//        String[] result = permutation("aabb");
+//        System.out.println("结果组合为:"+Arrays.asList(result)+"大小为:"+result.length);
+//        System.out.println("转为整数结果为："+strToInt("42"));
+//        System.out.println("转为整数结果为："+strToInt("   -42"));
+//        System.out.println("转为整数结果为："+strToInt("4193 with words"));
+//        System.out.println("转为整数结果为："+strToInt("words and 987"));
+//        System.out.println("转为整数结果为："+strToInt("-91283472332"));
+//        System.out.println("转为整数结果为："+strToInt("3.14159"));
+//        System.out.println("转为整数结果为："+strToInt("+1"));
+//        System.out.println("转为整数结果为："+strToInt("2147483646"));
+//        System.out.println("转为整数结果为："+strToInt("2147483648"));
+        System.out.println("转为整数结果为："+strToInt("-00000000000000000001"));
+//        System.out.println("转为整数结果为："+strToInt("-000000000000000000011"));
+//        System.out.println("转为整数结果为："+strToInt("-0000000000000000000111"));
+        System.out.println("转为整数结果为："+strToInt("   -04f"));
     }
 
     public static void treeDemo(){
