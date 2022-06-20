@@ -1,6 +1,5 @@
 package com.example.lib;
 
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -9,6 +8,65 @@ import java.util.Objects;
  * 动态规划
  */
 public class DynamicProgram {
+
+    /**
+     * 写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项（即 F(N)）。斐波那契数列的定义如下：
+     *
+     * F(0) = 0, F(1)= 1
+     * F(N) = F(N - 1) + F(N - 2), 其中 N > 1.
+     * 斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。
+     *
+     * 答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。
+     *
+     *
+     * 示例 1：
+     *
+     * 输入：n = 2
+     * 输出：1
+     * 示例 2：
+     *
+     * 输入：n = 5
+     * 输出：5
+     *
+     * 第一种思路 当然是使用递推公式+缓存进行计算 需要对结果进行取模 这样的时间复杂度为O(N) 空间复杂度也为O(N)
+     *
+     * 从优化空间的角度来说 我希望空间能优化到常数集 那么我只需要三个常数来保存需要的数据即可
+     * 即从2~N的循环中 我保存三个数 n-2 n-1 n 每次循环滚动这三个数 一直保持这种关系直到n=n即可
+     * 这样空间复杂度能优化到O(1)
+     *
+     * 从优化时间的角度来说 比O(n)更小的时间为O(logn)
+     *
+     * 矩阵快速幂 TODO
+     *
+     * @param n
+     * @return
+     */
+    public static int fib(int n) {
+        int mod = 1000000007;
+        if(map.get(n)!=null) return map.get(n);
+        int pre = fib(n-1);
+        map.put(n-1,pre);
+        int after = fib(n-2);
+        map.put(n-2,after);
+        int result = pre+after;
+        result = result%mod;
+        map.put(n,result);
+        return result;
+    }
+
+    public static int fib2(int n){
+        int mod = 1000000007;
+        if(n<2) return n;
+        int p = 0,q = 0,r = 1;  //从2开始循环 每次循环左移 r = 左右两数相加
+        for(int i=2;i<=n;i++){
+            p = q;
+            q = r;
+            r = (p+q)%mod;
+        }
+        return r;
+    }
+
+    public static HashMap<Integer,Integer> map = new HashMap<>();
 
     /**
      * 假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
@@ -43,6 +101,7 @@ public class DynamicProgram {
      * 或者使用数组来缓存  第n个位置的值为前两个元素值相加
      *
      * 第二种利用数学特性 特征方程 输出公式 f(n) = ........
+     * Todo 待熟练
      *
      *
      *
@@ -52,10 +111,10 @@ public class DynamicProgram {
 
     public static HashMap<Integer,Integer> cache = new HashMap<>();
 
-    {
-        cache.put(1,1);
-        cache.put(2,2);
-    }
+//    {
+//        cache.put(1,1);
+//        cache.put(2,2);
+//    }
 
     public int climbStairs(int n) {
         if(cache.containsKey(n)){
@@ -81,7 +140,7 @@ public class DynamicProgram {
      *   3 4             3 4       3 4      3  4
      *  6 5 7         10 11 1     5 6 7
      * 4 1 8 3                  10 11 1 5
-     * 自顶向下的最小路径和为 11（即，2 + 3 + 5 + 1 = 11）。
+     * 自顶向下的最小路径和为11（即，2+3+5+1= 11）。
      *
      * 输入：triangle = [[-10]]
      * 输出：-10
@@ -136,12 +195,12 @@ public class DynamicProgram {
      * 输入：[1,2,3,1]
      * 输出：4
      * 解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。
-     *      偷窃到的最高金额 = 1 + 3 = 4 。
+     * 偷窃到的最高金额 = 1 + 3 = 4 。
      *
      * 输入：[2,7,9,3,1]
      * 输出：12
      * 解释：偷窃 1 号房屋 (金额 = 2), 偷窃 3 号房屋 (金额 = 9)，接着偷窃 5 号房屋 (金额 = 1)。
-     *      偷窃到的最高金额 = 2 + 9 + 1 = 12 。
+     * 偷窃到的最高金额 = 2 + 9 + 1 = 12 。
      *
      * 思考
      * [1]

@@ -50,6 +50,15 @@ public class _Demo {
         treeDemo();
         System.out.println("||||||||||||||||||||||||||String Demo||||||||||||||||||||||||||");
         stringsDemo();
+        System.out.println("||||||||||||||||||||||||||Dynamic Demo||||||||||||||||||||||||||");
+        dynamicDemo();
+    }
+
+    public static void dynamicDemo(){
+        DynamicProgram.map.clear();
+        DynamicProgram.map.put(0,0);
+        DynamicProgram.map.put(1,1);
+        System.out.println("斐波那契:F(x)="+DynamicProgram.fib(3));
     }
 
     public static void stringsDemo(){
