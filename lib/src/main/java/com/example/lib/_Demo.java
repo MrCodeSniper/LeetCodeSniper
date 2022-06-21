@@ -59,6 +59,12 @@ public class _Demo {
         DynamicProgram.map.put(0,0);
         DynamicProgram.map.put(1,1);
         System.out.println("斐波那契:F(x)="+DynamicProgram.fib(3));
+        int maxProfit =  DynamicProgram.maxProfit(new int[]{7,1,5,3,6,4});
+        int maxProfit2 =  DynamicProgram.maxProfit(new int[]{7,6,4,3,1});
+        int maxProfit3 =  DynamicProgram.maxProfit(new int[]{1,6,2,6});
+        System.out.println("最大收益="+maxProfit);
+        System.out.println("最大收益="+maxProfit2);
+        System.out.println("最大收益="+maxProfit3);
     }
 
     public static void stringsDemo(){
