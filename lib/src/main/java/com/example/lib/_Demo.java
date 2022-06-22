@@ -9,6 +9,7 @@ import static com.example.lib.BFS_DFS.levelOrder3;
 import static com.example.lib.BFS_DFS.lowestCommonAncestor;
 import static com.example.lib.BFS_DFS.maxAreaOfIsland;
 import static com.example.lib.BFS_DFS.maxDepth;
+import static com.example.lib.DynamicProgram.translateNum;
 import static com.example.lib.LinkAl.copyRandomList;
 import static com.example.lib.LinkAl.mergeTwoLists2;
 import static com.example.lib.LinkAl.middleNode;
@@ -65,6 +66,7 @@ public class _Demo {
         System.out.println("最大收益="+maxProfit);
         System.out.println("最大收益="+maxProfit2);
         System.out.println("最大收益="+maxProfit3);
+        System.out.println("翻译结果:"+translateNum(12258));
     }
 
     public static void stringsDemo(){

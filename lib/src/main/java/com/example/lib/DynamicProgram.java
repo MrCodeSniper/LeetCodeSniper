@@ -10,6 +10,57 @@ import java.util.Objects;
 public class DynamicProgram {
 
     /**
+     * 给定一个数字，我们按照如下规则把它翻译为字符串：0 翻译成 “a” ，1 翻译成 “b”，……，11 翻译成 “l”，……，25 翻译成 “z”。
+     * 一个数字可能有多个翻译。请编程实现一个函数，用来计算一个数字有多少种不同的翻译方法。
+     *
+     * 输入: 12258  133444
+     * 输出: 5
+     * 解释: 12258有5种不同的翻译，分别是"bccfi", "bwfi", "bczi", "mcfi"和"mzi"
+     * 1位换算 = 1  2为换算 其他为1位为N-1  两两换算 2
+     *
+     * 思路  一个字母可以翻译的数字可为1位 最多为两位 有点类似跳台阶的题目
+     *
+     * 子问题 f(0) = 1 f(1) = 1   f(2) = 2   f(3) 180 =  3
+     *
+     * 边界场景 直接翻译两位数 必须>=10 <=25 否则只能以一位翻译
+     *
+     *  正常情况下f(n) = f(n-1)+f(n-2)
+     *  超出边界情况下 f(n) = f(n-1)
+     *
+     *  <img width="640" height="480" src="https://pic.leetcode-cn.com/e231fde16304948251633cfc65d04396f117239ea2d13896b1d2678de9067b42-Picture1.png" alt="">
+     *
+     *
+     *  如何理解这个图
+     *
+     *  如果1235 只翻译5 那么组合就为dp(i-1)
+     *  如果1235 将35翻译为整体 那么组合就为dp(i-2)
+     *  那么总组合数为dp(i-1)+dp(i-2) 如果35不符合条件那么仅为dp(i-1)
+     *
+     *
+     *
+     *
+     * @param num
+     * @return
+     */
+    public static int translateNum(int num) {
+        cache.clear();
+        cache.put(0,1);
+        cache.put(1,1);
+        cache.put(2,2);
+        char[] text = String.valueOf(num).toCharArray();
+        for(int i=2;i<=text.length;i++){
+            int n = (text[i - 2] - '0') * 10 + (text[i - 1] - '0');//得到数字
+            if(n>=10&&n<=25){
+                cache.put(i,cache.get(i-1)+cache.get(i-2));
+            }else {
+                cache.put(i,cache.get(i-1));
+            }
+        }
+        return cache.get(text.length);
+    }
+
+
+    /**
      * 假设把某股票的价格按照时间先后顺序存储在数组中，请问买卖该股票一次可能获得的最大利润是多少？
      * 输入: [7,1,5,3,6,4]
      * 输出: 5
