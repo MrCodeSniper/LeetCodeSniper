@@ -1,13 +1,98 @@
 package com.example.lib;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * 动态规划
  */
 public class DynamicProgram {
+
+    /**
+     * 请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。
+     *
+     * 输入: "abcabcbb"
+     * 输出: 3
+     * 解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
+     *
+     * 输入: "bbbbb"
+     * 输出: 1
+     * 解释: 因为无重复字符的最长子串是 "b"，所以其长度为 1。
+     *
+     * 输入: "pwwkew"
+     * 输出: 3
+     * 解释: 因为无重复字符的最长子串是"wke"，所以其长度为 3。
+     *     请注意，你的答案必须是 子串 的长度，"pwke"是一个子序列，不是子串。
+     *
+     * 思路1。暴力解法 循环每一位 从中找出以该位为开头的最长子串长度
+     * 时间复杂度为O(n^2)  空间复杂度为O(N)
+     *
+     * 思路2。双指针法 通过左范围和右范围指针的符合条件的移动来形成子串
+     * 但需要保证这两个指针对应的子串中没有重复的字符。
+     *      * 在移动结束后，这个子串就对应着 以左指针开始的，不包含重复字符的最长子串。
+     *      * 我们记录下这个子串的长度
+     * 时间复杂度为O(N) 空间复杂度O(n)
+     *
+     * 思路3. 使用递归和动归规划 找出子问题 总结出公式
+     * 将每次寻找的子串长度递或递减
+     *
+     * @param s
+     * @return
+     */
+    public int lengthOfLongestSubstring(String s) {
+        return 0;
+    }
+
+    public static int lengthOfLongestSubstringDoubleEntry(String s) {
+        int maxLength = 0;
+        Set<Character> occ = new HashSet<Character>();
+        int end = -1;//右边指针
+        char[] chars = s.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            //每次循环左指针往右挪一格 并从集合中删除该元素
+            if (i > 0) {
+                occ.remove(s.charAt(i - 1));
+            }
+            while (end + 1 < chars.length && !occ.contains(s.charAt(end + 1))) { //右指针到达最后一个节点退出循环 如果后续的字符已存在集合内退出循环
+                //每次循环 将不重复的子串元素加入集合
+                occ.add(s.charAt(end + 1));
+                end++;
+            }
+            //每次循环计算maxLength
+            if (maxLength < occ.size()) {
+                maxLength = occ.size();
+            }
+        }
+        return maxLength;
+    }
+
+    public static int lengthOfLongestSubstringViolent(String s) {
+        char[] chars = s.toCharArray();
+        int max = 0;
+        for(int i=0;i<chars.length;i++){
+//            System.out.print("当前开始字符:"+chars[i]);
+            HashSet<Character> set = new HashSet<>();
+            set.add(chars[i]);
+            max = Math.max(max,set.size());
+            int index = i+1;
+            while (index<chars.length){
+                char now = chars[index];
+               // System.out.print(",当前循环到:"+now);
+                if(set.contains(now)){
+                    break;
+                }
+                set.add(now);
+                //System.out.print(",当前容器长度:"+set.size());
+                max = Math.max(max,set.size());
+                index++;
+            }
+//            System.out.println("");
+        }
+        return max;
+    }
 
     /**
      * 给定一个数字，我们按照如下规则把它翻译为字符串：0 翻译成 “a” ，1 翻译成 “b”，……，11 翻译成 “l”，……，25 翻译成 “z”。

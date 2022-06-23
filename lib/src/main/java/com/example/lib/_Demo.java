@@ -9,6 +9,8 @@ import static com.example.lib.BFS_DFS.levelOrder3;
 import static com.example.lib.BFS_DFS.lowestCommonAncestor;
 import static com.example.lib.BFS_DFS.maxAreaOfIsland;
 import static com.example.lib.BFS_DFS.maxDepth;
+import static com.example.lib.DynamicProgram.lengthOfLongestSubstringDoubleEntry;
+import static com.example.lib.DynamicProgram.lengthOfLongestSubstringViolent;
 import static com.example.lib.DynamicProgram.translateNum;
 import static com.example.lib.LinkAl.copyRandomList;
 import static com.example.lib.LinkAl.mergeTwoLists2;
@@ -67,6 +69,12 @@ public class _Demo {
         System.out.println("最大收益="+maxProfit2);
         System.out.println("最大收益="+maxProfit3);
         System.out.println("翻译结果:"+translateNum(12258));
+        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("abcabcbb"));
+        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("bbbbb"));
+        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("pwwkew"));
+        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry(""));
+        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry(" "));
+        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("au"));
     }
 
     public static void stringsDemo(){
