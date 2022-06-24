@@ -12,6 +12,42 @@ import java.util.Set;
 public class DynamicProgram {
 
     /**
+     * 输入一个整型数组，数组中的一个或连续多个整数组成一个子数组。求所有子数组的和的最大值。(2020字节原题)
+     *
+     * 要求时间复杂度为O(n)。 (暴力不允许)
+     *
+     * 思路 动态规划解法
+     *  1。定义状态方程 需要找到子问题 假设 我们要寻找以f(n)为结尾的的连续子数组最大值
+     *  尝试找到f(n-1) 如果以f(n-1)为结尾的连续子数组 序列和<0 那么需要抛弃前面的
+     *  如果>0需要加上前面的
+     *  2。递推子问题
+     *  f(n) = Math.max(array[n],f(n-1)+array[n])
+     *  3.边界情况
+     *  f(0) = array[0]
+     *  4.返回值
+     *  循环进行上述操作 计算最大值返回
+     *
+     *
+     * 输入: nums = [-2,1,-3,4,-1,2,1,-5,4]
+     * 输出: 6
+     * 解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。
+     * @param nums
+     * @return
+     */
+    public static int maxSubArray(int[] nums) {
+        int[] temp  =new int[nums.length]; //初始化辅助数组
+        int max = nums[0];
+        temp[0] = max;
+        for(int i=1;i<nums.length;i++){
+            temp[i] = Math.max(nums[i],temp[i-1]+nums[i]);
+            max = Math.max(max,temp[i]);
+        }
+        return max;
+    }
+
+
+
+    /**
      * 请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。
      *
      * 输入: "abcabcbb"

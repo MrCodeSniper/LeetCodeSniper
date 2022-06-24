@@ -11,6 +11,7 @@ import static com.example.lib.BFS_DFS.maxAreaOfIsland;
 import static com.example.lib.BFS_DFS.maxDepth;
 import static com.example.lib.DynamicProgram.lengthOfLongestSubstringDoubleEntry;
 import static com.example.lib.DynamicProgram.lengthOfLongestSubstringViolent;
+import static com.example.lib.DynamicProgram.maxSubArray;
 import static com.example.lib.DynamicProgram.translateNum;
 import static com.example.lib.LinkAl.copyRandomList;
 import static com.example.lib.LinkAl.mergeTwoLists2;
@@ -75,6 +76,7 @@ public class _Demo {
         System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry(""));
         System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry(" "));
         System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("au"));
+        System.out.println("最大连续数组和:"+maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4}));
     }
 
     public static void stringsDemo(){
