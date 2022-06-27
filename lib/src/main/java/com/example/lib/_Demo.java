@@ -9,9 +9,13 @@ import static com.example.lib.BFS_DFS.levelOrder3;
 import static com.example.lib.BFS_DFS.lowestCommonAncestor;
 import static com.example.lib.BFS_DFS.maxAreaOfIsland;
 import static com.example.lib.BFS_DFS.maxDepth;
+import static com.example.lib.BFS_DFS.path;
+import static com.example.lib.DynamicProgram.dfsValue;
 import static com.example.lib.DynamicProgram.lengthOfLongestSubstringDoubleEntry;
 import static com.example.lib.DynamicProgram.lengthOfLongestSubstringViolent;
 import static com.example.lib.DynamicProgram.maxSubArray;
+import static com.example.lib.DynamicProgram.maxValue;
+import static com.example.lib.DynamicProgram.pathMap;
 import static com.example.lib.DynamicProgram.translateNum;
 import static com.example.lib.LinkAl.copyRandomList;
 import static com.example.lib.LinkAl.mergeTwoLists2;
@@ -42,6 +46,7 @@ import com.example.lib.bean.TreeNode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 public class _Demo {
 
@@ -59,24 +64,27 @@ public class _Demo {
     }
 
     public static void dynamicDemo(){
-        DynamicProgram.map.clear();
-        DynamicProgram.map.put(0,0);
-        DynamicProgram.map.put(1,1);
-        System.out.println("斐波那契:F(x)="+DynamicProgram.fib(3));
-        int maxProfit =  DynamicProgram.maxProfit(new int[]{7,1,5,3,6,4});
-        int maxProfit2 =  DynamicProgram.maxProfit(new int[]{7,6,4,3,1});
-        int maxProfit3 =  DynamicProgram.maxProfit(new int[]{1,6,2,6});
-        System.out.println("最大收益="+maxProfit);
-        System.out.println("最大收益="+maxProfit2);
-        System.out.println("最大收益="+maxProfit3);
-        System.out.println("翻译结果:"+translateNum(12258));
-        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("abcabcbb"));
-        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("bbbbb"));
-        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("pwwkew"));
-        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry(""));
-        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry(" "));
-        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("au"));
-        System.out.println("最大连续数组和:"+maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4}));
+//        DynamicProgram.map.clear();
+//        DynamicProgram.map.put(0,0);
+//        DynamicProgram.map.put(1,1);
+//        System.out.println("斐波那契:F(x)="+DynamicProgram.fib(3));
+//        int maxProfit =  DynamicProgram.maxProfit(new int[]{7,1,5,3,6,4});
+//        int maxProfit2 =  DynamicProgram.maxProfit(new int[]{7,6,4,3,1});
+//        int maxProfit3 =  DynamicProgram.maxProfit(new int[]{1,6,2,6});
+//        System.out.println("最大收益="+maxProfit);
+//        System.out.println("最大收益="+maxProfit2);
+//        System.out.println("最大收益="+maxProfit3);
+//        System.out.println("翻译结果:"+translateNum(12258));
+//        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("abcabcbb"));
+//        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("bbbbb"));
+//        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("pwwkew"));
+//        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry(""));
+//        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry(" "));
+//        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("au"));
+//        System.out.println("最大连续数组和:"+maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4}));
+        System.out.println("||||||||||||||||||||||||||STOP||||||||||||||||||||||||||");
+        int[][] grid = new int[][]{{1,3,1},{1,5,1},{4,2,1}};
+        System.out.println("STACK:"+maxValue(grid));
     }
 
     public static void stringsDemo(){

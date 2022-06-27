@@ -1,15 +1,187 @@
 package com.example.lib;
 
+import com.example.lib.bean.TreeNode;
+
+import java.util.ArrayList;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.Stack;
 
 /**
  * 动态规划
  */
 public class DynamicProgram {
+
+    /**
+     * 在一个 m*n 的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于 0）。
+     * 你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。
+     * 给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？
+     *
+     * 输入:
+     * [
+     *   [1,3,1],
+     *   [1,5,1],
+     *   [4,2,1]
+     * ]
+     *
+     * 输出: 12
+     * 解释: 路径 1→3→5→2→1 可以拿到最多价值的礼物
+     *
+     * [
+     * [1,3,1],
+     * [1,5,1],  = 8
+     * ]
+     *
+     * [
+     *   [1,3],
+     *   [1,5],
+     *   [4,2]  = 11
+     * ]
+     *
+     * [
+     *   [1,3],  =  9
+     *   [1,5],
+     * ]
+     *
+     *
+     * [
+     *   [1,3],  = 4
+     * ]
+     *
+     * [
+     *   [1],  =  2
+     *   [1],
+     * ]
+     *
+     * [
+     *   [1],
+     *   [1],  =  6
+     *   [4]
+     * ]
+     *
+     * 边界 直到为1行或者1列为止
+     *
+     *
+     *
+     *
+     *
+     * 思路1 动态规划思路
+     * 1。定义状态方程 需要找到子问题 假设f(m,n) = Math.max(f(m-1,n),f(m,n-1))+grid[m-1][n-1]
+     * 2.递推 关系  需要通过循环 从0推导 状态方程需要完整 不同边界情况
+     * 3。边界
+     * 4。返回
+     *
+     *
+     *
+     *
+     * 思路2 深度优先遍历 计算每种路径的值取最大
+     * 时间复杂度O(N^2) 空间复杂度O(N)
+     *
+     * @param grid
+     * @return
+     */
+    public static int maxValue(int[][] grid) {
+        int m = grid.length; //二维数组的行数
+        int n =  grid[0].length;//二维数组的列数
+        for(int i = 0; i < m; i++) { //循环所以二维数组 将最大值赋予i j 直到最后一点
+            for(int j = 0; j < n; j++) {
+                if(i == 0 && j == 0) continue;
+                if(i == 0) grid[i][j] += grid[i][j - 1] ; //修改起始点
+                else if(j == 0) grid[i][j] += grid[i - 1][j];//修改起始点
+                else grid[i][j] += Math.max(grid[i][j - 1], grid[i - 1][j]);
+            }
+        }
+        return grid[m - 1][n - 1];
+    }
+
+    public static int maxValue3(int row,int column,int[][] grid) {
+        if(row  == 1 || column == 1){ //如果是一行一列直接返回sum值
+            if(row == 1){
+                int sum = 0;
+                for(int i = 0;i<grid.length;i++){
+                    sum+=grid[i][0];
+                }
+                return sum;
+            }
+            if(column == 1){
+                int[] values = grid[0];
+                int sum = 0;
+                for(int i = 0;i<values.length;i++){
+                    sum+= values[i];
+                }
+                return sum;
+            }
+        }
+        int max = Math.max(maxValue3(row-1,column,grid),maxValue3(row,column-1,grid)) + grid[row-1][column-1];
+        return max;
+    }
+
+    public static int maxValue2(int[][] grid) {
+        Stack <DynamicProgram.Point> pathstack =new Stack();
+        int m = grid.length; //二维数组的行数
+        int n = 0;
+        if(grid.length>0){
+            n = grid[0].length;//二维数组的列数
+        }
+        pathMap.clear();
+        dfsValue(m,n,new DynamicProgram.Point(0,0),pathstack);
+        int max = 0;
+        for(List<Point> points:pathMap.values()){
+            int sum = 0;
+            for(int i=0;i<points.size();i++){
+                sum += grid[points.get(i).i][points.get(i).j];
+            }
+            max  = Math.max(sum,max);
+        }
+        return max;
+    }
+
+    static class Point{
+        int i;
+        int j;
+
+        public Point(int i, int j) {
+            this.i = i;
+            this.j = j;
+        }
+    }
+
+    public static Map<String,List> pathMap=new HashMap();//记录全部从根节点到叶子结点的路径
+    // 00  10  20
+    public static List dfsValue(int m,int n,Point point, Stack<Point> pathstack){
+        pathstack.push(point);
+        if(point.i == m-1 && point.j == n-1){ //表示到达最终点
+            List lst = new ArrayList<>();
+            Iterator stackIt=pathstack.iterator();
+            while(stackIt.hasNext()) {
+                lst.add(stackIt.next());
+            }
+            pathMap.put(point.toString(), lst);//保存路径信息
+            return lst;
+        }else {
+            int row = point.i;
+            int column = point.j;
+            while (row<m-1||column<n-1){ //没有到最末端
+                if(row<m-1){ //如果行方向没有到达最右
+                    dfsValue(m,n,new Point(row+1,column),pathstack);
+                    row++;
+                }
+                if(column<n-1){ //如果行方向没有到达最右
+                    dfsValue(m,n,new Point(row,column+1),pathstack);
+                    column++;
+                }
+            }
+        }
+        return null;
+    }
+
 
     /**
      * 输入一个整型数组，数组中的一个或连续多个整数组成一个子数组。求所有子数组的和的最大值。(2020字节原题)
