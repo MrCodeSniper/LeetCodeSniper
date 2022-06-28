@@ -51,37 +51,44 @@ import java.util.Stack;
 public class _Demo {
 
     public static void main(String[] args) {
-        System.out.println("||||||||||||||||||||||||||BFS_DFS Demo||||||||||||||||||||||||||");
-        BFS_DFSDemo();
-        System.out.println("||||||||||||||||||||||||||栈Demo||||||||||||||||||||||||||");
-        stackDemo();
-        System.out.println("||||||||||||||||||||||||||Tree Demo||||||||||||||||||||||||||");
-        treeDemo();
-        System.out.println("||||||||||||||||||||||||||String Demo||||||||||||||||||||||||||");
-        stringsDemo();
-        System.out.println("||||||||||||||||||||||||||Dynamic Demo||||||||||||||||||||||||||");
-        dynamicDemo();
+        System.out.println("||||||||||||||||||||||||||Double ENTRY Demo||||||||||||||||||||||||||");
+        doubleEntryDemo();
+//        System.out.println("||||||||||||||||||||||||||BFS_DFS Demo||||||||||||||||||||||||||");
+//        BFS_DFSDemo();
+//        System.out.println("||||||||||||||||||||||||||栈Demo||||||||||||||||||||||||||");
+//        stackDemo();
+//        System.out.println("||||||||||||||||||||||||||Tree Demo||||||||||||||||||||||||||");
+//        treeDemo();
+//        System.out.println("||||||||||||||||||||||||||String Demo||||||||||||||||||||||||||");
+//        stringsDemo();
+//        System.out.println("||||||||||||||||||||||||||Dynamic Demo||||||||||||||||||||||||||");
+//        dynamicDemo();
+    }
+
+    private static void doubleEntryDemo() {
+        ListNode node = new ListNode(4,new ListNode(5,new ListNode(1,new ListNode(9))));
+        DoubleEntryAl.deleteNode(node,5).printNode();
     }
 
     public static void dynamicDemo(){
-//        DynamicProgram.map.clear();
-//        DynamicProgram.map.put(0,0);
-//        DynamicProgram.map.put(1,1);
-//        System.out.println("斐波那契:F(x)="+DynamicProgram.fib(3));
-//        int maxProfit =  DynamicProgram.maxProfit(new int[]{7,1,5,3,6,4});
-//        int maxProfit2 =  DynamicProgram.maxProfit(new int[]{7,6,4,3,1});
-//        int maxProfit3 =  DynamicProgram.maxProfit(new int[]{1,6,2,6});
-//        System.out.println("最大收益="+maxProfit);
-//        System.out.println("最大收益="+maxProfit2);
-//        System.out.println("最大收益="+maxProfit3);
-//        System.out.println("翻译结果:"+translateNum(12258));
-//        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("abcabcbb"));
-//        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("bbbbb"));
-//        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("pwwkew"));
-//        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry(""));
-//        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry(" "));
-//        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("au"));
-//        System.out.println("最大连续数组和:"+maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4}));
+        DynamicProgram.map.clear();
+        DynamicProgram.map.put(0,0);
+        DynamicProgram.map.put(1,1);
+        System.out.println("斐波那契:F(x)="+DynamicProgram.fib(3));
+        int maxProfit =  DynamicProgram.maxProfit(new int[]{7,1,5,3,6,4});
+        int maxProfit2 =  DynamicProgram.maxProfit(new int[]{7,6,4,3,1});
+        int maxProfit3 =  DynamicProgram.maxProfit(new int[]{1,6,2,6});
+        System.out.println("最大收益="+maxProfit);
+        System.out.println("最大收益="+maxProfit2);
+        System.out.println("最大收益="+maxProfit3);
+        System.out.println("翻译结果:"+translateNum(12258));
+        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("abcabcbb"));
+        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("bbbbb"));
+        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("pwwkew"));
+        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry(""));
+        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry(" "));
+        System.out.println("最长子串长度:"+lengthOfLongestSubstringDoubleEntry("au"));
+        System.out.println("最大连续数组和:"+maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4}));
         System.out.println("||||||||||||||||||||||||||STOP||||||||||||||||||||||||||");
         int[][] grid = new int[][]{{1,3,1},{1,5,1},{4,2,1}};
         System.out.println("STACK:"+maxValue(grid));
