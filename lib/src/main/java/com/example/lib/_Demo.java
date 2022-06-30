@@ -10,6 +10,7 @@ import static com.example.lib.BFS_DFS.lowestCommonAncestor;
 import static com.example.lib.BFS_DFS.maxAreaOfIsland;
 import static com.example.lib.BFS_DFS.maxDepth;
 import static com.example.lib.BFS_DFS.path;
+import static com.example.lib.DivideAndConquer.buildTree;
 import static com.example.lib.DynamicProgram.dfsValue;
 import static com.example.lib.DynamicProgram.lengthOfLongestSubstringDoubleEntry;
 import static com.example.lib.DynamicProgram.lengthOfLongestSubstringViolent;
@@ -51,8 +52,10 @@ import java.util.Stack;
 public class _Demo {
 
     public static void main(String[] args) {
-        System.out.println("||||||||||||||||||||||||||Double ENTRY Demo||||||||||||||||||||||||||");
-        doubleEntryDemo();
+        System.out.println("||||||||||||||||||||||||||DivideAndConquer Demo||||||||||||||||||||||||||");
+        DivideAndConquerDemo();
+//        System.out.println("||||||||||||||||||||||||||Double ENTRY Demo||||||||||||||||||||||||||");
+//        doubleEntryDemo();
 //        System.out.println("||||||||||||||||||||||||||BFS_DFS Demo||||||||||||||||||||||||||");
 //        BFS_DFSDemo();
 //        System.out.println("||||||||||||||||||||||||||栈Demo||||||||||||||||||||||||||");
@@ -63,6 +66,13 @@ public class _Demo {
 //        stringsDemo();
 //        System.out.println("||||||||||||||||||||||||||Dynamic Demo||||||||||||||||||||||||||");
 //        dynamicDemo();
+    }
+
+    private static void DivideAndConquerDemo(){
+        int[] preOrder = new int[]{3,9,20,15,7};
+        int[] inOrder = new int[]{9,3,15,20,7};
+        TreeNode root = buildTree(preOrder,inOrder);
+        root.printTree();
     }
 
     private static void doubleEntryDemo() {
