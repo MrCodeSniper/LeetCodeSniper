@@ -9,6 +9,68 @@ import com.example.lib.bean.TreeNode;
 public class DivideAndConquer {
 
     /**
+     * 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回 true，否则返回 false。假设输入的数组的任意两个数字都互不相同。
+     *
+     * 输入: [1,6,3,2,5]
+     * 输出: false
+     *
+     * 输入: [1,3,2,6,5]
+     * 输出: true
+     *
+     *      5
+     *     / \
+     *    2   6
+     *   / \
+     *  1   3
+     *
+     * 二叉搜索树具备的特性 左子树小于根节点 右子树大于根节点
+     *
+     * 后序遍历的特性 左右根
+     *
+     * 拆分子问题 合并
+     *
+     * 数组的第一个数必须是最小  且为叶子节点 最后一个为根节点
+     *
+     * 设遍历后序 [i,j]区间
+     * 设找到根节点索引为m
+     * 那么左子树[i,m-1] < postorder[j]
+     * 那么右子树[m,j-1] > postorder[j]
+     *
+     * 时间复杂度 O(N^2) 空间复杂度 O(N)
+     *
+     * 进行双循环判断
+     *
+     * 如果i>=j 说明数组只有一个元素返回true
+     * recur(i,m−1) ： 判断 此树的左子树 是否正确。
+     * recur(m, j - 1)recur(m,j−1) ： 判断 此树的右子树 是否正确。
+     *
+     * 利用这些特性整理出规律 利用辅助单调栈能 缩减时间复杂度
+     *
+     * 时间复杂度 O(N) 空间复杂度 O(N)
+     *
+     *
+     * @param postorder 后序遍历结果
+     * @return
+     */
+    public boolean verifyPostorder(int[] postorder) {
+        return verifyPostorder(postorder,0,postorder.length-1);
+    }
+
+    public boolean verifyPostorder(int[] postorder,int start,int end) {
+        if(start>=end) return true;
+        int p = start;
+        while (postorder[p]<postorder[end]){ //从序列找到小于根节点的元素下标 的最大值为新子树的根节点
+            p++;
+        }
+        int m = p; //记录为根节点
+        while(postorder[p] > postorder[end]){ //从根节点开始 是否找到了结尾都是大于根节点的 如果全都大则刚好到末尾
+            p++;
+        }
+        return p == end && verifyPostorder(postorder,start,m-1) && verifyPostorder(postorder,m,end-1);
+
+    }
+
+    /**
      * 输入某二叉树的前序遍历和中序遍历的结果，请构建该二叉树并返回其根节点。
      *
      * 假设输入的前序遍历和中序遍历的结果中都不含重复的数字。
