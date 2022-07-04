@@ -11,6 +11,7 @@ import static com.example.lib.BFS_DFS.maxAreaOfIsland;
 import static com.example.lib.BFS_DFS.maxDepth;
 import static com.example.lib.BFS_DFS.path;
 import static com.example.lib.DivideAndConquer.buildTree;
+import static com.example.lib.DivideAndConquer.myPow;
 import static com.example.lib.DynamicProgram.dfsValue;
 import static com.example.lib.DynamicProgram.lengthOfLongestSubstringDoubleEntry;
 import static com.example.lib.DynamicProgram.lengthOfLongestSubstringViolent;
@@ -69,10 +70,17 @@ public class _Demo {
     }
 
     private static void DivideAndConquerDemo(){
-        int[] preOrder = new int[]{3,9,20,15,7};
-        int[] inOrder = new int[]{9,3,15,20,7};
-        TreeNode root = buildTree(preOrder,inOrder);
-        root.printTree();
+//        int[] preOrder = new int[]{3,9,20,15,7};
+//        int[] inOrder = new int[]{9,3,15,20,7};
+//        TreeNode root = buildTree(preOrder,inOrder);
+//        root.printTree();
+//        System.out.println("结果为:"+myPow(5,2));
+//        System.out.println("结果为:"+myPow(5,-2));
+//        System.out.println("结果为:"+myPow(2,10));
+//        System.out.println("结果为:"+myPow(2.1,3));
+//        System.out.println("结果为:"+myPow(2,-2));
+//        System.out.println("结果为:"+myPow(2,-10));
+        System.out.println("结果为:"+myPow(0.00001, 2147483647));
     }
 
     private static void doubleEntryDemo() {

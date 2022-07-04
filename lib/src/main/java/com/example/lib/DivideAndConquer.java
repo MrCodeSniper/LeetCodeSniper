@@ -2,11 +2,76 @@ package com.example.lib;
 
 import com.example.lib.bean.TreeNode;
 
+import java.util.HashMap;
+
 /**
  * 分治算法整理
  * @author ch
  */
 public class DivideAndConquer {
+
+
+    /**
+     * 实现 pow(x, n) ，即计算 x 的 n 次幂函数（即，xn）。不得使用库函数，同时不需要考虑大数问题
+     *
+     * 输入：x = 2.00000, n = 10
+     * 输出：1024.00000
+     *
+     * 输入：x = 2.10000, n = 3
+     * 输出：9.26100
+     *
+     * 输入：x = 2.00000, n = -2
+     * 输出：0.25000
+     * 解释：2-2 = 1/22 = 1/4 = 0.25
+     *
+     * 思路 递归计算每一次执行n-1 如果n>0 自身*自身 如果n<0 1/自身*1/自身  直到N=0为止
+     * 时间复杂度O(n) 空间复杂度O(1)
+     *
+     * 递归如果n过大存在栈溢出的风险 需要辅助空间存储每次计算结果
+     *
+     * 优化 层数减少 可以使用 计算的结果 * 计算的结果  2^4 =  2^2 * 2^2 只需要一次计算
+     * 层数可以减少为O(log2n) 空间复杂度O(1)
+     *
+     *
+     * @param x
+     * @param n
+     * @return
+     */
+    public static double myPow(double x, int n) {
+        if (n == 0) return 1;
+        if (n == -1) return 1 / x;
+        if (n == 1) return x;
+        double half = myPow(x, n / 2);
+        //如果整除 平方处理 如果非整除 表示计算到了最后一个 直接乘x 无需乘X^2
+        return n % 2 == 0 ? half * half : half * half * (n > 0 ? x : 1 / x);
+    }
+
+    public static double myPow3(double x, int n) {
+        map.clear();
+        if(n == 0) return 1;
+        map.put(0,x);
+       return myPow2(x,n-1);
+    }
+
+    public static HashMap<Integer,Double> map = new HashMap<>();
+
+    public static double myPow2(double x, int n) {
+        if(map.get(n)!=null){
+            return map.get(n);
+        }
+        if(n<0){
+            n++;
+            double num = myPow2(x,n);
+            map.put(n,num);
+            return 1/x*num;
+        }else if(n>0){
+            n--;
+            double num = myPow2(x,n);
+            map.put(n,num);
+            return x*num;
+        }
+        return x;
+    }
 
     /**
      * 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回 true，否则返回 false。假设输入的数组的任意两个数字都互不相同。
