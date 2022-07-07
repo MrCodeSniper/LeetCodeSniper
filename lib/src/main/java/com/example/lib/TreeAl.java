@@ -5,6 +5,7 @@ import com.example.lib.bean.TreeNode;
 
 
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class TreeAl {
 
@@ -26,11 +27,58 @@ public class TreeAl {
      *
      * 反序列化 在于区分# 转化为字符串数组
      *
+     * 通过层次构建序列化 再用层次反序化即可
+     * 时间复杂度O(n)空间复杂度O(n)
+     *
      * @param root
      * @return
      */
-    // Encodes a tree to a single string.
     public static String serialize(TreeNode root) { //[1,2,3,null,null,4,5]
+        StringBuilder builder = new StringBuilder();
+        //通过层序遍历遍历树得到序列化结果
+        LinkedList<TreeNode> queue = new LinkedList<>(); //辅助队列
+        queue.add(root);
+        while (!queue.isEmpty()){
+            TreeNode node = queue.poll();
+            if(node != null){
+                builder.append(node.val);
+                builder.append("#");
+                queue.add(node.left);
+                queue.add(node.right);
+            }else {
+                builder.append("null");
+                builder.append("#");
+            }
+        }
+        return builder.toString();
+    }
+
+    public static TreeNode deserialize(String data) { //1#2#3#null#null#4#5#null#null#null#null#
+        if(data.isEmpty()) return null;
+        String[] vals = data.split("#");
+        if(vals[0].equals("null")) return null;
+        TreeNode root = new TreeNode(Integer.parseInt(vals[0]));
+        Queue<TreeNode> queue = new LinkedList() {{ add(root); }};
+        int i = 1;
+        while(!queue.isEmpty()) { //如果左右节点都为空即结束
+            TreeNode node = queue.poll();
+            //每次弹出栈等待 左右节点都加上
+            if(!vals[i].equals("null")) {
+                node.left = new TreeNode(Integer.parseInt(vals[i]));
+                queue.add(node.left);
+            }
+            i++;
+            if(!vals[i].equals("null")) {
+                node.right = new TreeNode(Integer.parseInt(vals[i]));
+                queue.add(node.right);
+            }
+            i++;
+        }
+        return root;
+    }
+
+    // Encodes a tree to a single string.
+    public static String serialize2(TreeNode root) { //[1,2,3,null,null,4,5]
         StringBuilder builder = new StringBuilder();
         //通过层序遍历遍历树得到序列化结果
         LinkedList<TreeNode> queue = new LinkedList<>(); //辅助队列
@@ -67,8 +115,9 @@ public class TreeAl {
         return builder.toString();
     }
 
+
     // Decodes your encoded data to tree.
-    public static TreeNode deserialize(String data) { //1#2#3#null#null#4#5#null#null#null#null#
+    public static TreeNode deserialize2(String data) { //1#2#3#null#null#4#5#null#null#null#null#
         String[] decodeStrings = data.split("#");
         TreeNode root = null;
         //规律 下标为i的根节点 其左右节点为 其 2*i+1    2*i+2
