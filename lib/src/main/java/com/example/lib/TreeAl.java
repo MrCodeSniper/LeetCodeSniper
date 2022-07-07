@@ -3,13 +3,112 @@ package com.example.lib;
 import com.example.lib.bean.Node;
 import com.example.lib.bean.TreeNode;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
 
-import javax.swing.plaf.TextUI;
+import java.util.LinkedList;
 
 public class TreeAl {
+
+    /**
+     * 请实现两个函数，分别用来序列化和反序列化二叉树。
+     *
+     * 你需要设计一个算法来实现二叉树的序列化与反序列化。这里不限定你的序列 / 反序列化算法执行逻辑，
+     * 你只需要保证一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构。
+     *
+     * 提示：输入输出格式与 LeetCode 目前使用的方式一致，详情请参阅LeetCode 序列化二叉树的格式。
+     * 你并非必须采取这种方式，你也可以采用其他的方法解决这个问题。
+     *
+     * 可以使用#作为数组元素的连接
+     *
+     * 通过层序遍历进行序列化转化为字符串 为了完整的表现树的结构 需要将null也拼接进序列化结果
+     * 时间复杂度O(n)空间复杂度O(n)
+     *
+     * 完美二叉树 存在内存限制 构造数组会超出
+     *
+     * 反序列化 在于区分# 转化为字符串数组
+     *
+     * @param root
+     * @return
+     */
+    // Encodes a tree to a single string.
+    public static String serialize(TreeNode root) { //[1,2,3,null,null,4,5]
+        StringBuilder builder = new StringBuilder();
+        //通过层序遍历遍历树得到序列化结果
+        LinkedList<TreeNode> queue = new LinkedList<>(); //辅助队列
+        LinkedList<Integer> indexQueue = new LinkedList<>(); //辅助队列
+        queue.add(root);
+        indexQueue.add(0);
+        int lastIndex = 0;
+        while (!queue.isEmpty() && !indexQueue.isEmpty()){ //为了完整的表现树的结构 需要将null也拼接进序列化结果
+            TreeNode node = queue.poll();
+            int nowIndex = indexQueue.poll();
+            if(node != null){ //为了完整的表现树的结构 需要完美的二叉树 null
+                //在添加进去之前要判断该节点的下标 前面需要补几个null
+                if(nowIndex-lastIndex>1){
+                    for(int i=0;i<nowIndex-lastIndex-1;i++){
+                        builder.append("null");
+                        builder.append("#");
+                    }
+                }
+                builder.append(node.val);
+                builder.append("#");
+                int leftIndex = nowIndex*2+1;
+                if(node.left!=null){
+                    queue.add(node.left);
+                    indexQueue.add(leftIndex);
+                }
+                if(node.right!=null){
+                    queue.add(node.right);
+                    int rightIndex =  leftIndex+1;
+                    indexQueue.add(rightIndex);
+                }
+                lastIndex = nowIndex;
+            }
+        }
+        return builder.toString();
+    }
+
+    // Decodes your encoded data to tree.
+    public static TreeNode deserialize(String data) { //1#2#3#null#null#4#5#null#null#null#null#
+        String[] decodeStrings = data.split("#");
+        TreeNode root = null;
+        //规律 下标为i的根节点 其左右节点为 其 2*i+1    2*i+2
+        //比如根节点 1 下标为0  左子数下标为1
+        //比如节点2  下标为1 左子数下标为3
+        //比如节点3  下标为2 左子数下标为5
+        //下标为5  左节点下标为 11
+        //如果遇到null 则break
+        int size = decodeStrings.length;
+        if(size>0){
+            if(decodeStrings[0].equals("null")) return null;
+            root = new TreeNode(Integer.parseInt(decodeStrings[0]));
+        }
+        //进行遍历赋值
+        LinkedList<TreeNode> queue = new LinkedList<>(); //辅助队列
+        LinkedList<Integer> indexQueue = new LinkedList<>(); //辅助队列
+        queue.add(root);
+        indexQueue.add(0);
+        while (!queue.isEmpty()&&!indexQueue.isEmpty()){
+            TreeNode node = queue.poll();
+            int nowIndex = indexQueue.poll();
+            if(node!=null){
+                int leftIndex = nowIndex*2+1;
+                int rightIndex =  leftIndex+1;
+                if(leftIndex<size && !decodeStrings[leftIndex].equals("null")){
+                    TreeNode leftNode =  new TreeNode(Integer.parseInt(decodeStrings[leftIndex]));
+                    node.left = leftNode;
+                    queue.add(node.left);
+                    indexQueue.add(leftIndex);
+                }
+                if(rightIndex<size && !decodeStrings[rightIndex].equals("null")){
+                    TreeNode rightNode =  new TreeNode(Integer.parseInt(decodeStrings[rightIndex]));
+                    node.right = rightNode;
+                    queue.add(node.right);
+                    indexQueue.add(rightIndex);
+                }
+            }
+        }
+        return root;
+    }
 
     /**
      * 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的循环双向链表。要求不能创建任何新的节点，只能调整树中节点指针的指向。

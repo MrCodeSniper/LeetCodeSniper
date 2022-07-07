@@ -53,8 +53,8 @@ import java.util.Stack;
 public class _Demo {
 
     public static void main(String[] args) {
-        System.out.println("||||||||||||||||||||||||||DivideAndConquer Demo||||||||||||||||||||||||||");
-        DivideAndConquerDemo();
+//        System.out.println("||||||||||||||||||||||||||DivideAndConquer Demo||||||||||||||||||||||||||");
+//        DivideAndConquerDemo();
 //        System.out.println("||||||||||||||||||||||||||Double ENTRY Demo||||||||||||||||||||||||||");
 //        doubleEntryDemo();
 //        System.out.println("||||||||||||||||||||||||||BFS_DFS Demo||||||||||||||||||||||||||");
@@ -62,7 +62,7 @@ public class _Demo {
 //        System.out.println("||||||||||||||||||||||||||栈Demo||||||||||||||||||||||||||");
 //        stackDemo();
 //        System.out.println("||||||||||||||||||||||||||Tree Demo||||||||||||||||||||||||||");
-//        treeDemo();
+        treeDemo();
 //        System.out.println("||||||||||||||||||||||||||String Demo||||||||||||||||||||||||||");
 //        stringsDemo();
 //        System.out.println("||||||||||||||||||||||||||Dynamic Demo||||||||||||||||||||||||||");
@@ -136,19 +136,33 @@ public class _Demo {
     }
 
     public static void treeDemo(){
-        TreeNode node = new TreeNode(10,new TreeNode(5,new TreeNode(3),new TreeNode(6)),new TreeNode(20,new TreeNode(15),new TreeNode(30)));
-        int num = kthLargest(node,7);
-        System.out.println("最大值:"+num);
+//        TreeNode node = new TreeNode(10,new TreeNode(5,new TreeNode(3),new TreeNode(6)),new TreeNode(20,new TreeNode(15),new TreeNode(30)));
+//        int num = kthLargest(node,7);
+//        System.out.println("最大值:"+num);
+//
+//        Node root = new Node(4,new Node(2,new Node(1),new Node(3)),new Node(5));
+//        Node root2 = new Node(1);
+//        Node root3 = new Node(2, new Node(1),null);
+//        Node root6 = new Node(2, new Node(1), new Node(3));
+//        Node root4 = new Node(2, null,new Node(3));
+//        Node root5 = new Node(-1, null,new Node(1,null,new Node(9)));
+//        Node root7 = new Node(30, new Node(13,new Node(-28,new Node(-44,null,new Node(-35)),null),null),null);
+//        Node result = treeToDoublyList(root7);
+//        System.out.println("result:"+result.val);
 
-        Node root = new Node(4,new Node(2,new Node(1),new Node(3)),new Node(5));
-        Node root2 = new Node(1);
-        Node root3 = new Node(2, new Node(1),null);
-        Node root6 = new Node(2, new Node(1), new Node(3));
-        Node root4 = new Node(2, null,new Node(3));
-        Node root5 = new Node(-1, null,new Node(1,null,new Node(9)));
-        Node root7 = new Node(30, new Node(13,new Node(-28,new Node(-44,null,new Node(-35)),null),null),null);
-        Node result = treeToDoublyList(root7);
-        System.out.println("result:"+result.val);
+        //  5
+        // 2   3
+        //- - 2 4
+       //-- --31 --
+
+        TreeNode node = new TreeNode(1,new TreeNode(2),new TreeNode(3,new TreeNode(4),new TreeNode(5)));
+        node = new TreeNode(5,new TreeNode(2),new TreeNode(3,new TreeNode(2,new TreeNode(3),new TreeNode(1)),new TreeNode(4)));
+//        node = new TreeNode(5,new TreeNode(2),new TreeNode(3,new TreeNode(2),new TreeNode(4)));
+        String str = TreeAl.serialize(node);
+        System.out.println("序列化结果为:"+str);
+
+        TreeNode newNode = TreeAl.deserialize(str);
+        System.out.println("反序列化结果为:"+newNode.val);
     }
 
     /**
