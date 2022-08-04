@@ -9,6 +9,10 @@
         <entry key="app/src/main/res/layout/activity_lottie.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main_softtoken.xml" value="0.1935185185185185" />
         <entry key="app/src/main/res/layout/activity_my_pdf.xml" value="0.1721014492753623" />
+        <entry key="app/src/main/res/layout/activity_nestscroll_layout.xml" value="0.21822916666666667" />
+        <entry key="app/src/main/res/layout/activity_offline.xml" value="0.10677083333333333" />
+        <entry key="app/src/main/res/layout/activity_recyclerview_layout.xml" value="0.1578125" />
+        <entry key="app/src/main/res/layout/adapter_test_item_layout.xml" value="0.21822916666666667" />
       </map>
     </option>
   </component>
