@@ -5,8 +5,9 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_alblum.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/activity_coroutine.xml" value="0.11" />
+        <entry key="app/src/main/res/layout/activity_coroutine.xml" value="0.125" />
         <entry key="app/src/main/res/layout/activity_lottie.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main_softtoken.xml" value="0.1935185185185185" />
         <entry key="app/src/main/res/layout/activity_my_pdf.xml" value="0.1721014492753623" />
       </map>
     </option>

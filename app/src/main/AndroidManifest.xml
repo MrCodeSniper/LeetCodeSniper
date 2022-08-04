@@ -97,7 +97,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".MainActivity2"
-            android:theme="@style/MoAppTheme.Launcher">
+            android:theme="@style/MoAppTheme.NoActionBar">
 
              <intent-filter>
              <action android:name="android.intent.action.MAIN" />
